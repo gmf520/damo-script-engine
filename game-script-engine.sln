@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{55E35118-FE05-46FA-8666-A306BE3FB44E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liuliu.ScriptEngine", "src\Liuliu.ScriptEngine\Liuliu.ScriptEngine.csproj", "{39635F91-7041-473B-817A-9C634BE2ADAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39635F91-7041-473B-817A-9C634BE2ADAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39635F91-7041-473B-817A-9C634BE2ADAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39635F91-7041-473B-817A-9C634BE2ADAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39635F91-7041-473B-817A-9C634BE2ADAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39635F91-7041-473B-817A-9C634BE2ADAE} = {55E35118-FE05-46FA-8666-A306BE3FB44E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE498D80-9A8D-4147-90DC-55A6BD92489E}
+	EndGlobalSection
+EndGlobal
