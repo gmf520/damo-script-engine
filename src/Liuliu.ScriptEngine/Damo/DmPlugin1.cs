@@ -25,7 +25,7 @@ namespace Liuliu.ScriptEngine.Damo
     /// 本模块必须包含dmc.dll 实现不用注册dm.dll 到系统可以动态调用
     /// 分类并整理，添加注释：柳柳英侠（QQ:123202901）
     /// </summary>
-    public class DmPlugin : IDisposable
+    public class DmPlugin1 : IDisposable
     {
         private static readonly string DmName = GetDmName();
         private IntPtr _dm = IntPtr.Zero;
@@ -35,11 +35,11 @@ namespace Liuliu.ScriptEngine.Damo
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>的新实例。
         /// </summary>
-        public DmPlugin(bool showError = false)
+        public DmPlugin1(bool showError = false)
         {
             //ReleaseResource(DmName);
             //ReleaseResource(DmcName);
-            _dm = NativeMethods.CreateDM(DmName);
+            _dm = NativeMethods1.CreateDM(DmName);
             if (_dm == IntPtr.Zero)
             {
                 throw new OSharpException("创建大漠对象失败");
@@ -50,7 +50,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>类型的新实例
         /// </summary>
-        public DmPlugin(string dict, string dictPwd, bool showError = false)
+        public DmPlugin1(string dict, string dictPwd, bool showError = false)
             : this(showError)
         {
             SetDictPwd(dictPwd);
@@ -107,7 +107,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         public int Reg(string code, string ver = null)
         {
-            return NativeMethods.Reg(_dm, code, ver);
+            return NativeMethods1.Reg(_dm, code, ver);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回dm.dll所在路径</returns>
         public string GetBasePath()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetBasePath(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetBasePath(_dm));
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>当前对象的ID值</returns>
         public long GetID()
         {
-            return NativeMethods.GetID(_dm);
+            return NativeMethods1.GetID(_dm);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>当前插件的版本描述字符串</returns>
         public string Ver()
         {
-            return Marshal.PtrToStringUni(NativeMethods.Ver(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.Ver(_dm));
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// -19 : 使用模式0 1 2 3 101时出现,说明你的系统不支持这几个模式. 可以尝试其他模式.</returns>
         public int GetLastError()
         {
-            return NativeMethods.GetLastError(_dm);
+            return NativeMethods1.GetLastError(_dm);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>以字符串的形式返回当前设置的全局路径</returns>
         public string GetPath()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetPath(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetPath(_dm));
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>1成功，0失败。</returns>
         public int SetPath(string path)
         {
-            return NativeMethods.SetPath(_dm, path);
+            return NativeMethods1.SetPath(_dm, path);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>1成功，0失败。</returns>
         public long SetDisplayInput(string mode)
         {
-            return NativeMethods.SetDisplayInput(_dm, mode);
+            return NativeMethods1.SetDisplayInput(_dm, mode);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace Liuliu.ScriptEngine.Damo
         public long SetShowErrorMsg(bool isShow = true)
         {
             int show = isShow ? 1 : 0;
-            return NativeMethods.SetShowErrorMsg(_dm, show);
+            return NativeMethods1.SetShowErrorMsg(_dm, show);
         }
 
         #endregion
@@ -215,7 +215,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>1成功，0失败。</returns>
         public long ClientToScreen(int hwnd, ref object x, ref object y)
         {
-            return NativeMethods.ClientToScreen(_dm, hwnd, ref x, ref y);
+            return NativeMethods1.ClientToScreen(_dm, hwnd, ref x, ref y);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>1成功，0失败。</returns>
         public int ScreenToClient(int hwnd, ref object x, ref object y)
         {
-            return NativeMethods.ScreenToClient(_dm, hwnd, ref x, ref y);
+            return NativeMethods1.ScreenToClient(_dm, hwnd, ref x, ref y);
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>整形数表示的窗口句柄，没找到返回0</returns>
         public int FindWindow(string className, string title)
         {
-            return NativeMethods.FindWindow(_dm, className, title);
+            return NativeMethods1.FindWindow(_dm, className, title);
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <param name="title">窗口标题,如果为空，则匹配所有</param>
         public int FindWindowEx(int parent, string className, string title)
         {
-            return NativeMethods.FindWindowEx(_dm, parent, className, title);
+            return NativeMethods1.FindWindowEx(_dm, parent, className, title);
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回所有匹配的窗口句柄字符串,格式"hwnd1,hwnd2,hwnd3"</returns>
         public string EnumWindow(int parent, string title, string className, int filter)
         {
-            return Marshal.PtrToStringUni(NativeMethods.EnumWindow(_dm, parent, title, className, filter));
+            return Marshal.PtrToStringUni(NativeMethods1.EnumWindow(_dm, parent, title, className, filter));
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回所有匹配的窗口句柄字符串,格式"hwnd1,hwnd2,hwnd3"</returns>
         public string EnumWindowByProcess(string processName, string title, string className, int filter)
         {
-            return Marshal.PtrToStringUni(NativeMethods.EnumWindowByProcess(_dm, processName, title, className, filter));
+            return Marshal.PtrToStringUni(NativeMethods1.EnumWindowByProcess(_dm, processName, title, className, filter));
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int GetClientSize(int hwnd, out int width, out int height)
         {
             object w, h;
-            int result = NativeMethods.GetClientSize(_dm, hwnd, out w, out h);
+            int result = NativeMethods1.GetClientSize(_dm, hwnd, out w, out h);
             width = (int)w;
             height = (int)h;
             return result;
@@ -312,7 +312,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回整型表示的窗口句柄</returns>
         public int GetForegroundFocus()
         {
-            return NativeMethods.GetForegroundFocus(_dm);
+            return NativeMethods1.GetForegroundFocus(_dm);
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回整型表示的窗口句柄</returns>
         public int GetForegroundWindow()
         {
-            return NativeMethods.GetForegroundWindow(_dm);
+            return NativeMethods1.GetForegroundWindow(_dm);
         }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回整型表示的窗口句柄</returns>
         public int GetMousePointWindow()
         {
-            return NativeMethods.GetMousePointWindow(_dm);
+            return NativeMethods1.GetMousePointWindow(_dm);
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回整型表示的窗口句柄</returns>
         public int GetPointWindow(int x, int y)
         {
-            return NativeMethods.GetPointWindow(_dm, x, y);
+            return NativeMethods1.GetPointWindow(_dm, x, y);
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>以整型数表示的窗口句柄</returns>
         public int GetSpecialWindow(int flag)
         {
-            return NativeMethods.GetSpecialWindow(_dm, flag);
+            return NativeMethods1.GetSpecialWindow(_dm, flag);
         }
 
         /// <summary>
@@ -369,7 +369,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public int GetWindow(int hwnd, int flag)
         {
-            return NativeMethods.GetWindow(_dm, hwnd, flag);
+            return NativeMethods1.GetWindow(_dm, hwnd, flag);
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>窗口的标题</returns>
         public string GetWindowTitle(int hwnd)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWindowTitle(_dm, hwnd));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWindowTitle(_dm, hwnd));
         }
 
         /// <summary>
@@ -389,7 +389,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>窗口的类名</returns>
         public string GetWindowClass(int hwnd)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWindowClass(_dm, hwnd));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWindowClass(_dm, hwnd));
         }
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回整型表示的是进程ID</returns>
         public int GetWindowProcessId(int hwnd)
         {
-            return NativeMethods.GetWindowProcessId(_dm, hwnd);
+            return NativeMethods1.GetWindowProcessId(_dm, hwnd);
         }
 
         /// <summary>
@@ -409,7 +409,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字符串表示的是exe全路径名</returns>
         public string GetWindowProcessPath(int hwnd)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWindowProcessPath(_dm, hwnd));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWindowProcessPath(_dm, hwnd));
         }
 
         /// <summary>
@@ -424,7 +424,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int GetWindowRect(int hwnd, out int x1, out int y1, out int x2, out int y2)
         {
             object a, b, c, d;
-            int result = NativeMethods.GetWindowRect(_dm, hwnd, out a, out b, out c, out d);
+            int result = NativeMethods1.GetWindowRect(_dm, hwnd, out a, out b, out c, out d);
             x1 = (int)a;
             y1 = (int)b;
             x2 = (int)c;
@@ -447,7 +447,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0: 不满足条件，1: 满足条件</returns>
         public int GetWindowState(int hwnd, int flag)
         {
-            return NativeMethods.GetWindowState(_dm, hwnd, flag);
+            return NativeMethods1.GetWindowState(_dm, hwnd, flag);
         }
 
         /// <summary>
@@ -459,7 +459,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MoveWindow(int hwnd, int x, int y)
         {
-            return NativeMethods.MoveWindow(_dm, hwnd, x, y);
+            return NativeMethods1.MoveWindow(_dm, hwnd, x, y);
         }
 
         /// <summary>
@@ -471,7 +471,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetClientSize(int hwnd, int width, int height)
         {
-            return NativeMethods.SetClientSize(_dm, hwnd, width, height);
+            return NativeMethods1.SetClientSize(_dm, hwnd, width, height);
         }
 
         /// <summary>
@@ -483,7 +483,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWindowSize(int hwnd, int width, int height)
         {
-            return NativeMethods.SetWindowSize(_dm, hwnd, width, height);
+            return NativeMethods1.SetWindowSize(_dm, hwnd, width, height);
         }
 
         /// <summary>
@@ -507,7 +507,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWindowState(int hwnd, int flag)
         {
-            return NativeMethods.SetWindowState(_dm, hwnd, flag);
+            return NativeMethods1.SetWindowState(_dm, hwnd, flag);
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWindowText(int hwnd, string title)
         {
-            return NativeMethods.SetWindowText(_dm, hwnd, title);
+            return NativeMethods1.SetWindowText(_dm, hwnd, title);
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWindowTransparent(int hwnd, int trans)
         {
-            return NativeMethods.SetWindowTransparent(_dm, hwnd, trans);
+            return NativeMethods1.SetWindowTransparent(_dm, hwnd, trans);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SendPaste(int hwnd)
         {
-            return NativeMethods.SendPaste(_dm, hwnd);
+            return NativeMethods1.SendPaste(_dm, hwnd);
         }
 
         /// <summary>
@@ -550,7 +550,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SendString(int hwnd, string content)
         {
-            int result = NativeMethods.SendString(_dm, hwnd, content);
+            int result = NativeMethods1.SendString(_dm, hwnd, content);
             Delay(100);
             return result;
         }
@@ -563,7 +563,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SendString2(int hwnd, string content)
         {
-            int result = NativeMethods.SendString2(_dm, hwnd, content);
+            int result = NativeMethods1.SendString2(_dm, hwnd, content);
             Delay(100);
             return result;
         }
@@ -579,7 +579,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>成功时返回鼠标特征码，失败时返回空的串</returns>
         public string GetCursorShape()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetCursorShape(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetCursorShape(_dm));
         }
 
         /// <summary>
@@ -590,7 +590,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>成功时返回鼠标特征码，失败时返回空的串</returns>
         public string GetCursorShapeEx(int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetCursorShapeEx(_dm, type));
+            return Marshal.PtrToStringUni(NativeMethods1.GetCursorShapeEx(_dm, type));
         }
 
         /// <summary>
@@ -600,7 +600,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public string GetCursorSpot()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetCursorSpot(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetCursorSpot(_dm));
         }
 
         /// <summary>
@@ -612,7 +612,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int GetCursorPos(out int x, out int y)
         {
             object a, b;
-            int result = NativeMethods.GetCursorPos(_dm, out a, out b);
+            int result = NativeMethods1.GetCursorPos(_dm, out a, out b);
             x = (int)a;
             y = (int)b;
             return result;
@@ -625,7 +625,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.弹起，1.按下</returns>
         public int GetKeyState(int keyCode)
         {
-            return NativeMethods.GetKeyState(_dm, keyCode);
+            return NativeMethods1.GetKeyState(_dm, keyCode);
         }
 
         /// <summary>
@@ -635,7 +635,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int KeyDown(int keyCode)
         {
-            return NativeMethods.KeyDown(_dm, keyCode);
+            return NativeMethods1.KeyDown(_dm, keyCode);
         }
 
         /// <summary>
@@ -645,7 +645,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int KeyDown(string keyStr)
         {
-            return NativeMethods.KeyDownChar(_dm, keyStr);
+            return NativeMethods1.KeyDownChar(_dm, keyStr);
         }
 
         /// <summary>
@@ -655,7 +655,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int KeyUp(int keyCode)
         {
-            return NativeMethods.KeyUp(_dm, keyCode);
+            return NativeMethods1.KeyUp(_dm, keyCode);
         }
 
         /// <summary>
@@ -665,7 +665,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int KeyUp(string keyStr)
         {
-            return NativeMethods.KeyUpChar(_dm, keyStr);
+            return NativeMethods1.KeyUpChar(_dm, keyStr);
         }
 
         /// <summary>
@@ -679,7 +679,7 @@ namespace Liuliu.ScriptEngine.Damo
             bool flag = true;
             for (int i = 0; i < count; i++)
             {
-                flag = flag && NativeMethods.KeyPress(_dm, keyCode) == 1;
+                flag = flag && NativeMethods1.KeyPress(_dm, keyCode) == 1;
             }
             return flag ? 1 : 0;
         }
@@ -695,7 +695,7 @@ namespace Liuliu.ScriptEngine.Damo
             bool flag = true;
             for (int i = 0; i < count; i++)
             {
-                flag = flag && NativeMethods.KeyPressChar(_dm, keyStr) == 1;
+                flag = flag && NativeMethods1.KeyPressChar(_dm, keyStr) == 1;
             }
             return flag ? 1 : 0;
         }
@@ -708,7 +708,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.超时，1.指定的按键按下</returns>
         public int WaitKey(int keyCode, int timeOut)
         {
-            return NativeMethods.WaitKey(_dm, keyCode, timeOut);
+            return NativeMethods1.WaitKey(_dm, keyCode, timeOut);
         }
 
         /// <summary>
@@ -717,7 +717,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LeftDown()
         {
-            return NativeMethods.LeftDown(_dm);
+            return NativeMethods1.LeftDown(_dm);
         }
 
         /// <summary>
@@ -726,7 +726,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LeftUp()
         {
-            return NativeMethods.LeftUp(_dm);
+            return NativeMethods1.LeftUp(_dm);
         }
 
         /// <summary>
@@ -738,7 +738,7 @@ namespace Liuliu.ScriptEngine.Damo
             bool flag = true;
             for (int i = 0; i < count; i++)
             {
-                flag = flag && NativeMethods.LeftClick(_dm) == 1;
+                flag = flag && NativeMethods1.LeftClick(_dm) == 1;
             }
             return flag ? 1 : 0;
         }
@@ -749,9 +749,9 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LeftClickWithDelay(int mis)
         {
-            int flag = NativeMethods.LeftDown(_dm);
+            int flag = NativeMethods1.LeftDown(_dm);
             Delay(mis);
-            return flag & NativeMethods.LeftUp(_dm);
+            return flag & NativeMethods1.LeftUp(_dm);
         }
 
         /// <summary>
@@ -760,11 +760,11 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public int LeftClickCtrl()
         {
-            bool flag = NativeMethods.KeyDown(_dm, 17) == 1;
+            bool flag = NativeMethods1.KeyDown(_dm, 17) == 1;
             Delay(50);
-            flag = flag && NativeMethods.LeftClick(_dm) == 1;
+            flag = flag && NativeMethods1.LeftClick(_dm) == 1;
             Delay(50);
-            flag = flag && NativeMethods.KeyUp(_dm, 17) == 1;
+            flag = flag && NativeMethods1.KeyUp(_dm, 17) == 1;
             return flag ? 1 : 0;
         }
 
@@ -774,7 +774,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LeftDoubleClick()
         {
-            return NativeMethods.LeftDoubleClick(_dm);
+            return NativeMethods1.LeftDoubleClick(_dm);
         }
 
         /// <summary>
@@ -783,7 +783,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MiddleClick()
         {
-            return NativeMethods.MiddleClick(_dm);
+            return NativeMethods1.MiddleClick(_dm);
         }
 
         /// <summary>
@@ -792,7 +792,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int RightDown()
         {
-            return NativeMethods.RightDown(_dm);
+            return NativeMethods1.RightDown(_dm);
         }
 
         /// <summary>
@@ -801,7 +801,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int RightUp()
         {
-            return NativeMethods.RightUp(_dm);
+            return NativeMethods1.RightUp(_dm);
         }
 
         /// <summary>
@@ -810,7 +810,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int RightClick()
         {
-            return NativeMethods.RightClick(_dm);
+            return NativeMethods1.RightClick(_dm);
         }
 
         /// <summary>
@@ -823,7 +823,7 @@ namespace Liuliu.ScriptEngine.Damo
             bool flag = true;
             for (int i = 0; i < count; i++)
             {
-                flag = flag && NativeMethods.WheelDown(_dm) == 1;
+                flag = flag && NativeMethods1.WheelDown(_dm) == 1;
             }
             return flag ? 1 : 0;
         }
@@ -838,7 +838,7 @@ namespace Liuliu.ScriptEngine.Damo
             bool flag = true;
             for (int i = 0; i < count; i++)
             {
-                flag = flag && NativeMethods.WheelUp(_dm) == 1;
+                flag = flag && NativeMethods1.WheelUp(_dm) == 1;
             }
             return flag ? 1 : 0;
         }
@@ -851,7 +851,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MoveR(int rx, int ry)
         {
-            return NativeMethods.MoveR(_dm, rx, ry);
+            return NativeMethods1.MoveR(_dm, rx, ry);
         }
 
         /// <summary>
@@ -862,7 +862,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MoveTo(int x, int y)
         {
-            return NativeMethods.MoveTo(_dm, x, y);
+            return NativeMethods1.MoveTo(_dm, x, y);
         }
 
         /// <summary>
@@ -875,7 +875,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回要移动到的目标点. 格式为x,y.  比如MoveToEx 100,100,10,10,返回值可能是101,102</returns>
         public string MoveToEx(int x, int y, int w, int h)
         {
-            return Marshal.PtrToStringUni(NativeMethods.MoveToEx(_dm, x, y, w, h));
+            return Marshal.PtrToStringUni(NativeMethods1.MoveToEx(_dm, x, y, w, h));
         }
 
         /// <summary>
@@ -886,9 +886,9 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MoveToClick(int x, int y)
         {
-            bool flag = NativeMethods.MoveTo(_dm, x, y) == 1;
+            bool flag = NativeMethods1.MoveTo(_dm, x, y) == 1;
             Delay(300);
-            flag = flag && NativeMethods.LeftClick(_dm) == 1;
+            flag = flag && NativeMethods1.LeftClick(_dm) == 1;
             Delay(100);
             return flag ? 1 : 0;
         }
@@ -901,9 +901,9 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MoveToRightClick(int x, int y)
         {
-            bool flag = NativeMethods.MoveTo(_dm, x, y) == 1;
+            bool flag = NativeMethods1.MoveTo(_dm, x, y) == 1;
             Delay(400);
-            flag = flag && NativeMethods.RightClick(_dm) == 1;
+            flag = flag && NativeMethods1.RightClick(_dm) == 1;
             Delay(400);
             return flag ? 1 : 0;
         }
@@ -919,7 +919,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetKeypadDelay(string type, int delay)
         {
-            return NativeMethods.SetKeypadDelay(_dm, type, delay);
+            return NativeMethods1.SetKeypadDelay(_dm, type, delay);
         }
 
         /// <summary>
@@ -933,7 +933,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetMouseDelay(string type, int delay)
         {
-            return NativeMethods.SetMouseDelay(_dm, type, delay);
+            return NativeMethods1.SetMouseDelay(_dm, type, delay);
         }
 
         #endregion
@@ -948,7 +948,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetDict(int index, string file)
         {
-            return NativeMethods.SetDict(_dm, index, file);
+            return NativeMethods1.SetDict(_dm, index, file);
         }
 
         /// <summary>
@@ -958,7 +958,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetDictPwd(string pwd)
         {
-            return NativeMethods.SetDictPwd(_dm, pwd);
+            return NativeMethods1.SetDictPwd(_dm, pwd);
         }
 
         /// <summary>
@@ -969,7 +969,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int AddDict(int index, string dictInfo)
         {
-            return NativeMethods.AddDict(_dm, index, dictInfo);
+            return NativeMethods1.AddDict(_dm, index, dictInfo);
         }
 
         /// <summary>
@@ -979,7 +979,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int ClearDict(int index)
         {
-            return NativeMethods.ClearDict(_dm, index);
+            return NativeMethods1.ClearDict(_dm, index);
         }
 
         /// <summary>
@@ -990,7 +990,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SaveDict(int index, string file)
         {
-            return NativeMethods.SaveDict(_dm, index, file);
+            return NativeMethods1.SaveDict(_dm, index, file);
         }
 
         /// <summary>
@@ -1000,7 +1000,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int UseDict(int index)
         {
-            return NativeMethods.UseDict(_dm, index);
+            return NativeMethods1.UseDict(_dm, index);
         }
 
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>识别到的点阵信息，可用于AddDict。如果失败，返回空</returns>
         public string FetchWord(int x1, int y1, int x2, int y2, string color, string word)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FetchWord(_dm, x1, y1, x2, y2, color, word));
+            return Marshal.PtrToStringUni(NativeMethods1.FetchWord(_dm, x1, y1, x2, y2, color, word));
         }
 
         /// <summary>
@@ -1034,7 +1034,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int FindStr(int x1, int y1, int x2, int y2, string str, string color, double sim, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindStr(_dm, x1, y1, x2, y2, str, color, sim, out x, out y);
+            int result = NativeMethods1.FindStr(_dm, x1, y1, x2, y2, str, color, sim, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1054,7 +1054,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字符串序号以及X和Y坐标,形式如"id|x|y", 比如"0|100|200",没找到时，id和X以及Y均为-1，"-1|-1|-1"</returns>
         public string FindStrE(int x1, int y1, int x2, int y2, string str, string color, double sim)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrE(_dm, x1, y1, x2, y2, str, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrE(_dm, x1, y1, x2, y2, str, color, sim));
         }
 
         /// <summary>
@@ -1072,7 +1072,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"0,100,20|2,30,40" 表示找到了两个,第一个,对应的是序号为0的字符串,坐标是(100,20),第二个是序号为2的字符串,坐标(30,40)</returns>
         public string FindStrEx(int x1, int y1, int x2, int y2, string str, string color, double sim)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrEx(_dm, x1, y1, x2, y2, str, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrEx(_dm, x1, y1, x2, y2, str, color, sim));
         }
 
         /// <summary>
@@ -1096,7 +1096,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int FindStrFast(int x1, int y1, int x2, int y2, string str, string color, double sim, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindStrFast(_dm, x1, y1, x2, y2, str, color, sim, out x, out y);
+            int result = NativeMethods1.FindStrFast(_dm, x1, y1, x2, y2, str, color, sim, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1120,7 +1120,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字符串序号以及X和Y坐标,形式如"id|x|y", 比如"0|100|200",没找到时，id和X以及Y均为-1，"-1|-1|-1"</returns>
         public string FindStrFastE(int x1, int y1, int x2, int y2, string str, string color, double sim)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrFastE(_dm, x1, y1, x2, y2, str, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrFastE(_dm, x1, y1, x2, y2, str, color, sim));
         }
 
         /// <summary>
@@ -1143,7 +1143,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"0,100,20|2,30,40" 表示找到了两个,第一个,对应的是序号为0的字符串,坐标是(100,20),第二个是序号为2的字符串,坐标(30,40)</returns>
         public string FindStrFastEx(int x1, int y1, int x2, int y2, string str, string color, double sim)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrFastEx(_dm, x1, y1, x2, y2, str, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrFastEx(_dm, x1, y1, x2, y2, str, color, sim));
         }
 
         /// <summary>
@@ -1176,7 +1176,7 @@ namespace Liuliu.ScriptEngine.Damo
             out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindStrWithFont(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag, out x, out y);
+            int result = NativeMethods1.FindStrWithFont(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1198,7 +1198,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字符串序号以及X和Y坐标,形式如"id|x|y", 比如"0|100|200",没找到时，id和X以及Y均为-1，"-1|-1|-1"</returns>
         public string FindStrWithFontE(int x1, int y1, int x2, int y2, string str, string color, double sim, string fontName, int fontSize, int flag)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrWithFontE(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrWithFontE(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag));
         }
 
         /// <summary>
@@ -1217,7 +1217,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字符串的索引 没找到返回-1, 比如"长安|洛阳",若找到长安，则返回0</returns>
         public string FindStrWithFontEx(int x1, int y1, int x2, int y2, string str, string color, double sim, string fontName, int fontSize, int flag)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindStrWithFontEx(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag));
+            return Marshal.PtrToStringUni(NativeMethods1.FindStrWithFontEx(_dm, x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag));
         }
 
         /// <summary>
@@ -1227,7 +1227,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字库数量</returns>
         public int GetDictCount(int index)
         {
-            return NativeMethods.GetDictCount(_dm, index);
+            return NativeMethods1.GetDictCount(_dm, index);
         }
 
         /// <summary>
@@ -1240,7 +1240,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回字库信息,每个字符的字库信息用"|"来分割</returns>
         public string GetDictInfo(string str, string fontName, int fontSize, int flag)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetDictInfo(_dm, str, fontName, fontSize, flag));
+            return Marshal.PtrToStringUni(NativeMethods1.GetDictInfo(_dm, str, fontName, fontSize, flag));
         }
 
         /// <summary>
@@ -1249,7 +1249,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字库序号(0-9)</returns>
         public int GetNowDict()
         {
-            return NativeMethods.GetNowDict(_dm);
+            return NativeMethods1.GetNowDict(_dm);
         }
 
         /// <summary>
@@ -1259,7 +1259,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回ret中的坐标个数</returns>
         public int GetResultCount(string str)
         {
-            return NativeMethods.GetResultCount(_dm, str);
+            return NativeMethods1.GetResultCount(_dm, str);
         }
 
         /// <summary>
@@ -1273,7 +1273,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int GetResultPos(string str, int index, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.GetResultPos(_dm, str, index, out x, out y);
+            int result = NativeMethods1.GetResultPos(_dm, str, index, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1286,7 +1286,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回词组数量</returns>
         public int GetWordResultCount(string str)
         {
-            return NativeMethods.GetWordResultCount(_dm, str);
+            return NativeMethods1.GetWordResultCount(_dm, str);
         }
 
         /// <summary>
@@ -1300,7 +1300,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int GetWordResultPos(string str, int index, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.GetWordResultPos(_dm, str, index, out x, out y);
+            int result = NativeMethods1.GetWordResultPos(_dm, str, index, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1314,7 +1314,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public string GetWordResultStr(string str, int index)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWordResultStr(_dm, str, index));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWordResultStr(_dm, str, index));
         }
 
         /// <summary>
@@ -1330,7 +1330,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>识别到的格式串,要用到专用函数来解析</returns>
         public string GetWords(int x1, int y1, int x2, int y2, string color, double sim)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWords(_dm, x1, y1, x2, y2, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWords(_dm, x1, y1, x2, y2, color, sim));
         }
 
         /// <summary>
@@ -1345,7 +1345,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>识别到的格式串,要用到专用函数来解析</returns>
         public string GetWordsNoDict(int x1, int y1, int x2, int y2, string color)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetWordsNoDict(_dm, x1, y1, x2, y2, color));
+            return Marshal.PtrToStringUni(NativeMethods1.GetWordsNoDict(_dm, x1, y1, x2, y2, color));
         }
 
         /// <summary>
@@ -1360,7 +1360,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回识别到的字符串</returns>
         public string Ocr(int x1, int y1, int x2, int y2, string color, double sim = 1.0)
         {
-            return Marshal.PtrToStringUni(NativeMethods.Ocr(_dm, x1, y1, x2, y2, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.Ocr(_dm, x1, y1, x2, y2, color, sim));
         }
 
         /// <summary>
@@ -1377,7 +1377,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回识别到的字符串 格式如  "识别到的信息|x0,y0|…|xn,yn"</returns>
         public string OcrEx(int x1, int y1, int x2, int y2, string color, double sim = 1.0)
         {
-            return Marshal.PtrToStringUni(NativeMethods.OcrEx(_dm, x1, y1, x2, y2, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.OcrEx(_dm, x1, y1, x2, y2, color, sim));
         }
 
         /// <summary>
@@ -1393,7 +1393,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回识别到的字符串</returns>
         public string OcrInFile(int x1, int y1, int x2, int y2, string picName, string color, double sim = 1.0)
         {
-            return Marshal.PtrToStringUni(NativeMethods.OcrInFile(_dm, x1, y1, x2, y2, picName, color, sim));
+            return Marshal.PtrToStringUni(NativeMethods1.OcrInFile(_dm, x1, y1, x2, y2, picName, color, sim));
         }
 
         /// <summary>
@@ -1403,7 +1403,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetRowGapNoDict(int rowGap = 1)
         {
-            return NativeMethods.SetRowGapNoDict(_dm, rowGap);
+            return NativeMethods1.SetRowGapNoDict(_dm, rowGap);
         }
 
         /// <summary>
@@ -1413,7 +1413,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetColGapNoDict(int colGap = 1)
         {
-            return NativeMethods.SetColGapNoDict(_dm, colGap);
+            return NativeMethods1.SetColGapNoDict(_dm, colGap);
         }
 
         /// <summary>
@@ -1423,7 +1423,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetMinRowGap(int minRowGap = 1)
         {
-            return NativeMethods.SetMinRowGap(_dm, minRowGap);
+            return NativeMethods1.SetMinRowGap(_dm, minRowGap);
         }
 
         /// <summary>
@@ -1433,7 +1433,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetMinColGap(int minColGap = 1)
         {
-            return NativeMethods.SetMinColGap(_dm, minColGap);
+            return NativeMethods1.SetMinColGap(_dm, minColGap);
         }
 
         /// <summary>
@@ -1444,7 +1444,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int SetExactOcr(bool isExactOcr = true)
         {
             int exactOcr = isExactOcr ? 1 : 0;
-            return NativeMethods.SetExactOcr(_dm, exactOcr);
+            return NativeMethods1.SetExactOcr(_dm, exactOcr);
         }
 
         /// <summary>
@@ -1454,7 +1454,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWordGap(int wordGap = 5)
         {
-            return NativeMethods.SetWordGap(_dm, wordGap);
+            return NativeMethods1.SetWordGap(_dm, wordGap);
         }
 
         /// <summary>
@@ -1464,7 +1464,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWordGapNoDict(int wordGap = 1)
         {
-            return NativeMethods.SetWordGapNoDict(_dm, wordGap);
+            return NativeMethods1.SetWordGapNoDict(_dm, wordGap);
         }
 
         /// <summary>
@@ -1474,7 +1474,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWordLineHeight(int lineHeight = 10)
         {
-            return NativeMethods.SetWordLineHeight(_dm, lineHeight);
+            return NativeMethods1.SetWordLineHeight(_dm, lineHeight);
         }
 
         /// <summary>
@@ -1484,7 +1484,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetWordLineHeightNoDict(int lineHeight = 10)
         {
-            return NativeMethods.SetWordLineHeightNoDict(_dm, lineHeight);
+            return NativeMethods1.SetWordLineHeightNoDict(_dm, lineHeight);
         }
 
         #endregion
@@ -1500,7 +1500,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>新的地址描述串</returns>
         public string AppendPicAddr(string picInfo, int address, int size)
         {
-            return Marshal.PtrToStringUni(NativeMethods.AppendPicAddr(_dm, picInfo, address, size));
+            return Marshal.PtrToStringUni(NativeMethods1.AppendPicAddr(_dm, picInfo, address, size));
         }
 
         /// <summary>
@@ -1511,7 +1511,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int EnableDisplayDebug(bool enableDebug = false)
         {
             int debug = enableDebug ? 1 : 0;
-            return NativeMethods.EnableDisplayDebug(_dm, debug);
+            return NativeMethods1.EnableDisplayDebug(_dm, debug);
         }
 
         /// <summary>
@@ -1521,7 +1521,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int EnableGetColorByCapture(bool enable)
         {
-            return NativeMethods.EnableGetColorByCapture(_dm, enable ? 1 : 0);
+            return NativeMethods1.EnableGetColorByCapture(_dm, enable ? 1 : 0);
         }
 
         /// <summary>
@@ -1531,7 +1531,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int CapturePre(string file)
         {
-            return NativeMethods.CapturePre(_dm, file);
+            return NativeMethods1.CapturePre(_dm, file);
         }
 
         /// <summary>
@@ -1541,7 +1541,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>RGB格式的字符串</returns>
         public string Bgr2Rgb(string bgrColor)
         {
-            return Marshal.PtrToStringUni(NativeMethods.BGR2RGB(_dm, bgrColor));
+            return Marshal.PtrToStringUni(NativeMethods1.BGR2RGB(_dm, bgrColor));
         }
 
         /// <summary>
@@ -1551,7 +1551,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>BGR格式的字符串</returns>
         public string Rgb2Bgr(string rgbColor)
         {
-            return Marshal.PtrToStringUni(NativeMethods.RGB2BGR(_dm, rgbColor));
+            return Marshal.PtrToStringUni(NativeMethods1.RGB2BGR(_dm, rgbColor));
         }
 
         /// <summary>
@@ -1565,7 +1565,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int Capture(int x1, int y1, int x2, int y2, string file)
         {
-            return NativeMethods.Capture(_dm, x1, y1, x2, y2, file);
+            return NativeMethods1.Capture(_dm, x1, y1, x2, y2, file);
         }
 
         /// <summary>
@@ -1581,7 +1581,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int CaptureGif(int x1, int y1, int x2, int y2, string file, int delay, int mis)
         {
-            return NativeMethods.CaptureGif(_dm, x1, y1, x2, y2, file, delay, mis);
+            return NativeMethods1.CaptureGif(_dm, x1, y1, x2, y2, file, delay, mis);
         }
 
         /// <summary>
@@ -1596,7 +1596,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int CaptureJpg(int x1, int y1, int x2, int y2, string file, int quality)
         {
-            return NativeMethods.CaptureJpg(_dm, x1, y1, x2, y2, file, quality);
+            return NativeMethods1.CaptureJpg(_dm, x1, y1, x2, y2, file, quality);
         }
 
         /// <summary>
@@ -1610,7 +1610,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int CapturePng(int x1, int y1, int x2, int y2, string file)
         {
-            return NativeMethods.CapturePng(_dm, x1, y1, x2, y2, file);
+            return NativeMethods1.CapturePng(_dm, x1, y1, x2, y2, file);
         }
 
         /// <summary>
@@ -1624,7 +1624,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int CmpColor(int x, int y, string color, double sim = 1.0)
         {
-            return NativeMethods.CmpColor(_dm, x, y, color, sim);
+            return NativeMethods1.CmpColor(_dm, x, y, color, sim);
         }
 
         /// <summary>
@@ -1652,7 +1652,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int FindColor(int x1, int y1, int x2, int y2, string color, double sim, int dir, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindColor(_dm, x1, y1, x2, y2, color, sim, dir, out x, out y);
+            int result = NativeMethods1.FindColor(_dm, x1, y1, x2, y2, color, sim, dir, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1680,7 +1680,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回X和Y坐标 形式如"x|y", 比如"100|200"，如找不到，返回"-1|-1"</returns>
         public string FindColorE(int x1, int y1, int x2, int y2, string color, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindColorE(_dm, x1, y1, x2, y2, color, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindColorE(_dm, x1, y1, x2, y2, color, sim, dir));
         }
 
         /// <summary>
@@ -1705,7 +1705,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回所有颜色信息的坐标值,然后通过GetResultCount等接口来解析</returns>
         public string FindColorEx(int x1, int y1, int x2, int y2, string color, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindColorEx(_dm, x1, y1, x2, y2, color, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindColorEx(_dm, x1, y1, x2, y2, color, sim, dir));
         }
 
         /// <summary>
@@ -1748,7 +1748,7 @@ namespace Liuliu.ScriptEngine.Damo
             out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindMultiColor(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir, out x, out y);
+            int result = NativeMethods1.FindMultiColor(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1782,7 +1782,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回X和Y坐标 形式如"x|y", 比如"100|200"</returns>
         public string FindMultiColorE(int x1, int y1, int x2, int y2, string firstColor, string offsetColor, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindMultiColorE(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindMultiColorE(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir));
         }
 
         /// <summary>
@@ -1814,7 +1814,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 坐标是first_color所在的坐标</returns>
         public string FindMultiColorEx(int x1, int y1, int x2, int y2, string firstColor, string offsetColor, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindMultiColorEx(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindMultiColorEx(_dm, x1, y1, x2, y2, firstColor, offsetColor, sim, dir));
         }
 
         /// <summary>
@@ -1843,7 +1843,7 @@ namespace Liuliu.ScriptEngine.Damo
         public int FindPic(int x1, int y1, int x2, int y2, string picName, string deltaColor, double sim, int dir, out int intX, out int intY)
         {
             object x, y;
-            int result = NativeMethods.FindPic(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir, out x, out y);
+            int result = NativeMethods1.FindPic(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir, out x, out y);
             intX = (int)x;
             intY = (int)y;
             return result;
@@ -1873,7 +1873,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回找到的图片序号(从0开始索引)以及X和Y坐标 形式如"index|x|y", 比如"3|100|200"</returns>
         public string FindPicE(int x1, int y1, int x2, int y2, string picName, string deltaColor, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindPicE(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindPicE(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir));
         }
 
         /// <summary>
@@ -1902,7 +1902,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// (由于内存限制,返回的图片数量最多为1500个左右)</returns>
         public string FindPicEx(int x1, int y1, int x2, int y2, string picName, string deltaColor, double sim, int dir)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindPicEx(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir));
+            return Marshal.PtrToStringUni(NativeMethods1.FindPicEx(_dm, x1, y1, x2, y2, picName, deltaColor, sim, dir));
         }
 
         /// <summary>
@@ -1915,7 +1915,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FreePic(string picName)
         {
-            return NativeMethods.FreePic(_dm, picName);
+            return NativeMethods1.FreePic(_dm, picName);
         }
 
         /// <summary>
@@ -1928,7 +1928,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色字符串</returns>
         public string GetAveHsv(int x1, int y1, int x2, int y2)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetAveHSV(_dm, x1, y1, x2, y2));
+            return Marshal.PtrToStringUni(NativeMethods1.GetAveHSV(_dm, x1, y1, x2, y2));
         }
 
         /// <summary>
@@ -1941,7 +1941,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色字符串</returns>
         public string GetAveRgb(int x1, int y1, int x2, int y2)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetAveRGB(_dm, x1, y1, x2, y2));
+            return Marshal.PtrToStringUni(NativeMethods1.GetAveRGB(_dm, x1, y1, x2, y2));
         }
 
         /// <summary>
@@ -1952,7 +1952,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色字符串(注意这里都是小写字符，和工具相匹配)</returns>
         public string GetColor(int x, int y)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetColor(_dm, x, y));
+            return Marshal.PtrToStringUni(NativeMethods1.GetColor(_dm, x, y));
         }
 
         /// <summary>
@@ -1963,7 +1963,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色字符串(注意这里都是小写字符，和工具相匹配)</returns>
         public string GetColorBgr(int x, int y)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetColorBGR(_dm, x, y));
+            return Marshal.PtrToStringUni(NativeMethods1.GetColorBGR(_dm, x, y));
         }
 
         /// <summary>
@@ -1974,7 +1974,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色字符串(注意这里都是小写字符，和工具相匹配)</returns>
         public string GetColorHsv(int x, int y)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetColorHSV(_dm, x, y));
+            return Marshal.PtrToStringUni(NativeMethods1.GetColorHSV(_dm, x, y));
         }
 
         /// <summary>
@@ -1989,7 +1989,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>颜色数量</returns>
         public int GetColorNum(int x1, int y1, int x2, int y2, string color, double sim)
         {
-            return NativeMethods.GetColorNum(_dm, x1, y1, x2, y2, color, sim);
+            return NativeMethods1.GetColorNum(_dm, x1, y1, x2, y2, color, sim);
         }
 
         /// <summary>
@@ -1999,7 +1999,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>形式如 "w,h" 比如"30,20"</returns>
         public string GetPicSize(string picName)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetPicSize(_dm, picName));
+            return Marshal.PtrToStringUni(NativeMethods1.GetPicSize(_dm, picName));
         }
 
         /// <summary>
@@ -2012,7 +2012,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回的是指定区域的二进制颜色数据,每个颜色是4个字节,表示方式为(00RRGGBB)</returns>
         public int GetScreenData(int x1, int y1, int x2, int y2)
         {
-            return NativeMethods.GetScreenData(_dm, x1, y1, x2, y2);
+            return NativeMethods1.GetScreenData(_dm, x1, y1, x2, y2);
         }
 
         /// <summary>
@@ -2023,7 +2023,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int ImageToBmp(string picName, string bmpName)
         {
-            return NativeMethods.ImageToBmp(_dm, picName, bmpName);
+            return NativeMethods1.ImageToBmp(_dm, picName, bmpName);
         }
 
         /// <summary>
@@ -2037,7 +2037,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>false.图像有变化，true.图像无变化</returns>
         public bool IsDisplayDead(int x1, int y1, int x2, int y2, int mis)
         {
-            return NativeMethods.IsDisplayDead(_dm, x1, y1, x2, y2, mis) == 1;
+            return NativeMethods1.IsDisplayDead(_dm, x1, y1, x2, y2, mis) == 1;
         }
 
         /// <summary>
@@ -2054,7 +2054,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LoadPic(string picName)
         {
-            return NativeMethods.LoadPic(_dm, picName);
+            return NativeMethods1.LoadPic(_dm, picName);
         }
 
         /// <summary>
@@ -2067,7 +2067,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回的是通配符对应的文件集合，每个图片以|分割</returns>
         public string MatchPicName(string picName)
         {
-            return Marshal.PtrToStringUni(NativeMethods.MatchPicName(_dm, picName));
+            return Marshal.PtrToStringUni(NativeMethods1.MatchPicName(_dm, picName));
         }
 
         /// <summary>
@@ -2077,7 +2077,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetPicPwd(string pwd)
         {
-            return NativeMethods.SetPicPwd(_dm, pwd);
+            return NativeMethods1.SetPicPwd(_dm, pwd);
         }
 
         #endregion
@@ -2091,7 +2091,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字符串形式表达的二进制数据. 可以用于WriteData FindData FindDataEx等接口</returns>
         public string DoubleToData(double value)
         {
-            return Marshal.PtrToStringUni(NativeMethods.DoubleToData(_dm, value));
+            return Marshal.PtrToStringUni(NativeMethods1.DoubleToData(_dm, value));
         }
 
         /// <summary>
@@ -2101,7 +2101,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字符串形式表达的二进制数据. 可以用于WriteData FindData FindDataEx等接口</returns>
         public string FloatToData(float value)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FloatToData(_dm, value));
+            return Marshal.PtrToStringUni(NativeMethods1.FloatToData(_dm, value));
         }
 
         /// <summary>
@@ -2112,7 +2112,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字符串形式表达的二进制数据. 可以用于WriteData FindData FindDataEx等接口</returns>
         public string IntToData(int value, int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.IntToData(_dm, value, type));
+            return Marshal.PtrToStringUni(NativeMethods1.IntToData(_dm, value, type));
         }
 
         /// <summary>
@@ -2123,7 +2123,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字符串形式表达的二进制数据. 可以用于WriteData FindData FindDataEx等接口</returns>
         public string StringToData(string value, int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.StringToData(_dm, value, type));
+            return Marshal.PtrToStringUni(NativeMethods1.StringToData(_dm, value, type));
         }
 
         /// <summary>
@@ -2139,7 +2139,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"400050|423435|453430"</returns>
         public string FindData(int hwnd, string addrRange, string data)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindData(_dm, hwnd, addrRange, data));
+            return Marshal.PtrToStringUni(NativeMethods1.FindData(_dm, hwnd, addrRange, data));
         }
 
         /// <summary>
@@ -2156,7 +2156,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"400050|423435|453430"</returns>
         public string FindDouble(int hwnd, string addrRange, double minValue, double maxValue)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindDouble(_dm, hwnd, addrRange, minValue, maxValue));
+            return Marshal.PtrToStringUni(NativeMethods1.FindDouble(_dm, hwnd, addrRange, minValue, maxValue));
         }
 
         /// <summary>
@@ -2173,7 +2173,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"400050|423435|453430"</returns>
         public string FindFloat(int hwnd, string addrRange, float minValue, float maxValue)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindFloat(_dm, hwnd, addrRange, minValue, maxValue));
+            return Marshal.PtrToStringUni(NativeMethods1.FindFloat(_dm, hwnd, addrRange, minValue, maxValue));
         }
 
         /// <summary>
@@ -2192,7 +2192,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"400050|423435|453430"</returns>
         public string FindInt(int hwnd, string addrRange, int minValue, int maxValue, int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindInt(_dm, hwnd, addrRange, minValue, maxValue, type));
+            return Marshal.PtrToStringUni(NativeMethods1.FindInt(_dm, hwnd, addrRange, minValue, maxValue, type));
         }
 
         /// <summary>
@@ -2209,7 +2209,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 比如"400050|423435|453430"</returns>
         public string FindString(int hwnd, string addrRange, string value, int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindString(_dm, hwnd, addrRange, value, type));
+            return Marshal.PtrToStringUni(NativeMethods1.FindString(_dm, hwnd, addrRange, value, type));
         }
 
         /// <summary>
@@ -2220,7 +2220,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>模块的基址</returns>
         public int GetModuleBaseAddr(int hwnd, string moduleName)
         {
-            return NativeMethods.GetModuleBaseAddr(_dm, hwnd, moduleName);
+            return NativeMethods1.GetModuleBaseAddr(_dm, hwnd, moduleName);
         }
 
         /// <summary>
@@ -2239,7 +2239,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>读取到的数值,以16进制表示的字符串 每个字节以空格相隔 比如"12 34 56 78 ab cd ef"</returns>
         public string ReadData(int hwnd, string address, int length)
         {
-            return Marshal.PtrToStringUni(NativeMethods.ReadData(_dm, hwnd, address, length));
+            return Marshal.PtrToStringUni(NativeMethods1.ReadData(_dm, hwnd, address, length));
         }
 
         /// <summary>
@@ -2257,7 +2257,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>读取到的数值,注意这里无法判断读取是否成功</returns>
         public double ReadDouble(int hwnd, string address)
         {
-            return NativeMethods.ReadDouble(_dm, hwnd, address);
+            return NativeMethods1.ReadDouble(_dm, hwnd, address);
         }
 
         /// <summary>
@@ -2275,7 +2275,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>读取到的数值,注意这里无法判断读取是否成功</returns>
         public float ReadFloat(int hwnd, string address)
         {
-            return NativeMethods.ReadFloat(_dm, hwnd, address);
+            return NativeMethods1.ReadFloat(_dm, hwnd, address);
         }
 
         /// <summary>
@@ -2295,7 +2295,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>读取到的数值,注意这里无法判断读取是否成功</returns>
         public int ReadInt(int hwnd, string address, int type)
         {
-            return NativeMethods.ReadInt(_dm, hwnd, address, type);
+            return NativeMethods1.ReadInt(_dm, hwnd, address, type);
         }
 
         /// <summary>
@@ -2315,7 +2315,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>读取到的字符串,注意这里无法判断读取是否成功</returns>
         public string ReadString(int hwnd, string address, int type, int length)
         {
-            return Marshal.PtrToStringUni(NativeMethods.ReadString(_dm, hwnd, address, type, length));
+            return Marshal.PtrToStringUni(NativeMethods1.ReadString(_dm, hwnd, address, type, length));
         }
 
         /// <summary>
@@ -2334,7 +2334,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public long WriteData(int hwnd, string address, string data)
         {
-            return NativeMethods.WriteData(_dm, hwnd, address, data);
+            return NativeMethods1.WriteData(_dm, hwnd, address, data);
         }
 
         /// <summary>
@@ -2353,7 +2353,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int WriteDouble(int hwnd, string address, double value)
         {
-            return NativeMethods.WriteDouble(_dm, hwnd, address, value);
+            return NativeMethods1.WriteDouble(_dm, hwnd, address, value);
         }
 
         /// <summary>
@@ -2372,7 +2372,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int WriteFloat(int hwnd, string address, float value)
         {
-            return NativeMethods.WriteFloat(_dm, hwnd, address, value);
+            return NativeMethods1.WriteFloat(_dm, hwnd, address, value);
         }
 
         /// <summary>
@@ -2393,7 +2393,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int WriteInt(int hwnd, string address, int type, int value)
         {
-            return NativeMethods.WriteInt(_dm, hwnd, address, type, value);
+            return NativeMethods1.WriteInt(_dm, hwnd, address, type, value);
         }
 
         /// <summary>
@@ -2413,7 +2413,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int WriteString(int hwnd, string address, int type, string value)
         {
-            return NativeMethods.WriteString(_dm, hwnd, address, type, value);
+            return NativeMethods1.WriteString(_dm, hwnd, address, type, value);
         }
 
         #endregion
@@ -2428,7 +2428,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int Beep(int fre, int delay)
         {
-            return NativeMethods.Beep(_dm, fre, delay);
+            return NativeMethods1.Beep(_dm, fre, delay);
         }
 
         /// <summary>
@@ -2437,7 +2437,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>是否开启</returns>
         public bool CheckUAC()
         {
-            return NativeMethods.CheckUAC(_dm) == 1;
+            return NativeMethods1.CheckUAC(_dm) == 1;
         }
 
         /// <summary>
@@ -2447,7 +2447,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetUAC(bool enable)
         {
-            return NativeMethods.SetUAC(_dm, enable ? 1 : 0);
+            return NativeMethods1.SetUAC(_dm, enable ? 1 : 0);
         }
 
         /// <summary>
@@ -2465,7 +2465,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int DisablePowerSave()
         {
-            return NativeMethods.DisablePowerSave(_dm);
+            return NativeMethods1.DisablePowerSave(_dm);
         }
 
         /// <summary>
@@ -2474,7 +2474,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int DisableScreenSave()
         {
-            return NativeMethods.DisablePowerSave(_dm);
+            return NativeMethods1.DisablePowerSave(_dm);
         }
 
         /// <summary>
@@ -2484,7 +2484,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int ExitOs(int type)
         {
-            return NativeMethods.ExitOs(_dm, type);
+            return NativeMethods1.ExitOs(_dm, type);
         }
 
         /// <summary>
@@ -2493,7 +2493,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>以字符串表示的剪贴板内容</returns>
         public string GetClipboard()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetClipboard(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetClipboard(_dm));
         }
 
         /// <summary>
@@ -2503,7 +2503,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetClipboard(string value)
         {
-            return NativeMethods.SetClipboard(_dm, value);
+            return NativeMethods1.SetClipboard(_dm, value);
         }
 
         /// <summary>
@@ -2517,7 +2517,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 4.获取当前进程(exe)所在的路径</param>
         public string GetDir(int type)
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetDir(_dm, type));
+            return Marshal.PtrToStringUni(NativeMethods1.GetDir(_dm, type));
         }
 
         /// <summary>
@@ -2526,7 +2526,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public string GetDiskSerial()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetDiskSerial(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetDiskSerial(_dm));
         }
 
         /// <summary>
@@ -2535,7 +2535,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>字符串表达的机器机器码</returns>
         public string GetMachineCodeNoMac()
         {
-            return Marshal.PtrToStringUni(NativeMethods.GetMachineCodeNoMac(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.GetMachineCodeNoMac(_dm));
         }
 
         /// <summary>
@@ -2544,7 +2544,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>网络时间，如获取失败返回DateTime.MinValue</returns>
         public DateTime GetNetTime()
         {
-            string result = Marshal.PtrToStringUni(NativeMethods.GetNetTime(_dm));
+            string result = Marshal.PtrToStringUni(NativeMethods1.GetNetTime(_dm));
             if (string.IsNullOrEmpty(result) || result == "0000-00-00 00:00:00")
             {
                 return DateTime.MinValue;
@@ -2558,7 +2558,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>是否是64位系统</returns>
         public bool Is64Bit()
         {
-            return NativeMethods.Is64Bit(_dm) == 1;
+            return NativeMethods1.Is64Bit(_dm) == 1;
         }
 
         /// <summary>
@@ -2567,7 +2567,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0 : win95/98/me/nt4.0，1 : xp/2000，2 : 2003，3 : win7/vista/2008</returns>
         public int GetOSType()
         {
-            return NativeMethods.GetOsType(_dm);
+            return NativeMethods1.GetOsType(_dm);
         }
 
         /// <summary>
@@ -2576,7 +2576,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回系统颜色深度.(16或者32等)</returns>
         public int GetScreenDepth()
         {
-            return NativeMethods.GetScreenDepth(_dm);
+            return NativeMethods1.GetScreenDepth(_dm);
         }
 
         /// <summary>
@@ -2585,7 +2585,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回屏幕的高度</returns>
         public int GetScreenHeight()
         {
-            return NativeMethods.GetScreenHeight(_dm);
+            return NativeMethods1.GetScreenHeight(_dm);
         }
 
         /// <summary>
@@ -2594,7 +2594,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回屏幕的宽度</returns>
         public int GetScreenWidth()
         {
-            return NativeMethods.GetScreenWidth(_dm);
+            return NativeMethods1.GetScreenWidth(_dm);
         }
 
         /// <summary>
@@ -2603,7 +2603,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public long GetTimeSpanFromOsStarted()
         {
-            return NativeMethods.GetTime(_dm);
+            return NativeMethods1.GetTime(_dm);
         }
 
         /// <summary>
@@ -2613,7 +2613,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0 : 失败，非0表示当前播放的ID。可以用Stop来控制播放结束</returns>
         public int MediaPlay(string file)
         {
-            return NativeMethods.Play(_dm, file);
+            return NativeMethods1.Play(_dm, file);
         }
 
         /// <summary>
@@ -2623,7 +2623,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int MediaStop(int id)
         {
-            return NativeMethods.Stop(_dm, id);
+            return NativeMethods1.Stop(_dm, id);
         }
 
         /// <summary>
@@ -2635,7 +2635,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetScreen(int width, int height, int depth)
         {
-            return NativeMethods.SetScreen(_dm, width, height, depth);
+            return NativeMethods1.SetScreen(_dm, width, height, depth);
         }
 
         #endregion
@@ -2653,7 +2653,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int BindWindow(int hwnd, DmBindDisplay display, DmBindMouse mouse, DmBindKeypad keypad, DmBindMode mode)
         {
-            return NativeMethods.BindWindow(_dm, hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode);
+            return NativeMethods1.BindWindow(_dm, hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode);
         }
 
         /// <summary>
@@ -2703,7 +2703,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int BindWindowEx(int hwnd, string display, string mouse, string keypad, string @public, DmBindMode mode)
         {
-            return NativeMethods.BindWindowEx(_dm, hwnd, display, mouse, keypad, @public, (int)mode);
+            return NativeMethods1.BindWindowEx(_dm, hwnd, display, mouse, keypad, @public, (int)mode);
         }
 
         /// <summary>
@@ -2715,7 +2715,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int DownCpu(int rate)
         {
-            return NativeMethods.DownCpu(_dm, rate);
+            return NativeMethods1.DownCpu(_dm, rate);
         }
 
         /// <summary>
@@ -2725,7 +2725,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int EnableIme(bool enable)
         {
-            return NativeMethods.EnableIme(_dm, enable ? 1 : 0);
+            return NativeMethods1.EnableIme(_dm, enable ? 1 : 0);
         }
 
         /// <summary>
@@ -2735,7 +2735,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int EnableSpeedDx(bool enable = false)
         {
-            return NativeMethods.EnableSpeedDx(_dm, enable ? 1 : 0);
+            return NativeMethods1.EnableSpeedDx(_dm, enable ? 1 : 0);
         }
 
         /// <summary>
@@ -2746,7 +2746,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LockInput(int @lock)
         {
-            return NativeMethods.LockInput(_dm, @lock);
+            return NativeMethods1.LockInput(_dm, @lock);
         }
 
         /// <summary>
@@ -2759,7 +2759,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int LockMouseRect(int x1, int y1, int x2, int y2)
         {
-            return NativeMethods.LockMouseRect(_dm, x1, y1, x2, y2);
+            return NativeMethods1.LockMouseRect(_dm, x1, y1, x2, y2);
         }
 
         /// <summary>
@@ -2772,7 +2772,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int SetDisplayDelay(int mis)
         {
-            return NativeMethods.SetDisplayDelay(_dm, mis);
+            return NativeMethods1.SetDisplayDelay(_dm, mis);
         }
 
         /// <summary>
@@ -2781,7 +2781,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public int UnBindWindow()
         {
-            return NativeMethods.UnBindWindow(_dm);
+            return NativeMethods1.UnBindWindow(_dm);
         }
 
         #endregion
@@ -2802,7 +2802,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>经过筛选以后的返回值，格式和type指定的一致</returns>
         public string ExcludePos(string allPos, int type, int x1, int y1, int x2, int y2)
         {
-            return Marshal.PtrToStringUni(NativeMethods.ExcludePos(_dm, allPos, type, x1, y1, x2, y2));
+            return Marshal.PtrToStringUni(NativeMethods1.ExcludePos(_dm, allPos, type, x1, y1, x2, y2));
         }
 
         /// <summary>
@@ -2819,7 +2819,7 @@ namespace Liuliu.ScriptEngine.Damo
         ///</returns>
         public string FindNearestPos(string allPos, int type, int x, int y)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FindNearestPos(_dm, allPos, type, x, y));
+            return Marshal.PtrToStringUni(NativeMethods1.FindNearestPos(_dm, allPos, type, x, y));
         }
 
         /// <summary>
@@ -2834,7 +2834,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>返回的格式和type指定的格式一致</returns>
         public string SortPosDistance(string allPos, int type, int x, int y)
         {
-            return Marshal.PtrToStringUni(NativeMethods.SortPosDistance(_dm, allPos, type, x, y));
+            return Marshal.PtrToStringUni(NativeMethods1.SortPosDistance(_dm, allPos, type, x, y));
         }
 
         #endregion
@@ -2848,7 +2848,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int AsmAdd(string asmIns)
         {
-            return NativeMethods.AsmAdd(_dm, asmIns);
+            return NativeMethods1.AsmAdd(_dm, asmIns);
         }
 
         /// <summary>
@@ -2859,7 +2859,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int AsmCall(int hwnd, int mode)
         {
-            return NativeMethods.AsmCall(_dm, hwnd, mode);
+            return NativeMethods1.AsmCall(_dm, hwnd, mode);
         }
 
         /// <summary>
@@ -2868,7 +2868,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int AsmClear()
         {
-            return NativeMethods.AsmClear(_dm);
+            return NativeMethods1.AsmClear(_dm);
         }
 
         /// <summary>
@@ -2878,7 +2878,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>机器码，比如 "aa bb cc"这样的形式</returns>
         public string AsmCode(int baseAddress)
         {
-            return Marshal.PtrToStringUni(NativeMethods.AsmCode(_dm, baseAddress));
+            return Marshal.PtrToStringUni(NativeMethods1.AsmCode(_dm, baseAddress));
         }
 
         /// <summary>
@@ -2891,7 +2891,7 @@ namespace Liuliu.ScriptEngine.Damo
         public string Assemble(string asmCode, int baseAddress, bool isUpper)
         {
             int upper = isUpper ? 1 : 0;
-            return Marshal.PtrToStringUni(NativeMethods.Assemble(_dm, asmCode, baseAddress, upper));
+            return Marshal.PtrToStringUni(NativeMethods1.Assemble(_dm, asmCode, baseAddress, upper));
         }
 
         #endregion
@@ -2904,7 +2904,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FaqCancel()
         {
-            return NativeMethods.FaqCancel(_dm);
+            return NativeMethods1.FaqCancel(_dm);
         }
 
         /// <summary>
@@ -2920,7 +2920,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>图像或者动画句柄</returns>
         public int FaqCapture(int x1, int y1, int x2, int y2, int quality, int delay, int mis)
         {
-            return NativeMethods.FaqCapture(_dm, x1, y1, x2, y2, quality, delay, mis);
+            return NativeMethods1.FaqCapture(_dm, x1, y1, x2, y2, quality, delay, mis);
         }
 
         /// <summary>
@@ -2937,7 +2937,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 如果返回为空字符串，表示FaqPost还未处理完毕,或者没有调用过FaqPost.</returns>
         public string FaqFetch()
         {
-            return Marshal.PtrToStringUni(NativeMethods.FaqFetch(_dm));
+            return Marshal.PtrToStringUni(NativeMethods1.FaqFetch(_dm));
         }
 
         /// <summary>
@@ -2947,7 +2947,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>数据包大小,一般用于判断数据大小,选择合适的压缩比率.</returns>
         public int FaqGetSize(int handle)
         {
-            return NativeMethods.FaqGetSize(_dm, handle);
+            return NativeMethods1.FaqGetSize(_dm, handle);
         }
 
         /// <summary>
@@ -2960,7 +2960,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，一般情况下是由于上个FaqPost还没有处理完毕(服务器还没返回)，1.成功</returns>
         public int FaqPost(string server, int handle, int requestType, int timeout)
         {
-            return NativeMethods.FaqPost(_dm, server, handle, requestType, timeout);
+            return NativeMethods1.FaqPost(_dm, server, handle, requestType, timeout);
         }
 
         /// <summary>
@@ -2981,7 +2981,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 当request_type 为2时,答案就是要求的答案比如 "李白" (不包含引号)</returns>
         public string FaqSend(string server, int handle, int requestType, int timeout)
         {
-            return Marshal.PtrToStringUni(NativeMethods.FaqSend(_dm, server, handle, requestType, timeout));
+            return Marshal.PtrToStringUni(NativeMethods1.FaqSend(_dm, server, handle, requestType, timeout));
         }
 
         #endregion
@@ -2999,7 +2999,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>创建成功的窗口句柄</returns>
         public int CreateFoobarEllipse(int hwnd, int x, int y, int w, int h)
         {
-            return NativeMethods.CreateFoobarEllipse(_dm, hwnd, x, y, w, h);
+            return NativeMethods1.CreateFoobarEllipse(_dm, hwnd, x, y, w, h);
         }
 
         /// <summary>
@@ -3013,7 +3013,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>创建成功的窗口句柄</returns>
         public int CreateFoobarRect(int hwnd, int x, int y, int w, int h)
         {
-            return NativeMethods.CreateFoobarRect(_dm, hwnd, x, y, w, h);
+            return NativeMethods1.CreateFoobarRect(_dm, hwnd, x, y, w, h);
         }
 
         /// <summary>
@@ -3029,7 +3029,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>创建成功的窗口句柄</returns>
         public int CreateFoobarRoundRect(int hwnd, int x, int y, int w, int h, int rw, int rh)
         {
-            return NativeMethods.CreateFoobarRoundRect(_dm, hwnd, x, y, w, h, rw, rh);
+            return NativeMethods1.CreateFoobarRoundRect(_dm, hwnd, x, y, w, h, rw, rh);
         }
 
         /// <summary>
@@ -3044,7 +3044,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>创建成功的窗口句柄</returns>
         public int CreateFoobarCustom(int hwnd, int x, int y, string picName, string transColor, double sim)
         {
-            return NativeMethods.CreateFoobarCustom(_dm, hwnd, x, y, picName, transColor, sim);
+            return NativeMethods1.CreateFoobarCustom(_dm, hwnd, x, y, picName, transColor, sim);
         }
 
         /// <summary>
@@ -3058,7 +3058,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarSetFont(int hwnd, string fontName, int size, int flag)
         {
-            return NativeMethods.FoobarSetFont(_dm, hwnd, fontName, size, flag);
+            return NativeMethods1.FoobarSetFont(_dm, hwnd, fontName, size, flag);
         }
 
         /// <summary>
@@ -3080,7 +3080,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarSetSave(int hwnd, string file, bool enable, string header)
         {
-            return NativeMethods.FoobarSetSave(_dm, hwnd, file, enable ? 1 : 0, header);
+            return NativeMethods1.FoobarSetSave(_dm, hwnd, file, enable ? 1 : 0, header);
         }
 
         /// <summary>
@@ -3090,7 +3090,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarClearText(int hwnd)
         {
-            return NativeMethods.FoobarClearText(_dm, hwnd);
+            return NativeMethods1.FoobarClearText(_dm, hwnd);
         }
 
         /// <summary>
@@ -3100,7 +3100,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarClose(int hwnd)
         {
-            return NativeMethods.FoobarClose(_dm, hwnd);
+            return NativeMethods1.FoobarClose(_dm, hwnd);
         }
 
         /// <summary>
@@ -3114,7 +3114,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarDrawPic(int hwnd, int x, int y, string picName, string transColor)
         {
-            return NativeMethods.FoobarDrawPic(_dm, hwnd, x, y, picName, transColor);
+            return NativeMethods1.FoobarDrawPic(_dm, hwnd, x, y, picName, transColor);
         }
 
         /// <summary>
@@ -3131,7 +3131,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarDrawText(int hwnd, int x, int y, int w, int h, string text, string color, int align)
         {
-            return NativeMethods.FoobarDrawText(_dm, hwnd, x, y, w, h, text, color, align);
+            return NativeMethods1.FoobarDrawText(_dm, hwnd, x, y, w, h, text, color, align);
         }
 
         /// <summary>
@@ -3146,7 +3146,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarFillRect(int hwnd, int x1, int y1, int x2, int y2, string color)
         {
-            return NativeMethods.FoobarFillRect(_dm, hwnd, x1, y1, x2, y2, color);
+            return NativeMethods1.FoobarFillRect(_dm, hwnd, x1, y1, x2, y2, color);
         }
 
         /// <summary>
@@ -3156,7 +3156,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarLock(int hwnd)
         {
-            return NativeMethods.FoobarLock(_dm, hwnd);
+            return NativeMethods1.FoobarLock(_dm, hwnd);
         }
 
         /// <summary>
@@ -3166,7 +3166,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarUnlock(int hwnd)
         {
-            return NativeMethods.FoobarUnlock(_dm, hwnd);
+            return NativeMethods1.FoobarUnlock(_dm, hwnd);
         }
 
         /// <summary>
@@ -3178,7 +3178,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarPrintText(int hwnd, string text, string color)
         {
-            return NativeMethods.FoobarPrintText(_dm, hwnd, text, color);
+            return NativeMethods1.FoobarPrintText(_dm, hwnd, text, color);
         }
 
         /// <summary>
@@ -3189,7 +3189,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarTextLineGap(int hwnd, int lineGap = 3)
         {
-            return NativeMethods.FoobarTextLineGap(_dm, hwnd, lineGap);
+            return NativeMethods1.FoobarTextLineGap(_dm, hwnd, lineGap);
         }
 
         /// <summary>
@@ -3200,7 +3200,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarTextPrintDir(int hwnd, int dir = 0)
         {
-            return NativeMethods.FoobarTextPrintDir(_dm, hwnd, dir);
+            return NativeMethods1.FoobarTextPrintDir(_dm, hwnd, dir);
         }
 
         /// <summary>
@@ -3214,7 +3214,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarTextRect(int hwnd, int x, int y, int w, int h)
         {
-            return NativeMethods.FoobarTextRect(_dm, hwnd, x, y, w, h);
+            return NativeMethods1.FoobarTextRect(_dm, hwnd, x, y, w, h);
         }
 
         /// <summary>
@@ -3224,7 +3224,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int FoobarUpdate(int hwnd)
         {
-            return NativeMethods.FoobarUpdate(_dm, hwnd);
+            return NativeMethods1.FoobarUpdate(_dm, hwnd);
         }
 
         #endregion
@@ -3241,7 +3241,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>0.失败，1.成功</returns>
         public int ActiveInputMethod(int hwnd, string inputMethod)
         {
-            return NativeMethods.ActiveInputMethod(_dm, hwnd, inputMethod);
+            return NativeMethods1.ActiveInputMethod(_dm, hwnd, inputMethod);
         }
 
         /// <summary>
@@ -3254,7 +3254,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>是否开启</returns>
         public bool CheckInputMethod(int hwnd, string inputMethod)
         {
-            return NativeMethods.CheckInputMethod(_dm, hwnd, inputMethod) == 1;
+            return NativeMethods1.CheckInputMethod(_dm, hwnd, inputMethod) == 1;
         }
 
         /// <summary>
@@ -3266,7 +3266,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>是否存在</returns>
         public bool HasInputMethod(string inputMethod)
         {
-            return NativeMethods.FindInputMethod(_dm, inputMethod) == 1;
+            return NativeMethods1.FindInputMethod(_dm, inputMethod) == 1;
         }
 
         #endregion
@@ -3280,7 +3280,7 @@ namespace Liuliu.ScriptEngine.Damo
             string filename = string.IsNullOrEmpty(outPath) ? name : Path.Combine(outPath, name);
             if (!File.Exists(filename) || overwritten)
             {
-                Assembly assembly = typeof(DmPlugin).Assembly;
+                Assembly assembly = typeof(DmPlugin1).Assembly;
                 string resName = assembly.GetManifestResourceNames().FirstOrDefault(m => m.Contains(name));
                 if (resName == null)
                 {
@@ -3319,13 +3319,7 @@ namespace Liuliu.ScriptEngine.Damo
         {
             Dispose();
         }
-
-        ~DmPlugin()
-        {
-            //必须为false
-            Dispose(false);
-        }
-
+        
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
@@ -3344,9 +3338,9 @@ namespace Liuliu.ScriptEngine.Damo
             // 清理非托管资源
             if (_dm != IntPtr.Zero)
             {
-                NativeMethods.UnBindWindow(_dm);
+                NativeMethods1.UnBindWindow(_dm);
                 _dm = IntPtr.Zero;
-                NativeMethods.FreeDM();
+                NativeMethods1.FreeDM();
             }
             //让类型知道自己已经被释放
             _disposed = true;

@@ -408,7 +408,7 @@ namespace Liuliu.ScriptEngine.Damo
             {
                 return false;
             }
-            return Dm.SetWindowTransparent(_hwnd, trans) == 1;
+            return Dm.SetWindowTransparent(_hwnd, trans);
         }
 
         public bool SendPaste()
@@ -417,7 +417,7 @@ namespace Liuliu.ScriptEngine.Damo
             {
                 return false;
             }
-            return Dm.SendPaste(_hwnd) == 1;
+            return Dm.SendPaste(_hwnd);
         }
 
         public bool SendString(string content)
@@ -426,7 +426,7 @@ namespace Liuliu.ScriptEngine.Damo
             {
                 return false;
             }
-            return Dm.SendString(_hwnd, content) == 1;
+            return Dm.SendString(_hwnd, content);
         }
 
         public bool SendString2(string content)
@@ -435,7 +435,7 @@ namespace Liuliu.ScriptEngine.Damo
             {
                 return false;
             }
-            return Dm.SendString2(_hwnd, content) == 1;
+            return Dm.SendString2(_hwnd, content);
         }
 
         /// <summary>
