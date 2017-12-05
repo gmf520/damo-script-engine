@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Liuliu.DamoScriptEngine</id>
+    <version>$version$</version>
+    <title>Liuliu.ScriptEngine</title>
+    <authors>柳柳软件</authors>
+    <owners>http://www.66soft.net</owners>
+    <projectUrl>https://github.com/i66soft/damo-script-engine</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>大漠插件(dm.dll)脚本引擎，对大漠插件的接口进行C#免注册封装，并定义了一个脚本引擎及基础模型类</description>
+    <summary>大漠插件(dm.dll)脚本引擎</summary>
+    <copyright>Copyright © 66SOFT 2017</copyright>
+    <language>zh-CN</language>
+    <tags>damo,liuliu,script</tags>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\$id$.pdb" target="lib\net40\" />
+  </files>
+</package>

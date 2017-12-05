@@ -1,0 +1,1 @@
+nuget.exe pack "..\src\Liuliu.ScriptEngine\Liuliu.ScriptEngine.csproj" -Properties Configuration=Debug -IncludeReferencedProjects
