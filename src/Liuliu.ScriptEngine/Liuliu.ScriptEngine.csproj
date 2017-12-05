@@ -60,13 +60,10 @@
     <Compile Include="Damo\DmBindMode.cs" />
     <Compile Include="Damo\DmBindMouse.cs" />
     <Compile Include="Damo\DmPlugin.cs" />
-    <Compile Include="Damo\DmPlugin1.cs" />
     <Compile Include="Damo\DmPluginExtensions.cs" />
-    <Compile Include="Damo\DmSoft.cs" />
     <Compile Include="Damo\DmSystem.cs" />
     <Compile Include="Damo\DmWindow.cs" />
     <Compile Include="Damo\IDmsoft.cs" />
-    <Compile Include="Damo\NativeMethods1.cs" />
     <Compile Include="Models\Function.cs" />
     <Compile Include="Models\IRole.cs" />
     <Compile Include="Models\User.cs" />

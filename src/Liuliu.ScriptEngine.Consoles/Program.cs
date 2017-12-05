@@ -94,7 +94,6 @@ namespace Liuliu.ScriptEngine.Consoles
 
         private static void Method01()
         {
-            Console.WriteLine(_dm.Dm.Ver());
             Console.WriteLine(_dm.Beep(1000, 1000));
         }
 

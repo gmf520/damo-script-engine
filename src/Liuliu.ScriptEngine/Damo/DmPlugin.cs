@@ -40,15 +40,36 @@ namespace Liuliu.ScriptEngine
         public DmPlugin(string dmPath = "dm.dll")
         {
             _comLoader = new ComLibraryLoader();
-            var obj = _comLoader.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
+            object obj = _comLoader.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
             _dm = obj as IDmsoft;
         }
 
-        public IDmsoft Dm
+        /// <summary>
+        /// 初始化一个<see cref="DmPlugin"/>类型的新实例
+        /// </summary>
+        public DmPlugin(bool showError, string dmPath = "dm.dll") : this(dmPath)
         {
-            get { return _dm; }
+            _dm.SetShowErrorMsg(showError ? 1 : 0);
         }
 
+        /// <summary>
+        /// 初始化一个<see cref="DmPlugin"/>类型的新实例
+        /// </summary>
+        public DmPlugin(string dictPath, bool showError, string dmPath)
+            : this(showError, dmPath)
+        {
+            _dm.AddDict(0, dictPath);
+        }
+
+        /// <summary>
+        /// 初始化一个<see cref="DmPlugin"/>类型的新实例
+        /// </summary>
+        public DmPlugin(string dictPath, string dictPwd, bool showError, string dmPath) :
+            this(dictPath, showError, dmPath)
+        {
+            _dm.SetDictPwd(dictPwd);
+        }
+        
         public bool IsFree
         {
             get { return false; }
