@@ -4,13 +4,10 @@
 //  </copyright>
 //  <site>http://www.66soft.net</site>
 //  <last-editor>郭明锋</last-editor>
-//  <last-date>2017-12-03 23:40</last-date>
+//  <last-date>2017-12-06 0:23</last-date>
 // -----------------------------------------------------------------------
 
 using System;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using System.Threading;
 
 using Liuliu.ScriptEngine.Damo;
 
@@ -37,37 +34,53 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>类型的新实例
         /// </summary>
-        public DmPlugin(string dmPath = "dm.dll")
-        {
-            _comLoader = new ComLibraryLoader();
-            object obj = _comLoader.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
-            _dm = obj as IDmsoft;
-        }
+        public DmPlugin()
+            : this("dm.dll")
+        { }
 
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>类型的新实例
         /// </summary>
-        public DmPlugin(bool showError, string dmPath = "dm.dll") : this(dmPath)
-        {
-            _dm.SetShowErrorMsg(showError ? 1 : 0);
-        }
+        public DmPlugin(string dmPath)
+            : this(false, dmPath)
+        { }
+
+        /// <summary>
+        /// 初始化一个<see cref="DmPlugin"/>类型的新实例
+        /// </summary>
+        public DmPlugin(bool showError, string dmPath)
+            : this(null, null, showError, dmPath)
+        { }
 
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>类型的新实例
         /// </summary>
         public DmPlugin(string dictPath, bool showError, string dmPath)
-            : this(showError, dmPath)
-        {
-            _dm.AddDict(0, dictPath);
-        }
+            : this(dictPath, null, showError, dmPath)
+        { }
 
         /// <summary>
         /// 初始化一个<see cref="DmPlugin"/>类型的新实例
         /// </summary>
-        public DmPlugin(string dictPath, string dictPwd, bool showError, string dmPath) :
-            this(dictPath, showError, dmPath)
+        public DmPlugin(string dictPath, string dictPwd, bool showError, string dmPath)
         {
-            _dm.SetDictPwd(dictPwd);
+            _comLoader = new ComLibraryLoader();
+            object obj = _comLoader.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
+            _dm = obj as IDmsoft;
+            if (_dm == null)
+            {
+                return;
+            }
+            _dm.SetShowErrorMsg(showError ? 1 : 0);
+            if (dictPath == null)
+            {
+                return;
+            }
+            _dm.AddDict(0, dictPath);
+            if (dictPwd != null)
+            {
+                _dm.SetDictPwd(dictPwd);
+            }
         }
         
         public bool IsFree
@@ -873,6 +886,7 @@ namespace Liuliu.ScriptEngine
         {
             return _dm.SetWindowTransparent(hwnd, trans) == 1;
         }
+
         #endregion
 
         #region 键盘鼠标
@@ -1601,7 +1615,18 @@ namespace Liuliu.ScriptEngine
         /// <param name="intX">返回X坐标 没找到返回-1</param>
         /// <param name="intY">返回Y坐标 没找到返回-1</param>
         /// <returns>返回字符串的索引 没找到返回-1, 比如"长安|洛阳",若找到长安，则返回0</returns>
-        public int FindStrWithFont(int x1, int y1, int x2, int y2, string str, string color, double sim, string fontName, int fontSize, int flag, out int intX, out int intY)
+        public int FindStrWithFont(int x1,
+            int y1,
+            int x2,
+            int y2,
+            string str,
+            string color,
+            double sim,
+            string fontName,
+            int fontSize,
+            int flag,
+            out int intX,
+            out int intY)
         {
             int result = _dm.FindStrWithFont(x1, y1, x2, y2, str, color, sim, fontName, fontSize, flag, out object x, out object y);
             intX = (int)x;
@@ -2173,7 +2198,17 @@ namespace Liuliu.ScriptEngine
         /// <param name="intX">返回X坐标(指向颜色块的左上角)</param>
         /// <param name="intY">返回Y坐标(指向颜色块的左上角)</param>
         /// <returns>操作是否成功</returns>
-        public bool FindColorBlock(int x1, int y1, int x2, int y2, string color, double sim, int count, int width, int height, out int intX, out int intY)
+        public bool FindColorBlock(int x1,
+            int y1,
+            int x2,
+            int y2,
+            string color,
+            double sim,
+            int count,
+            int width,
+            int height,
+            out int intX,
+            out int intY)
         {
             bool result = _dm.FindColorBlock(x1, y1, x2, y2, color, sim, count, width, height, out object x, out object y) == 1;
             intX = (int)x;
