@@ -12,8 +12,24 @@ namespace Liuliu.ScriptEngine.Consoles
 {
     class Program
     {
+        private static DmPlugin _dm;
+
         static void Main(string[] args)
         {
+            _dm = new DmPlugin();
+            while (true)
+            {
+                Console.WriteLine($"大漠插件版本号：{_dm.Ver()}，请输入注册码：");
+                string code = Console.ReadLine();
+                int ret = _dm.Reg(code);
+                if (ret == 1)
+                {
+                    Console.WriteLine("大漠插件注册成功");
+                    break;
+                }
+                Console.WriteLine($"大漠插件注册失败：{ret}");
+            }
+
             bool exit = false;
             while (true)
             {
@@ -78,11 +94,8 @@ namespace Liuliu.ScriptEngine.Consoles
 
         private static void Method01()
         {
-            DmPlugin dm = new DmPlugin();
-            const string code = "";
-            dm.Reg(code);
-            Console.WriteLine(dm.Dm.Ver());
-            Console.WriteLine(dm.Beep(1000,1000));
+            Console.WriteLine(_dm.Dm.Ver());
+            Console.WriteLine(_dm.Beep(1000, 1000));
         }
 
         private static void Method02()

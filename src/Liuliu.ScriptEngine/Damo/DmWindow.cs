@@ -98,28 +98,28 @@ namespace Liuliu.ScriptEngine.Damo
         /// <summary>
         /// 获取 窗口是否存在
         /// </summary>
-        public bool IsAlive { get { return Dm.GetWindowState(_hwnd, 0) == 1; } }
+        public bool IsAlive { get { return Dm.GetWindowState(_hwnd, 0); } }
 
         /// <summary>
         /// 获取 窗口是否激活
         /// </summary>
-        public bool IsActive { get { return Dm.GetWindowState(_hwnd, 1) == 1; } }
+        public bool IsActive { get { return Dm.GetWindowState(_hwnd, 1); } }
 
         /// <summary>
         /// 获取 窗口是否显示
         /// </summary>
-        public bool IsShowed { get { return Dm.GetWindowState(_hwnd, 2) == 1; } }
+        public bool IsShowed { get { return Dm.GetWindowState(_hwnd, 2); } }
 
-        public bool IsMin { get { return Dm.GetWindowState(_hwnd, 3) == 1; } }
+        public bool IsMin { get { return Dm.GetWindowState(_hwnd, 3); } }
 
-        public bool IsMax { get { return Dm.GetWindowState(_hwnd, 4) == 1; } }
+        public bool IsMax { get { return Dm.GetWindowState(_hwnd, 4); } }
 
-        public bool IsOnTop { get { return Dm.GetWindowState(_hwnd, 5) == 1; } }
+        public bool IsOnTop { get { return Dm.GetWindowState(_hwnd, 5); } }
 
         /// <summary>
         /// 获取 窗口是否无响应
         /// </summary>
-        public bool IsDead { get { return Dm.GetWindowState(_hwnd, 6) == 1; } }
+        public bool IsDead { get { return Dm.GetWindowState(_hwnd, 6); } }
 
         /// <summary>
         /// 前台绑定，独占鼠标
@@ -134,8 +134,8 @@ namespace Liuliu.ScriptEngine.Damo
                 }
                 UnBind();
             }
-            int dmRet = Dm.BindWindow(_hwnd, DmBindDisplay.normal, DmBindMouse.normal, DmBindKeypad.normal, DmBindMode._0);
-            if (dmRet == 0)
+            bool dmRet = Dm.BindWindow(_hwnd, DmBindDisplay.normal, DmBindMouse.normal, DmBindKeypad.normal, DmBindMode._0);
+            if (dmRet)
             {
                 IsBind = false;
                 BindType = WindowBindType.None;
@@ -161,7 +161,7 @@ namespace Liuliu.ScriptEngine.Damo
                 UnBind();
             }
             RestoreAndNotActive();
-            int dmRet;
+            bool dmRet;
             if (Dm.IsFree)
             {
                 dmRet = Dm.BindWindow(_hwnd, DmBindDisplay.dx, DmBindMouse.dx2, DmBindKeypad.dx, DmBindMode._0); 
@@ -176,7 +176,7 @@ namespace Liuliu.ScriptEngine.Damo
                     "dx.public.active.api|dx.public.active.message",
                     DmBindMode._4);
             }
-            if (dmRet == 0)
+            if (dmRet)
             {
                 IsBind = false;
                 BindType = WindowBindType.None;
@@ -205,7 +205,7 @@ namespace Liuliu.ScriptEngine.Damo
                 UnBind();
             }
             RestoreAndNotActive();
-            int dmRet;
+            bool dmRet;
             if (Dm.IsFree)
             {
                 dmRet = Dm.BindWindow(_hwnd, DmBindDisplay.dx, DmBindMouse.dx, DmBindKeypad.dx, DmBindMode._0); 
@@ -220,7 +220,7 @@ namespace Liuliu.ScriptEngine.Damo
                     "dx.public.active.api|dx.public.active.message",
                     DmBindMode._4);
             }
-            if (dmRet == 0)
+            if (dmRet)
             {
                 IsBind = false;
                 BindType = WindowBindType.None;
@@ -446,7 +446,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns></returns>
         public bool SetInputLock(InputLockType lockType, bool isSetType = true)
         {
-            bool flag = _dm.LockInput((int)lockType) == 1;
+            bool flag = _dm.LockInput((int)lockType);
             if (flag && isSetType)
             {
                 InputLockType = lockType;

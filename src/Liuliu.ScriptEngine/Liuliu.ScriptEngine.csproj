@@ -34,7 +34,7 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OSharp.Utility, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OSharp.Utility.4.1.26\lib\net40\OSharp.Utility.dll</HintPath>
+      <HintPath>..\..\packages\OSharp.Utility.4.1.27\lib\net40\OSharp.Utility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,17 +49,14 @@
     <Compile Include="Damo\DmBindKeypad.cs" />
     <Compile Include="Damo\DmBindMode.cs" />
     <Compile Include="Damo\DmBindMouse.cs" />
-    <Compile Include="Damo\DmPlugin2.cs" />
+    <Compile Include="Damo\DmPlugin.cs" />
     <Compile Include="Damo\DmPlugin1.cs" />
     <Compile Include="Damo\DmPluginExtensions.cs" />
     <Compile Include="Damo\DmSoft.cs" />
     <Compile Include="Damo\DmSystem.cs" />
     <Compile Include="Damo\DmWindow.cs" />
-    <Compile Include="Damo\IClassFactory.cs" />
     <Compile Include="Damo\IDmsoft.cs" />
-    <Compile Include="Damo\NativeMethods.cs" />
     <Compile Include="Damo\NativeMethods1.cs" />
-    <Compile Include="Damo\URComLoader.cs" />
     <Compile Include="Models\Function.cs" />
     <Compile Include="Models\IRole.cs" />
     <Compile Include="Models\User.cs" />

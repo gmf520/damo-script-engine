@@ -14,6 +14,8 @@ using System.Threading;
 
 using Liuliu.ScriptEngine.Damo;
 
+using OSharp.Reflection;
+
 
 namespace Liuliu.ScriptEngine
 {
@@ -29,7 +31,7 @@ namespace Liuliu.ScriptEngine
     /// </example>
     public class DmPlugin : IDisposable
     {
-        private readonly URComLoader _urCom;
+        private readonly ComLibraryLoader _comLoader;
         private readonly IDmsoft _dm;
 
         /// <summary>
@@ -37,8 +39,8 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         public DmPlugin(string dmPath = "dm.dll")
         {
-            _urCom = new URComLoader();
-            var obj = _urCom.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
+            _comLoader = new ComLibraryLoader();
+            var obj = _comLoader.CreateObjectFromPath(dmPath, Guid.Parse("26037A0E-7CBD-4FFF-9C63-56F2D0770214"), true);
             _dm = obj as IDmsoft;
         }
 
@@ -54,7 +56,7 @@ namespace Liuliu.ScriptEngine
 
         public void Dispose()
         {
-            _urCom?.Dispose();
+            _comLoader?.Dispose();
             GC.SuppressFinalize(this);
         }
 

@@ -93,7 +93,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// <returns>操作是否成功</returns>
         public bool SetUac(bool enable)
         {
-            return _dm.SetUAC(enable) == 1;
+            return _dm.SetUAC(enable);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         /// <param name="depth">系统色深</param>
         /// <returns>0.失败，1.成功</returns>
-        public int SetScreenDepth(int depth)
+        public bool SetScreenDepth(int depth)
         {
             return _dm.SetScreen(ScreenWidth, ScreenHeight, depth);
         }
@@ -110,7 +110,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 【系统】关闭电源管理，不会进入睡眠
         /// </summary>
         /// <returns>0.失败，1.成功</returns>
-        public int DisablePowerSave()
+        public bool DisablePowerSave()
         {
             return _dm.DisablePowerSave();
         }
@@ -119,7 +119,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// 【系统】关闭屏幕保护
         /// </summary>
         /// <returns>0.失败，1.成功</returns>
-        public int DisableScreenSave()
+        public bool DisableScreenSave()
         {
             return _dm.DisablePowerSave();
         }
@@ -129,7 +129,7 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         /// <param name="type">0.注销系统，1.关机，2.重新启动</param>
         /// <returns>0.失败，1.成功</returns>
-        public int ExitOs(int type)
+        public bool ExitOs(int type)
         {
             return _dm.ExitOs(type);
         }
