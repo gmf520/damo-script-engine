@@ -272,6 +272,7 @@ namespace Liuliu.ScriptEngine
         /// 如果使用了这个模式，则所有和图色相关的函数,均视为对此图片进行处理.
         /// 比如文字识别 查找图片 颜色 等等一切图色函数.
         /// </param>
+        /// <returns>操作是否成功</returns>
         public bool SetDisplayInput(string mode)
         {
             return _dm.SetDisplayInput(mode) == 1;
@@ -652,15 +653,15 @@ namespace Liuliu.ScriptEngine
         /// <param name="y1">窗口左上角Y坐标</param>
         /// <param name="x2">窗口右下角X坐标</param>
         /// <param name="y2">窗口右下角Y坐标</param>
-        /// <returns>1成功，0失败。</returns>
-        public int GetWindowRect(int hwnd, out int x1, out int y1, out int x2, out int y2)
+        /// <returns>操作是否成功</returns>
+        public bool GetWindowRect(int hwnd, out int x1, out int y1, out int x2, out int y2)
         {
             int result = _dm.GetWindowRect(hwnd, out object a, out object b, out object c, out object d);
             x1 = (int)a;
             y1 = (int)b;
             x2 = (int)c;
             y2 = (int)d;
-            return result;
+            return result == 1;
         }
 
         /// <summary>
@@ -676,9 +677,9 @@ namespace Liuliu.ScriptEngine
         /// 5.判断窗口是否置顶 
         /// 6.判断窗口是否无响应</param>
         /// <returns>0: 不满足条件，1: 满足条件</returns>
-        public int GetWindowState(int hwnd, int flag)
+        public bool GetWindowState(int hwnd, int flag)
         {
-            return _dm.GetWindowState(hwnd, flag);
+            return _dm.GetWindowState(hwnd, flag) == 1;
         }
 
         /// <summary>
@@ -1226,6 +1227,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【键鼠】设置系统鼠标的移动速度.  如图所示红色区域. 一共分为11个级别. 从1开始,11结束。此接口仅仅对开启了硬件模拟鼠标的MoveR接口起作用
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool SetMouseSpeed(int speed)
         {
             return _dm.SetMouseSpeed(speed) == 1;
@@ -1258,10 +1260,11 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="keyCode">虚拟按键码</param>
         /// <param name="timeout">等待多久,单位毫秒. 如果是0，表示一直等待</param>
+        /// <returns>操作是否成功</returns>
         /// <returns>0.超时，1.指定的按键按下</returns>
-        public bool WaitKey(int keyCode, int timeout)
+        public int WaitKey(int keyCode, int timeout)
         {
-            return _dm.WaitKey(keyCode, timeout) == 1;
+            return _dm.WaitKey(keyCode, timeout);
         }
 
         /// <summary>
@@ -1303,6 +1306,7 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="index">字库的序号,取值为0-9,目前最多支持10个字库</param>
         /// <param name="dictInfo">字库描述串，具体参考大漠综合工具中的字符定义</param>
+        /// <returns>操作是否成功</returns>
         public bool AddDict(int index, string dictInfo)
         {
             return _dm.AddDict(index, dictInfo) == 1;
@@ -1312,6 +1316,7 @@ namespace Liuliu.ScriptEngine
         /// 【文字】清空指定的字库
         /// </summary>
         /// <param name="index">字库的序号,取值为0-9,目前最多支持10个字库</param>
+        /// <returns>操作是否成功</returns>
         public bool ClearDict(int index)
         {
             return _dm.ClearDict(index) == 1;
@@ -1320,6 +1325,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【文字】允许当前调用的对象使用全局字库。  如果你的程序中对象太多,并且每个对象都用到了同样的字库,可以考虑用全局字库,这样可以节省大量内存.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableShareDict(bool enable)
         {
             return _dm.EnableShareDict(enable ? 1 : 0) == 1;
@@ -1862,6 +1868,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="index">字库的序号,取值为0-99,目前最多支持100个字库</param>
         /// <param name="addr">数据地址</param>
         /// <param name="size">字库长度</param>
+        /// <returns>操作是否成功</returns>
         public bool SetDictMem(int index, int addr, int size)
         {
             return _dm.SetDictMem(index, addr, size) == 1;
@@ -3278,6 +3285,7 @@ namespace Liuliu.ScriptEngine
         /// 【内存】设置是否把所有内存查找接口的结果保存入指定文件
         /// </summary>
         /// <param name="file">设置要保存的搜索结果文件名. 如果为空字符串表示取消此功能</param>
+        /// <returns>操作是否成功</returns>
         public bool SetMemoryFindResultToFile(string file)
         {
             return _dm.SetMemoryFindResultToFile(file) == 1;
@@ -3307,6 +3315,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【内存】根据指定的PID，强制结束进程.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool TerminateProcess(int pid)
         {
             return _dm.TerminateProcess(pid) == 1;
@@ -3330,6 +3339,7 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="hwnd">指定搜索的窗口句柄或者进程ID.  默认是窗口句柄. 如果要指定为进程ID,需要调用SetMemoryHwndAsProcessId.</param>
         /// <param name="addr">VirtualAllocEx返回的地址</param>
+        /// <returns>操作是否成功</returns>
         public bool VirtualFreeEx(int hwnd, int addr)
         {
             return _dm.VirtualFreeEx(hwnd, addr) == 1;
@@ -3362,15 +3372,16 @@ namespace Liuliu.ScriptEngine
         /// 5. "[[[&lt;360SE.exe&gt;+DA678]+3A]+5B]+8" 这个是一个三级指针
         /// 总之熟悉CE的人 应该对这个地址描述都很熟悉,我就不多举例了</param>
         /// <param name="data">二进制数据，以字符串形式描述，比如"12 34 56 78 90 ab cd"</param>
-        /// <returns>0.失败，1.成功</returns>
-        public long WriteData(int hwnd, string address, string data)
+        /// <returns>操作是否成功</returns>
+        public bool WriteData(int hwnd, string address, string data)
         {
-            return _dm.WriteData(hwnd, address, data);
+            return _dm.WriteData(hwnd, address, data) == 1;
         }
 
         /// <summary>
         /// 【内存】对指定地址写入二进制数据
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool WriteDataAddr(int hwnd, int addr, string data)
         {
             return _dm.WriteDataAddr(hwnd, addr, data) == 1;
@@ -3389,10 +3400,10 @@ namespace Liuliu.ScriptEngine
         /// 5. "[[[&lt;360SE.exe&gt;+DA678]+3A]+5B]+8" 这个是一个三级指针
         /// 总之熟悉CE的人 应该对这个地址描述都很熟悉,我就不多举例了</param>
         /// <param name="value">双精度浮点数</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int WriteDouble(int hwnd, string address, double value)
+        /// <returns>操作是否成功</returns>
+        public bool WriteDouble(int hwnd, string address, double value)
         {
-            return _dm.WriteDouble(hwnd, address, value);
+            return _dm.WriteDouble(hwnd, address, value) == 1;
         }
 
         /// <summary>
@@ -3401,6 +3412,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="hwnd">指定搜索的窗口句柄或者进程ID.  默认是窗口句柄. 如果要指定为进程ID,需要调用SetMemoryHwndAsProcessId.</param>
         /// <param name="addr">地址</param>
         /// <param name="value">双精度浮点数</param>
+        /// <returns>操作是否成功</returns>
         public bool WriteDoubleAddr(int hwnd, int addr, double value)
         {
             return _dm.WriteDoubleAddr(hwnd, addr, value) == 1;
@@ -3419,10 +3431,10 @@ namespace Liuliu.ScriptEngine
         /// 5. "[[[&lt;360SE.exe&gt;+DA678]+3A]+5B]+8" 这个是一个三级指针
         /// 总之熟悉CE的人 应该对这个地址描述都很熟悉,我就不多举例了</param>
         /// <param name="value">单精度浮点数</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int WriteFloat(int hwnd, string address, float value)
+        /// <returns>操作是否成功</returns>
+        public bool WriteFloat(int hwnd, string address, float value)
         {
-            return _dm.WriteFloat(hwnd, address, value);
+            return _dm.WriteFloat(hwnd, address, value) == 1;
         }
 
         /// <summary>
@@ -3431,6 +3443,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="hwnd">指定搜索的窗口句柄或者进程ID.  默认是窗口句柄. 如果要指定为进程ID,需要调用SetMemoryHwndAsProcessId.</param>
         /// <param name="addr">地址</param>
         /// <param name="value">单精度浮点数</param>
+        /// <returns>操作是否成功</returns>
         public bool WriteFloatAddr(int hwnd, int addr, float value)
         {
             return _dm.WriteFloatAddr(hwnd, addr, value) == 1;
@@ -3451,7 +3464,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="type">搜索的整数类型,取值如下：
         /// 0. 32位，1. 16位，2. 8位</param>
         /// <param name="value">整型数值</param>
-        /// <returns>0.失败，1.成功</returns>
+        /// <returns>操作是否成功</returns>
         public int WriteInt(int hwnd, string address, int type, int value)
         {
             return _dm.WriteInt(hwnd, address, type, value);
@@ -3464,6 +3477,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="addr">地址</param>
         /// <param name="type">整数类型,取值如下 0 : 32位 1 : 16 位 2 : 8位 3 : 64位</param>
         /// <param name="value">整形数值</param>
+        /// <returns>操作是否成功</returns>
         public bool WriteIntAddr(int hwnd, int addr, int type, int value)
         {
             return _dm.WriteIntAddr(hwnd, addr, type, value) == 1;
@@ -3483,10 +3497,10 @@ namespace Liuliu.ScriptEngine
         /// 总之熟悉CE的人 应该对这个地址描述都很熟悉,我就不多举例了</param>
         /// <param name="type">搜索的字符串类型，取值如下：0.Ascii字符串，1.Unicode字符串</param>
         /// <param name="value">字符串值</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int WriteString(int hwnd, string address, int type, string value)
+        /// <returns>操作是否成功</returns>
+        public bool WriteString(int hwnd, string address, int type, string value)
         {
-            return _dm.WriteString(hwnd, address, type, value);
+            return _dm.WriteString(hwnd, address, type, value) == 1;
         }
 
         /// <summary>
@@ -3496,6 +3510,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="addr">地址</param>
         /// <param name="type">字符串类型,取值如下 0 : Ascii字符串 1 : Unicode字符串</param>
         /// <param name="value">整形数值</param>
+        /// <returns>操作是否成功</returns>
         public bool WriteStringAddr(int hwnd, int addr, int type, string value)
         {
             return _dm.WriteStringAddr(hwnd, addr, type, value) == 1;
@@ -3510,7 +3525,7 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="fre">频率</param>
         /// <param name="delay">时长</param>
-        /// <returns>0.失败，1.成功</returns>
+        /// <returns>操作是否成功</returns>
         public bool Beep(int fre, int delay)
         {
             return _dm.Beep(fre, delay) == 1;
@@ -3519,6 +3534,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【系统】检测当前系统是否有开启屏幕字体平滑.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool CheckFontSmooth()
         {
             return _dm.CheckFontSmooth() == 1;
@@ -3537,6 +3553,7 @@ namespace Liuliu.ScriptEngine
         /// 【系统】设置指定毫秒数的延时
         /// </summary>
         /// <param name="mis">延时毫秒数</param>
+        /// <returns>操作是否成功</returns>
         public bool Delay(int mis)
         {
             return _dm.delay(mis) == 1;
@@ -3545,6 +3562,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【系统】延时指定范围内随机毫秒,过程中不阻塞UI操作. 一般高级语言使用.按键用不到.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool Delays(int misMin, int misMax)
         {
             return _dm.Delays(misMin, misMax) == 1;
@@ -3553,6 +3571,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【系统】关闭当前系统屏幕字体平滑.同时关闭系统的ClearType功能.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool DisableFontSmooth()
         {
             return _dm.DisableFontSmooth() == 1;
@@ -3561,24 +3580,25 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【系统】关闭电源管理，不会进入睡眠
         /// </summary>
-        /// <returns>0.失败，1.成功</returns>
-        public int DisablePowerSave()
+        /// <returns>操作是否成功</returns>
+        public bool DisablePowerSave()
         {
-            return _dm.DisablePowerSave();
+            return _dm.DisablePowerSave() == 1;
         }
 
         /// <summary>
         /// 【系统】关闭屏幕保护
         /// </summary>
-        /// <returns>0.失败，1.成功</returns>
-        public int DisableScreenSave()
+        /// <returns>操作是否成功</returns>
+        public bool DisableScreenSave()
         {
-            return _dm.DisablePowerSave();
+            return _dm.DisablePowerSave() == 1;
         }
 
         /// <summary>
         /// 【系统】开启当前系统屏幕字体平滑.同时开启系统的ClearType功能.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableFontSmooth()
         {
             return _dm.EnableFontSmooth() == 1;
@@ -3588,10 +3608,10 @@ namespace Liuliu.ScriptEngine
         /// 【系统】退出系统(注销 重启 关机)
         /// </summary>
         /// <param name="type">0.注销系统，1.关机，2.重新启动</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int ExitOs(int type)
+        /// <returns>操作是否成功</returns>
+        public bool ExitOs(int type)
         {
-            return _dm.ExitOs(type);
+            return _dm.ExitOs(type) == 1;
         }
 
         /// <summary>
@@ -3743,10 +3763,10 @@ namespace Liuliu.ScriptEngine
         /// 【系统】停止指定的音乐
         /// </summary>
         /// <param name="id">Play返回的播放id</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int MediaStop(int id)
+        /// <returns>操作是否成功</returns>
+        public bool MediaStop(int id)
         {
-            return _dm.Stop(id);
+            return _dm.Stop(id) == 1;
         }
 
         /// <summary>
@@ -3764,16 +3784,17 @@ namespace Liuliu.ScriptEngine
         /// 【系统】获取剪贴板的内容
         /// </summary>
         /// <param name="value">以字符串表示的剪贴板内容</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int SetClipboard(string value)
+        /// <returns>操作是否成功</returns>
+        public bool SetClipboard(string value)
         {
-            return _dm.SetClipboard(value);
+            return _dm.SetClipboard(value) == 1;
         }
 
         /// <summary>
         /// 【系统】设置当前系统的硬件加速级别
         /// </summary>
         /// <param name="level">取值范围为0-5.  0表示关闭硬件加速。5表示完全打开硬件加速</param>
+        /// <returns>操作是否成功</returns>
         public bool SetDisplayAcceler(int level)
         {
             return _dm.SetDisplayAcceler(level) == 1;
@@ -3785,20 +3806,20 @@ namespace Liuliu.ScriptEngine
         /// <param name="width">屏幕宽度</param>
         /// <param name="height">屏幕高度</param>
         /// <param name="depth">系统色深</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int SetScreen(int width, int height, int depth)
+        /// <returns>操作是否成功</returns>
+        public bool SetScreen(int width, int height, int depth)
         {
-            return _dm.SetScreen(width, height, depth);
+            return _dm.SetScreen(width, height, depth) == 1;
         }
 
         /// <summary>
         /// 【系统】设置当前系统的UAC(用户账户控制).
         /// </summary>
         /// <param name="enable">是否开启</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int SetUAC(bool enable)
+        /// <returns>操作是否成功</returns>
+        public bool SetUAC(bool enable)
         {
-            return _dm.SetUAC(enable ? 1 : 0);
+            return _dm.SetUAC(enable ? 1 : 0) == 1;
         }
 
         #endregion
@@ -3813,10 +3834,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="mouse">窗口绑定鼠标仿真模式</param>
         /// <param name="keypad">窗口绑定键盘仿真模式</param>
         /// <param name="mode">窗口绑定模式</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int BindWindow(int hwnd, DmBindDisplay display, DmBindMouse mouse, DmBindKeypad keypad, DmBindMode mode)
+        /// <returns>操作是否成功</returns>
+        public bool BindWindow(int hwnd, DmBindDisplay display, DmBindMouse mouse, DmBindKeypad keypad, DmBindMode mode)
         {
-            return _dm.BindWindow(hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode);
+            return _dm.BindWindow(hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode) == 1;
         }
 
         /// <summary>
@@ -3863,10 +3884,10 @@ namespace Liuliu.ScriptEngine
         /// 5.    "dx.public.disable.window.minmax" 此模式将禁止窗口最大化和最小化,但是付出的代价是窗口同时也会被置顶. 不可与"dx.public.fake.window.min"共用.
         /// 6.    "dx.public.fake.window.min" 此模式将允许目标窗口在最小化状态时，仍然能够像非最小化一样操作.此模式仅支持简单游与按键，小精灵等其它一律不支持. 另注意，此模式会导致任务栏顺序重排，所以如果是多开模式下，会看起来比较混乱，建议单开使用，多开不建议使用.</param>
         /// <param name="mode">窗口绑定模式</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int BindWindowEx(int hwnd, string display, string mouse, string keypad, string @public, DmBindMode mode)
+        /// <returns>操作是否成功</returns>
+        public bool BindWindowEx(int hwnd, string display, string mouse, string keypad, string @public, DmBindMode mode)
         {
-            return _dm.BindWindowEx(hwnd, display, mouse, keypad, @public, (int)mode);
+            return _dm.BindWindowEx(hwnd, display, mouse, keypad, @public, (int)mode) == 1;
         }
 
         /// <summary>
@@ -3875,15 +3896,16 @@ namespace Liuliu.ScriptEngine
         /// 因为降低CPU是通过降低窗口刷新速度来实现，所以注意，开启此功能以后会导致窗口刷新速度变慢
         /// </summary>
         /// <param name="rate">取值范围0到100   取值为0 表示关闭CPU优化. 这个值越大表示降低CPU效果越好</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int DownCpu(int rate)
+        /// <returns>操作是否成功</returns>
+        public bool DownCpu(int rate)
         {
-            return _dm.DownCpu(rate);
+            return _dm.DownCpu(rate) == 1;
         }
 
         /// <summary>
         /// 【后台】设置是否暂时关闭或者开启后台功能. 默认是开启
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableBind(bool enable)
         {
             return _dm.EnableBind(enable ? 1 : 0) == 1;
@@ -3892,6 +3914,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【后台】设置是否开启后台假激活功能. 默认是关闭. 一般用不到. 除非有人有特殊需求.
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableFakeActive(bool enable)
         {
             return _dm.EnableFakeActive(enable ? 1 : 0) == 1;
@@ -3901,15 +3924,16 @@ namespace Liuliu.ScriptEngine
         /// 【后台】设置是否允许绑定窗口所在进程的输入法，此方法需在绑定之后调用
         /// </summary>
         /// <param name="enable">是否允许</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int EnableIme(bool enable)
+        /// <returns>操作是否成功</returns>
+        public bool EnableIme(bool enable)
         {
-            return _dm.EnableIme(enable ? 1 : 0);
+            return _dm.EnableIme(enable ? 1 : 0) == 1;
         }
 
         /// <summary>
         /// 【后台】是否在使用dx键盘时开启windows消息.默认开启
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableKeypadMsg(bool enable)
         {
             return _dm.EnableKeypadMsg(enable ? 1 : 0) == 1;
@@ -3918,6 +3942,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【后台】键盘消息发送补丁. 默认是关闭
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableKeypadPatch(bool enable)
         {
             return _dm.EnableKeypadPatch(enable ? 1 : 0) == 1;
@@ -3928,6 +3953,7 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="enable"></param>
         /// <param name="timeout">单位是毫秒,表示同步等待的最大时间</param>
+        /// <returns>操作是否成功</returns>
         public bool EnableKeypadSync(bool enable, int timeout)
         {
             return _dm.EnableKeypadSync(enable ? 1 : 0, timeout) == 1;
@@ -3936,6 +3962,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 是否在使用dx鼠标时开启windows消息.默认开启
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableMouseMsg(bool enable)
         {
             return _dm.EnableMouseMsg(enable ? 1 : 0) == 1;
@@ -3946,6 +3973,7 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="enable"></param>
         /// <param name="timeout">单位是毫秒,表示同步等待的最大时间</param>
+        /// <returns>操作是否成功</returns>
         public bool EnableMouseSync(bool enable, int timeout)
         {
             return _dm.EnableMouseSync(enable ? 1 : 0, timeout) == 1;
@@ -3954,6 +3982,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 键盘动作模拟真实操作,点击延时随机
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableRealKeypad(bool enable)
         {
             return _dm.EnableRealKeypad(enable ? 1 : 0) == 1;
@@ -3965,6 +3994,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="enable">0 关闭模拟 1 开启模拟(直线模拟) 2 开启模式(随机曲线, 更接近真实)</param>
         /// <param name="mousedelay">单位是毫秒. 表示在模拟鼠标移动轨迹时,每移动一次的时间间隔.这个值越大,鼠标移动越慢.</param>
         /// <param name="mousestep">示在模拟鼠标移动轨迹时,每移动一次的距离. 这个值越大，鼠标移动越快速.</param>
+        /// <returns>操作是否成功</returns>
         public bool EnableRealMouse(int enable, int mousedelay, int mousestep)
         {
             return _dm.EnableRealMouse(enable, mousedelay, mousestep) == 1;
@@ -3973,6 +4003,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【后台】设置是否开启高速dx键鼠模式。 默认是关闭
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnableSpeedDx(bool enable)
         {
             return _dm.EnableSpeedDx(enable ? 1 : 0) == 1;
@@ -3982,6 +4013,7 @@ namespace Liuliu.ScriptEngine
         /// 【后台】强制解除绑定窗口,并释放系统资源
         /// </summary>
         /// <param name="hwnd">需要强制解除绑定的窗口句柄</param>
+        /// <returns>操作是否成功</returns>
         public bool ForceUnBindWindow(int hwnd)
         {
             return _dm.ForceUnBindWindow(hwnd) == 1;
@@ -3999,6 +4031,7 @@ namespace Liuliu.ScriptEngine
         /// 【后台】判定指定窗口是否已经被后台绑定. (前台无法判定)
         /// </summary>
         /// <param name="hwnd">窗口句柄</param>
+        /// <returns>操作是否成功</returns>
         public bool IsBind(int hwnd)
         {
             return _dm.IsBind(hwnd) == 1;
@@ -4007,6 +4040,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【后台】锁定指定窗口的图色数据(不刷新)
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool LockDisplay(bool @lock)
         {
             return _dm.LockDisplay(@lock ? 1 : 0) == 1;
@@ -4017,10 +4051,10 @@ namespace Liuliu.ScriptEngine
         /// 此接口只针对dx键鼠，普通鼠标无效，可用于绑定为dx2鼠标时，需要锁定输入
         /// </summary>
         /// <param name="lock">0.关闭锁定，1.开启锁定（键鼠均锁），2.只锁定鼠标，3.只锁定键盘</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int LockInput(int @lock)
+        /// <returns>操作是否成功</returns>
+        public bool LockInput(int @lock)
         {
-            return _dm.LockInput(@lock);
+            return _dm.LockInput(@lock) == 1;
         }
 
         /// <summary>
@@ -4030,15 +4064,16 @@ namespace Liuliu.ScriptEngine
         /// <param name="y1">区域的左上Y坐标. 屏幕坐标</param>
         /// <param name="x2">区域的右下X坐标. 屏幕坐标</param>
         /// <param name="y2">区域的右下Y坐标. 屏幕坐标</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int LockMouseRect(int x1, int y1, int x2, int y2)
+        /// <returns>操作是否成功</returns>
+        public bool LockMouseRect(int x1, int y1, int x2, int y2)
         {
-            return _dm.LockMouseRect(x1, y1, x2, y2);
+            return _dm.LockMouseRect(x1, y1, x2, y2) == 1;
         }
 
         /// <summary>
         /// 【后台】设置开启或者关闭系统的Aero效果. (仅对WIN7及以上系统有效)
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool SetAero(bool enable)
         {
             return _dm.SetAero(enable ? 1 : 0) == 1;
@@ -4051,15 +4086,16 @@ namespace Liuliu.ScriptEngine
         /// 某些时候或许有用.比如当窗口图色卡死(这时获取图色一定都是超时)，并且要判断窗口卡死，那么这个设置就很有用了。
         /// </summary>
         /// <param name="mis">等待时间，单位是毫秒。 注意这里不能设置的过小，否则可能会导致截图失败,从而导致图色函数和文字识别失败</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int SetDisplayDelay(int mis)
+        /// <returns>操作是否成功</returns>
+        public bool SetDisplayDelay(int mis)
         {
-            return _dm.SetDisplayDelay(mis);
+            return _dm.SetDisplayDelay(mis) == 1;
         }
 
         /// <summary>
         /// 【后台】在不解绑的情况下,切换绑定窗口.(必须是同进程窗口)
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool SwitchBindWindow(int hwnd)
         {
             return _dm.SwitchBindWindow(hwnd) == 1;
@@ -4135,10 +4171,10 @@ namespace Liuliu.ScriptEngine
         /// 【汇编】添加指定的MASM汇编指令
         /// </summary>
         /// <param name="asmIns">MASM汇编指令,大小写均可以  比如 mov eax,1</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int AsmAdd(string asmIns)
+        /// <returns>操作是否成功</returns>
+        public bool AsmAdd(string asmIns)
         {
-            return _dm.AsmAdd(asmIns);
+            return _dm.AsmAdd(asmIns) == 1;
         }
 
         /// <summary>
@@ -4146,19 +4182,19 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="hwnd">窗口句柄</param>
         /// <param name="mode">模式：0.在本进程中进行执行，这时hwnd无效，1.对hwnd指定的进程内执行,注入模式为创建远程线程</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int AsmCall(int hwnd, int mode)
+        /// <returns>操作是否成功</returns>
+        public bool AsmCall(int hwnd, int mode)
         {
-            return _dm.AsmCall(hwnd, mode);
+            return _dm.AsmCall(hwnd, mode) == 1;
         }
 
         /// <summary>
         /// 【汇编】清除汇编指令缓冲区 用AsmAdd添加到缓冲的指令全部清除
         /// </summary>
-        /// <returns>0.失败，1.成功</returns>
-        public int AsmClear()
+        /// <returns>操作是否成功</returns>
+        public bool AsmClear()
         {
-            return _dm.AsmClear();
+            return _dm.AsmClear() == 1;
         }
 
         /// <summary>
@@ -4425,10 +4461,10 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【答题】可以把上次FaqPost的发送取消,接着下一次FaqPost
         /// </summary>
-        /// <returns>0.失败，1.成功</returns>
-        public int FaqCancel()
+        /// <returns>操作是否成功</returns>
+        public bool FaqCancel()
         {
-            return _dm.FaqCancel();
+            return _dm.FaqCancel() == 1;
         }
 
         /// <summary>
@@ -4502,6 +4538,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【答题】用于判断当前对象是否有发送过答题(FaqPost)
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool FaqIsPosted()
         {
             return _dm.FaqIsPosted() == 1;
@@ -4608,20 +4645,20 @@ namespace Liuliu.ScriptEngine
         /// 【Foobar】清除指定的Foobar滚动文本区
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口句柄,此句柄必须是通过CreateFoobarxxx创建而来</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarClearText(int hwnd)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarClearText(int hwnd)
         {
-            return _dm.FoobarClearText(hwnd);
+            return _dm.FoobarClearText(hwnd) == 1;
         }
 
         /// <summary>
         /// 【Foobar】关闭一个Foobar,注意,必须调用此函数来关闭窗口,用SetWindowState也可以关闭,但会造成内存泄漏
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口句柄</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarClose(int hwnd)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarClose(int hwnd)
         {
-            return _dm.FoobarClose(hwnd);
+            return _dm.FoobarClose(hwnd) == 1;
         }
 
         /// <summary>
@@ -4635,6 +4672,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="color">填充的颜色值</param>
         /// <param name="style">画笔类型. 0为实线. 1为虚线</param>
         /// <param name="width">线条宽度</param>
+        /// <returns>操作是否成功</returns>
         public bool FoobarDrawLine(int hwnd, int x1, int y1, int x2, int y2, string color, int style, int width)
         {
             return _dm.FoobarDrawLine(hwnd, x1, y1, x2, y2, color, style, width) == 1;
@@ -4648,10 +4686,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="y">左上角Y坐标(相对于hwnd客户区坐标)</param>
         /// <param name="picName">图像文件名</param>
         /// <param name="transColor">图像透明色</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarDrawPic(int hwnd, int x, int y, string picName, string transColor)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarDrawPic(int hwnd, int x, int y, string picName, string transColor)
         {
-            return _dm.FoobarDrawPic(hwnd, x, y, picName, transColor);
+            return _dm.FoobarDrawPic(hwnd, x, y, picName, transColor) == 1;
         }
 
         /// <summary>
@@ -4665,10 +4703,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="text">字符串</param>
         /// <param name="color">文字颜色值</param>
         /// <param name="align">对方方式：1.左对齐，2.中间对方，4.右对齐</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarDrawText(int hwnd, int x, int y, int w, int h, string text, string color, int align)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarDrawText(int hwnd, int x, int y, int w, int h, string text, string color, int align)
         {
-            return _dm.FoobarDrawText(hwnd, x, y, w, h, text, color, align);
+            return _dm.FoobarDrawText(hwnd, x, y, w, h, text, color, align) == 1;
         }
 
         /// <summary>
@@ -4680,20 +4718,20 @@ namespace Liuliu.ScriptEngine
         /// <param name="x2">右下角X坐标(相对于hwnd客户区坐标)</param>
         /// <param name="y2">右下角Y坐标(相对于hwnd客户区坐标)</param>
         /// <param name="color">填充的颜色值</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarFillRect(int hwnd, int x1, int y1, int x2, int y2, string color)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarFillRect(int hwnd, int x1, int y1, int x2, int y2, string color)
         {
-            return _dm.FoobarFillRect(hwnd, x1, y1, x2, y2, color);
+            return _dm.FoobarFillRect(hwnd, x1, y1, x2, y2, color) == 1;
         }
 
         /// <summary>
         /// 【Foobar】锁定指定的Foobar窗口,不能通过鼠标来移动
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口,注意,此句柄必须是通过CreateFoobarxxxx系列函数创建出来的</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarLock(int hwnd)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarLock(int hwnd)
         {
-            return _dm.FoobarLock(hwnd);
+            return _dm.FoobarLock(hwnd) == 1;
         }
 
         /// <summary>
@@ -4702,10 +4740,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="hwnd">指定的Foobar窗口,注意,此句柄必须是通过CreateFoobarxxxx系列函数创建出来的</param>
         /// <param name="text">文本内容</param>
         /// <param name="color">文本颜色</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarPrintText(int hwnd, string text, string color)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarPrintText(int hwnd, string text, string color)
         {
-            return _dm.FoobarPrintText(hwnd, text, color);
+            return _dm.FoobarPrintText(hwnd, text, color) == 1;
         }
 
         /// <summary>
@@ -4716,10 +4754,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="size">字体大小</param>
         /// <param name="flag">0.正常字体，1.粗体，2.斜体，4.下划线
         /// 文字可以是以上的组合 比如粗斜体就是1+2,斜体带下划线就是:2+4等</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarSetFont(int hwnd, string fontName, int size, int flag)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarSetFont(int hwnd, string fontName, int size, int flag)
         {
-            return _dm.FoobarSetFont(hwnd, fontName, size, flag);
+            return _dm.FoobarSetFont(hwnd, fontName, size, flag) == 1;
         }
 
         /// <summary>
@@ -4738,10 +4776,10 @@ namespace Liuliu.ScriptEngine
         /// "%hh%"表示小时. 比如13
         /// "%mm%"表示分钟. 比如59
         /// "%ss%"表示秒. 比如48.</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarSetSave(int hwnd, string file, bool enable, string header)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarSetSave(int hwnd, string file, bool enable, string header)
         {
-            return _dm.FoobarSetSave(hwnd, file, enable ? 1 : 0, header);
+            return _dm.FoobarSetSave(hwnd, file, enable ? 1 : 0, header) == 1;
         }
 
         /// <summary>
@@ -4751,6 +4789,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="isTrans">是否透明.</param>
         /// <param name="color">透明色(RRGGBB</param>
         /// <param name="sim">透明色的相似值 0.1-1.0</param>
+        /// <returns>操作是否成功</returns>
         public bool FoobarSetTrans(int hwnd, bool isTrans, string color, double sim)
         {
             return _dm.FoobarSetTrans(hwnd, isTrans ? 1 : 0, color, sim) == 1;
@@ -4765,6 +4804,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="picName">图像文件名</param>
         /// <param name="repeatLimit">表示重复GIF动画的次数，如果是0表示一直循环显示.大于0，则表示循环指定的次数以后就停止显示</param>
         /// <param name="delay">表示每帧GIF动画之间的时间间隔.如果是0，表示使用GIF内置的时间，如果大于0，表示使用自定义的时间间隔</param>
+        /// <returns>操作是否成功</returns>
         public bool FoobarStartGif(int hwnd, int x, int y, string picName, int repeatLimit, int delay)
         {
             return _dm.FoobarStartGif(hwnd, x, y, picName, repeatLimit, delay) == 1;
@@ -4777,6 +4817,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="x">左上角X坐标(相对于hwnd客户区坐标)</param>
         /// <param name="y">左上角Y坐标(相对于hwnd客户区坐标)</param>
         /// <param name="picName">图像文件名</param>
+        /// <returns>操作是否成功</returns>
         public bool FoobarStopGif(int hwnd, int x, int y, string picName)
         {
             return _dm.FoobarStopGif(hwnd, x, y, picName) == 1;
@@ -4787,10 +4828,10 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口句柄,此句柄必须是通过CreateFoobarxxx创建而来</param>
         /// <param name="lineGap">文本行间距</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarTextLineGap(int hwnd, int lineGap = 3)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarTextLineGap(int hwnd, int lineGap = 3)
         {
-            return _dm.FoobarTextLineGap(hwnd, lineGap);
+            return _dm.FoobarTextLineGap(hwnd, lineGap) == 1;
         }
 
         /// <summary>
@@ -4798,10 +4839,10 @@ namespace Liuliu.ScriptEngine
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口句柄,此句柄必须是通过CreateFoobarxxx创建而来</param>
         /// <param name="dir">文字方向：0.表示向下输出，1.表示向上输出</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarTextPrintDir(int hwnd, int dir = 0)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarTextPrintDir(int hwnd, int dir = 0)
         {
-            return _dm.FoobarTextPrintDir(hwnd, dir);
+            return _dm.FoobarTextPrintDir(hwnd, dir) == 1;
         }
 
         /// <summary>
@@ -4812,30 +4853,30 @@ namespace Liuliu.ScriptEngine
         /// <param name="y">左上角Y坐标(相对于hwnd客户区坐标)</param>
         /// <param name="w">区域的宽度</param>
         /// <param name="h">区域的高度</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarTextRect(int hwnd, int x, int y, int w, int h)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarTextRect(int hwnd, int x, int y, int w, int h)
         {
-            return _dm.FoobarTextRect(hwnd, x, y, w, h);
+            return _dm.FoobarTextRect(hwnd, x, y, w, h) == 1;
         }
 
         /// <summary>
         /// 【Foobar】解锁指定的Foobar窗口,可以通过鼠标来移动
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口句柄,此句柄必须是通过CreateFoobarxxx创建而来</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarUnlock(int hwnd)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarUnlock(int hwnd)
         {
-            return _dm.FoobarUnlock(hwnd);
+            return _dm.FoobarUnlock(hwnd) == 1;
         }
 
         /// <summary>
         /// 【Foobar】刷新指定的Foobar窗口
         /// </summary>
         /// <param name="hwnd">指定的Foobar窗口,注意,此句柄必须是通过CreateFoobarxxxx系列函数创建出来的</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int FoobarUpdate(int hwnd)
+        /// <returns>操作是否成功</returns>
+        public bool FoobarUpdate(int hwnd)
         {
-            return _dm.FoobarUpdate(hwnd);
+            return _dm.FoobarUpdate(hwnd) == 1;
         }
 
         #endregion
@@ -4884,10 +4925,10 @@ namespace Liuliu.ScriptEngine
         /// <param name="inputMethod">输入法名字。具体输入法名字对应表查看注册表中以下位置：
         /// HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layouts。
         /// 下面的每一项下的Layout Text的值就是输入法名字，比如 "中文 - QQ拼音输入法"，以此类推。</param>
-        /// <returns>0.失败，1.成功</returns>
-        public int ActiveInputMethod(int hwnd, string inputMethod)
+        /// <returns>操作是否成功</returns>
+        public bool ActiveInputMethod(int hwnd, string inputMethod)
         {
-            return _dm.ActiveInputMethod(hwnd, inputMethod);
+            return _dm.ActiveInputMethod(hwnd, inputMethod) == 1;
         }
 
         /// <summary>
@@ -4906,6 +4947,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 检测是否可以进入临界区,如果可以返回1,否则返回0. 此函数如果返回1，则调用对象就会占用此互斥信号量,直到此对象调用LeaveCri,否则不会释放.注意:如果调用对象在释放时，会自动把本对象占用的互斥信号量释放
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool EnterCri()
         {
             return _dm.EnterCri() == 1;
@@ -4926,6 +4968,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 初始化临界区,必须在脚本开头调用一次.这个函数是强制把插件内的互斥信号量归0,无论调用对象是否拥有此信号量
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool InitCri()
         {
             return _dm.InitCri() == 1;
@@ -4934,6 +4977,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 和EnterCri对应,离开临界区。此函数是释放调用对象占用的互斥信号量. 注意，只有调用对象占有了互斥信号量，此函数才会有作用. 否则没有任何作用. 如果调用对象在释放时，会自动把本对象占用的互斥信号量释放
         /// </summary>
+        /// <returns>操作是否成功</returns>
         public bool LeaveCri()
         {
             return _dm.LeaveCri() == 1;
