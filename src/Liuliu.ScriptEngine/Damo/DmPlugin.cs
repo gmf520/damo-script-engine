@@ -18,7 +18,7 @@ namespace Liuliu.ScriptEngine
 {
     /// <summary>
     /// 大漠插件C#免注册调用类
-    /// 作者：清风抚断云（QQ:274838061），柳柳英侠（QQ:123202901）整理
+    /// 作者：柳柳英侠（QQ:123202901）整理
     /// 大漠版本：6.1720
     /// 时间：2017-09-04 21:21:18
     /// </summary>
@@ -3756,7 +3756,7 @@ namespace Liuliu.ScriptEngine
         /// <summary>
         /// 【系统】得到操作系统的类型
         /// </summary>
-        /// <returns>0 : win95/98/me/nt4.0，1 : xp/2000，2 : 2003，3 : win7/vista/2008</returns>
+        /// <returns>0 : win95/98/me/nt4.0，1 : xp/2000，2 : 2003，3 : win7/vista/2008，4 : vista/2008，5 : win8/2012，6 : win8.1/2012 R2，7 : win10/2016 TP</returns>
         public int GetOSType()
         {
             return _dm.GetOsType();

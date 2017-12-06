@@ -12,10 +12,16 @@ using System;
 
 namespace Liuliu.ScriptEngine.Damo
 {
+    /// <summary>
+    /// 大漠操作系统类
+    /// </summary>
     public class DmSystem
     {
         private readonly DmPlugin _dm;
 
+        /// <summary>
+        /// 初始化一个<see cref="DmSystem"/>类型的新实例
+        /// </summary>
         public DmSystem(DmPlugin dm)
         {
             _dm = dm;
@@ -26,6 +32,9 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         public DmPlugin Dm { get { return _dm; } }
 
+        /// <summary>
+        /// 主机名称
+        /// </summary>
         public string HostName { get { return Environment.UserDomainName; } }
 
         /// <summary>
@@ -45,7 +54,15 @@ namespace Liuliu.ScriptEngine.Damo
                     case 2:
                         return "Win2003";
                     case 3:
-                        return "Win Vista/7/2008";
+                        return "Vista/Win/7/2008";
+                    case 4:
+                        return "Vista/2008";
+                    case 5:
+                        return "Win8/2012";
+                    case 6:
+                        return "Win8.1/2012 R2";
+                    case 7:
+                        return "Win10/2016 TP";
                     default:
                         return "未知系统";
                 }
@@ -57,12 +74,24 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         public int ScreenDepth { get { return _dm.GetScreenDepth(); } }
 
+        /// <summary>
+        /// 屏幕宽度
+        /// </summary>
         public int ScreenWidth { get { return _dm.GetScreenWidth(); } }
 
+        /// <summary>
+        /// 屏幕高度
+        /// </summary>
         public int ScreenHeight { get { return _dm.GetScreenHeight(); } }
 
+        /// <summary>
+        /// 是否64位系统
+        /// </summary>
         public bool Is64Bit { get { return _dm.Is64Bit(); } }
 
+        /// <summary>
+        /// UAC是否打开
+        /// </summary>
         public bool IsUacOpen { get { return _dm.CheckUAC(); } }
 
         /// <summary>

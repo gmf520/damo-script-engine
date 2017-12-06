@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Liuliu.ScriptEngine.Damo;
+
 using OSharp.Utility.Secutiry;
 
-using Qf;
 
 
 namespace Liuliu.ScriptEngine.Consoles
@@ -94,13 +95,12 @@ namespace Liuliu.ScriptEngine.Consoles
 
         private static void Method01()
         {
-            Console.WriteLine(_dm.Beep(1000, 1000));
+            string strHwnds = _dm.EnumWindow(0, "", "FSOnline Class", 2 + 8);
+            Console.WriteLine(strHwnds);
         }
 
         private static void Method02()
         {
-            QfDmSoft dm = new QfDmSoft();
-            Console.WriteLine(dm.Ver());
         }
 
         private static void Method03()

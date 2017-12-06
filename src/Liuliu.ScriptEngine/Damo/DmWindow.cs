@@ -15,12 +15,18 @@ using System.Threading.Tasks;
 
 namespace Liuliu.ScriptEngine.Damo
 {
+    /// <summary>
+    /// 大漠窗口类
+    /// </summary>
     public class DmWindow
     {
         private readonly DmPlugin _dm;
         private readonly int _hwnd;
         private readonly DmSystem _system;
 
+        /// <summary>
+        /// 初始化一个<see cref="DmWindow"/>类型的新实例
+        /// </summary>
         public DmWindow(DmPlugin dm, int hwnd)
         {
             _hwnd = hwnd;
@@ -30,12 +36,24 @@ namespace Liuliu.ScriptEngine.Damo
             IsBind = false;
         }
 
+        /// <summary>
+        /// 窗口句柄
+        /// </summary>
         public int Hwnd { get { return _hwnd; } }
 
+        /// <summary>
+        /// 窗口的大漠对象
+        /// </summary>
         public DmPlugin Dm { get { return _dm; } }
 
+        /// <summary>
+        /// 窗口所属操作系统
+        /// </summary>
         public DmSystem System { get { return _system; } }
 
+        /// <summary>
+        /// 窗口标题
+        /// </summary>
         public string Title
         {
             get { return Dm.GetWindowTitle(_hwnd); }
@@ -49,10 +67,19 @@ namespace Liuliu.ScriptEngine.Damo
             }
         }
 
+        /// <summary>
+        /// 窗口类型
+        /// </summary>
         public string Class { get { return Dm.GetWindowClass(_hwnd); } }
 
+        /// <summary>
+        /// 窗口进程ID
+        /// </summary>
         public int ProcessId { get { return Dm.GetWindowProcessId(_hwnd); } }
 
+        /// <summary>
+        /// 是否绑定
+        /// </summary>
         public bool IsBind { get; private set; }
 
         /// <summary>
@@ -65,8 +92,15 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         public InputLockType InputLockType { get; private set; }
 
+        /// <summary>
+        /// 窗口进程路径
+        /// </summary>
         public string ProcessPath { get { return Dm.GetWindowProcessPath(_hwnd); } }
 
+        /// <summary>
+        /// 窗口客户端尺寸
+        /// 
+        /// </summary>
         public Tuple<int, int> ClientSize
         {
             get
@@ -85,6 +119,10 @@ namespace Liuliu.ScriptEngine.Damo
             }
         }
 
+
+        /// <summary>
+        /// 窗口矩形（四个角坐标）
+        /// </summary>
         public Tuple<int, int, int, int> Rect
         {
             get
@@ -110,10 +148,19 @@ namespace Liuliu.ScriptEngine.Damo
         /// </summary>
         public bool IsShowed { get { return Dm.GetWindowState(_hwnd, 2); } }
 
+        /// <summary>
+        /// 是否最小化
+        /// </summary>
         public bool IsMin { get { return Dm.GetWindowState(_hwnd, 3); } }
 
+        /// <summary>
+        /// 是否最大化
+        /// </summary>
         public bool IsMax { get { return Dm.GetWindowState(_hwnd, 4); } }
 
+        /// <summary>
+        /// 是否置顶
+        /// </summary>
         public bool IsOnTop { get { return Dm.GetWindowState(_hwnd, 5); } }
 
         /// <summary>
@@ -231,6 +278,10 @@ namespace Liuliu.ScriptEngine.Damo
             return true;
         }
 
+        /// <summary>
+        /// 解除绑定
+        /// </summary>
+        /// <returns></returns>
         public bool UnBind()
         {
             if (!IsBind)
@@ -248,6 +299,12 @@ namespace Liuliu.ScriptEngine.Damo
             return true;
         }
 
+        /// <summary>
+        /// 移动窗口
+        /// </summary>
+        /// <param name="x">窗口左上角X坐标</param>
+        /// <param name="y">窗口左上角Y坐标</param>
+        /// <returns>移动是否成功</returns>
         public bool Move(int x, int y)
         {
             if (!IsAlive)
@@ -257,9 +314,13 @@ namespace Liuliu.ScriptEngine.Damo
             Dm.MoveWindow(_hwnd, x, y);
             Dm.Delay(500);
             Tuple<int, int, int, int> rect = Rect;
-            return rect.Item1 == x && rect.Item2 == 2;
+            return rect.Item1 == x && rect.Item2 == y;
         }
 
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Close()
         {
             if (!IsAlive)
@@ -270,6 +331,10 @@ namespace Liuliu.ScriptEngine.Damo
             return !IsAlive;
         }
 
+        /// <summary>
+        /// 激活窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Active()
         {
             if (!IsAlive)
@@ -280,6 +345,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsActive;
         }
 
+        /// <summary>
+        /// 最小化窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Min()
         {
             if (!IsAlive)
@@ -290,6 +359,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsMin;
         }
 
+        /// <summary>
+        /// 最小化窗口并清理资源
+        /// </summary>
+        /// <returns></returns>
         public bool MinAndClean()
         {
             if (!IsAlive)
@@ -300,6 +373,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsMin;
         }
 
+        /// <summary>
+        /// 最大化窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Max()
         {
             if (!IsAlive)
@@ -310,6 +387,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsMax;
         }
 
+        /// <summary>
+        /// 还原窗口但不激活
+        /// </summary>
+        /// <returns></returns>
         public bool RestoreAndNotActive()
         {
             if (!IsAlive)
@@ -320,6 +401,10 @@ namespace Liuliu.ScriptEngine.Damo
             return !IsMin && !IsActive;
         }
 
+        /// <summary>
+        /// 隐藏窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Hide()
         {
             if (!IsAlive)
@@ -330,6 +415,10 @@ namespace Liuliu.ScriptEngine.Damo
             return !IsShowed;
         }
 
+        /// <summary>
+        /// 显示窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Show()
         {
             if (!IsAlive)
@@ -340,6 +429,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsShowed;
         }
 
+        /// <summary>
+        /// 窗口置顶
+        /// </summary>
+        /// <returns></returns>
         public bool OnTop()
         {
             if (!IsAlive)
@@ -350,6 +443,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsOnTop;
         }
 
+        /// <summary>
+        /// 取消置顶窗口
+        /// </summary>
+        /// <returns></returns>
         public bool CancelOnTop()
         {
             if (!IsAlive)
@@ -360,6 +457,10 @@ namespace Liuliu.ScriptEngine.Damo
             return !IsOnTop;
         }
 
+        /// <summary>
+        /// 禁用窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Disable()
         {
             if (!IsAlive)
@@ -370,6 +471,10 @@ namespace Liuliu.ScriptEngine.Damo
             return !IsActive;
         }
 
+        /// <summary>
+        /// 启用窗口
+        /// </summary>
+        /// <returns></returns>
         public bool Enabled()
         {
             if (!IsAlive)
@@ -380,6 +485,10 @@ namespace Liuliu.ScriptEngine.Damo
             return IsActive;
         }
 
+        /// <summary>
+        /// 还原并激活窗口
+        /// </summary>
+        /// <returns></returns>
         public bool RestoreAndActive()
         {
             if (!IsAlive)
@@ -390,6 +499,12 @@ namespace Liuliu.ScriptEngine.Damo
             return IsActive;
         }
 
+        /// <summary>
+        /// 设置窗口尺寸
+        /// </summary>
+        /// <param name="width">窗口宽度</param>
+        /// <param name="height">窗口高度</param>
+        /// <returns></returns>
         public bool SetSize(int width, int height)
         {
             if (!IsAlive)
@@ -402,6 +517,11 @@ namespace Liuliu.ScriptEngine.Damo
             return rect.Item3 - rect.Item1 == width && rect.Item4 - rect.Item2 == height;
         }
 
+        /// <summary>
+        /// 设置窗口透明度
+        /// </summary>
+        /// <param name="trans">透明度值</param>
+        /// <returns></returns>
         public bool SetTransparent(int trans)
         {
             if (!IsAlive)
@@ -411,6 +531,10 @@ namespace Liuliu.ScriptEngine.Damo
             return Dm.SetWindowTransparent(_hwnd, trans);
         }
 
+        /// <summary>
+        /// 向窗口执行粘贴命令
+        /// </summary>
+        /// <returns></returns>
         public bool SendPaste()
         {
             if (!IsAlive)
@@ -420,6 +544,11 @@ namespace Liuliu.ScriptEngine.Damo
             return Dm.SendPaste(_hwnd);
         }
 
+        /// <summary>
+        /// 向窗口发送字符串
+        /// </summary>
+        /// <param name="content">要发送的内容</param>
+        /// <returns></returns>
         public bool SendString(string content)
         {
             if (!IsAlive)
@@ -429,6 +558,11 @@ namespace Liuliu.ScriptEngine.Damo
             return Dm.SendString(_hwnd, content);
         }
 
+        /// <summary>
+        /// 向窗口发送字符串2
+        /// </summary>
+        /// <param name="content">要发达的内容</param>
+        /// <returns></returns>
         public bool SendString2(string content)
         {
             if (!IsAlive)
@@ -487,6 +621,9 @@ namespace Liuliu.ScriptEngine.Damo
     }
 
 
+    /// <summary>
+    /// 窗口绑定类型
+    /// </summary>
     public enum WindowBindType
     {
         /// <summary>

@@ -15,10 +15,11 @@ namespace Liuliu.ScriptEngine.Damo
 {
     /// <summary>
     /// 大漠插件接口
+    /// 作者：清风抚断云（QQ:274838061）
     /// </summary>
     [Guid("F3F54BC2-D6D1-4A85-B943-16287ECEA64C"), TypeLibType(4160)]
     [ComImport]
-    public interface IDmsoft
+    internal interface IDmsoft
     {
         [DispId(1)]
         [MethodImpl(MethodImplOptions.InternalCall)]
