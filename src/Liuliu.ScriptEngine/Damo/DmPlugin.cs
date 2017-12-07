@@ -4239,11 +4239,11 @@ namespace Liuliu.ScriptEngine
         /// 【汇编】执行用AsmAdd加到缓冲中的指令
         /// </summary>
         /// <param name="hwnd">窗口句柄</param>
-        /// <param name="mode">模式：0.在本进程中进行执行，这时hwnd无效，1.对hwnd指定的进程内执行,注入模式为创建远程线程</param>
-        /// <returns>操作是否成功</returns>
-        public bool AsmCall(int hwnd, int mode)
+        /// <param name="mode">模式：0.在本进程中进行执行，这时hwnd无效. 注: 此模式会创建线程，1.对hwnd指定的进程内执行,注入模式为创建远程线程，2.必须在对目标窗口进行注入绑定后,才可以用此模式(直接在目标进程创建线程).此模式下的call的执行是排队的,如果同时有多个call在此窗口执行,那么必须排队.所以执行效率不如模式1. 同时此模式受目标窗口刷新速度的影响,目标窗口刷新太慢，也会影响此模式的速度. 注: 此模式会创建线程，3.同模式2,但是此模式不会创建线程,而直接在hwnd所在线程执行，4.同模式0, 但是此模式不会创建线程,直接在当前调用AsmCall的线程内执行，5.对hwnd指定的进程内执行,注入模式为APC. 此模式必须开启memory盾。任意一个memory盾都可以，6.直接hwnd所在线程执行</param>
+        /// <returns>获取执行汇编代码以后的EAX的值.一般是函数的返回值. 如果要想知道函数是否执行成功，请查看GetLastError函数.-200 : 执行中出现错误.-201 : 使用模式5时，没有开启memory盾.</returns>
+        public int AsmCall(int hwnd, int mode)
         {
-            return _dm.AsmCall(hwnd, mode) == 1;
+            return _dm.AsmCall(hwnd, mode);
         }
 
         /// <summary>
