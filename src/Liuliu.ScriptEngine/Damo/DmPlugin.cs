@@ -11,7 +11,7 @@ using System;
 
 using Liuliu.ScriptEngine.Damo;
 
-using OSharp.Reflection;
+using OSharp.Utility.Reflection;
 
 
 namespace Liuliu.ScriptEngine

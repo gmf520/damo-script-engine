@@ -12,8 +12,10 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Liuliu.ScriptEngine.Damo;
 
-namespace Liuliu.ScriptEngine.Damo
+
+namespace Liuliu.ScriptEngine
 {
     /// <summary>
     /// 大漠窗口类

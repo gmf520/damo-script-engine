@@ -10,7 +10,7 @@
 using System;
 
 
-namespace Liuliu.ScriptEngine.Damo
+namespace Liuliu.ScriptEngine
 {
     /// <summary>
     /// 大漠操作系统类
