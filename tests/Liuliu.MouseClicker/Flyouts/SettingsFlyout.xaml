@@ -1,0 +1,33 @@
+﻿<mah:Flyout
+    x:Class="Liuliu.MouseClicker.Flyouts.SettingsFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    mc:Ignorable="d"
+    d:DesignHeight="360" d:DesignWidth="640"
+    Position="Bottom" Theme="Accent"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Settings}">
+    <Grid Background="AntiqueWhite">
+        <GroupBox Header="设置" Margin="3 3 0 0">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 20 0">
+                        <Label Content="大漠路径："/>
+                        <TextBox Width="250" Text="{Binding DmFile}" Margin="0 0 5 0"/>
+                        <Button Content="浏览" Command="{Binding DmFileBrowseCommand}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding DmVersionShow, Converter={StaticResource VisibilityConverter}}">
+                        <Label Content="版本号："/>
+                        <Label Content="{Binding DmVersion}" FontSize="18" Foreground="Red" Padding="0" FontWeight="Bold"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 5" Visibility="{Binding DmRegCodeShow, Converter={StaticResource VisibilityConverter}}">
+                    <Label Content="大漠注册码："/>
+                    <TextBox Width="350" Text="{Binding DmRegCode}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</mah:Flyout>

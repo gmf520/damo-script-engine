@@ -20,8 +20,12 @@ namespace Liuliu.ScriptEngine.Consoles
             _dm = new DmPlugin();
             while (true)
             {
-                Console.WriteLine($"大漠插件版本号：{_dm.Ver()}，请输入注册码：");
+                Console.WriteLine($"大漠插件版本号：{_dm.Ver()}，请输入注册码，0跳过：");
                 string code = Console.ReadLine();
+                if (code == "0")
+                {
+                    break;
+                }
                 int ret = _dm.Reg(code);
                 if (ret == 1)
                 {
@@ -101,6 +105,10 @@ namespace Liuliu.ScriptEngine.Consoles
 
         private static void Method02()
         {
+            string url =
+                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx388966c8cf534a34\u0026redirect_uri=https%3A%2F%2Fou.verystar.cn%2Fwx%2Foauth_snsapi_base\u0026response_type=code\u0026scope=snsapi_base\u0026state=fce44e89dfd611e7b1dc00163e0034e8#wechat_redirect";
+            url = url.Replace("\\u0026", "&");
+            Console.WriteLine(url);
         }
 
         private static void Method03()

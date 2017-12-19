@@ -1,0 +1,76 @@
+﻿<mah:MetroWindow
+    x:Class="Liuliu.MouseClicker.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:flyouts="clr-namespace:Liuliu.MouseClicker.Flyouts"
+    mc:Ignorable="d" ResizeMode="CanMinimize" 
+    x:Name="MainWindow1" Title="{Binding Title}" Height="360" Width="640"
+    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands DataContext="{Binding MainCommand, Source={StaticResource Locator}}">
+            <Button Cursor="Hand" x:Name="CmdMenuButton" Initialized="Button_Initialized" Click="CmdMenuButton_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Width="14" Height="14" Margin="5 0">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_paper_white}"></VisualBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Text="菜单"/>
+                    </StackPanel>
+                </Button.Content>
+                <Button.ContextMenu>
+                    <ContextMenu x:Name="CmdMenu" FontSize="12" IsOpen="False" Cursor="Hand">
+                        <ContextMenu.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
+                        </ContextMenu.Resources>
+                        <MenuItem Header="设置" Command="{Binding OpenSettingsFlyoutCommand}">
+                            <MenuItem.Icon>
+                                <Rectangle Width="14" Height="14" Margin="0">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_settings}"></VisualBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <flyouts:SettingsFlyout x:Name="SettingsFlyout" Margin="0 30 0 0" IsOpen="False" Height="{Binding ElementName=MainWindow1, Path=ActualHeight}"/>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+    
+    <mah:MetroContentControl>
+        <Grid Background="AntiqueWhite">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Label Content="111"/>
+            </Grid>
+            <StatusBar Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding StatusBar}" Padding="0" Width="300" Foreground="White"/>
+                </StackPanel>
+            </StatusBar>
+        </Grid>
+    </mah:MetroContentControl>
+</mah:MetroWindow>

@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DF6A9269
 		build\VersionAssemblyInfo.cs = build\VersionAssemblyInfo.cs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FA91474C-DD07-43F1-888F-427FDF5B3EAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liuliu.MouseClicker", "tests\Liuliu.MouseClicker\Liuliu.MouseClicker.csproj", "{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{89C8E512-1175-4C2C-991F-7A86F08A4C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89C8E512-1175-4C2C-991F-7A86F08A4C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89C8E512-1175-4C2C-991F-7A86F08A4C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +44,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{39635F91-7041-473B-817A-9C634BE2ADAE} = {55E35118-FE05-46FA-8666-A306BE3FB44E}
 		{89C8E512-1175-4C2C-991F-7A86F08A4C41} = {55E35118-FE05-46FA-8666-A306BE3FB44E}
+		{294DD6E4-18D7-40DB-B5AE-3F97F310DCBD} = {FA91474C-DD07-43F1-888F-427FDF5B3EAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE498D80-9A8D-4147-90DC-55A6BD92489E}
