@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 
 using GalaSoft.MvvmLight.Messaging;
 
+using Liuliu.MouseClicker.Contexts;
 using Liuliu.MouseClicker.ViewModels;
 using Liuliu.ScriptEngine;
 
@@ -25,6 +26,8 @@ using MahApps.Metro.Controls.Dialogs;
 
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Win32;
+
+using OSharp.Utility.Extensions;
 
 
 namespace Liuliu.MouseClicker.Flyouts
@@ -70,18 +73,24 @@ namespace Liuliu.MouseClicker.Flyouts
 
         private async Task SettingsFlyout_IsOpenChanged(object sender, RoutedEventArgs e)
         {
+            SettingsViewModel model = SoftContext.Locator.Settings;
             if (IsOpen)
             {
-                await ResolveDmPlugin();
+                model.InitFromLocal();
+                if (SoftContext.DmSystem == null)
+                {
+                    await ResolveDmPlugin();
+                }
                 return;
             }
-            //todo: 执行保存
+            model.SaveToLocal();
+            SoftContext.Locator.Main.StatusBar = "设置信息保存成功";
         }
 
         private static void DmFileBrowse()
         {
             SettingsViewModel model = SoftContext.Locator.Settings;
-            OpenFileDialog dialog = new OpenFileDialog() { Filter = "大漠插件|dm.dll|dll文件|*.dll", FileName = model.DmFile };
+            OpenFileDialog dialog = new OpenFileDialog() { Filter = "大漠插件|dm*.dll|dll文件|*.dll", FileName = model.DmFile };
             dialog.FileOk += async (sender, args) =>
             {
                 model.DmFile = dialog.FileName;
@@ -93,33 +102,28 @@ namespace Liuliu.MouseClicker.Flyouts
         private static async Task ResolveDmPlugin()
         {
             SettingsViewModel model = SoftContext.Locator.Settings;
-            await SoftContext.GetProgress("正在解析大漠插件");
             if (!File.Exists(model.DmFile))
             {
                 await SoftContext.ShowMessageAsync("错误", $"指定大漠路径“{model.DmFile}”的文件不存在");
+                return;
             }
-            await Task.Run(async () =>
+            try
             {
-                try
+                DmPlugin dm = new DmPlugin(model.DmFile);
+                Version ver = new Version(dm.Ver());
+                model.DmVersion = ver.ToString();
+                model.DmVersionShow = true;
+                model.DmRegCodeShow = ver > new Version("3.1233");
+                SoftContext.DmSystem = new DmSystem(dm);
+            }
+            catch (Exception ex)
+            {
+                await SoftContext.MainWindow.Dispatcher.Invoke(async () =>
                 {
-                    using (DmPlugin dm = new DmPlugin(model.DmFile))
-                    {
-                        Version ver = new Version(dm.Ver());
-                        model.DmVersion = ver.ToString();
-                        model.DmVersionShow = true;
-                        model.DmRegCodeShow = ver > new Version("3.1233");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await SoftContext.MainWindow.Dispatcher.Invoke(async () =>
-                    {
-                        await SoftContext.ShowMessageAsync("错误", $"大漠初始化错误：{ex.Message}");
-                    });
-                    model.DmFile = null;
-                }
-            });
-            await SoftContext.ProgressCloseAsync();
+                    await SoftContext.ShowMessageAsync("错误", $"大漠初始化错误：{ex.Message}");
+                });
+                model.DmFile = null;
+            }
         }
     }
 }

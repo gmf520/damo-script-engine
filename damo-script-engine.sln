@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{55E35118-FE05-46FA-8666-A306BE3FB44E}"
 EndProject
@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liuliu.ScriptEngine.Console
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DF6A9269-2D8E-4ABD-810B-3C7E3CE6D70F}"
 	ProjectSection(SolutionItems) = preProject
+		build\66soft.net.pfx = build\66soft.net.pfx
 		nupkg\nupkg.bat = nupkg\nupkg.bat
 		build\VersionAssemblyInfo.cs = build\VersionAssemblyInfo.cs
 	EndProjectSection

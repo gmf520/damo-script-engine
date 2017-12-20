@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------
 
 using System;
+using System.IO;
 
 using Liuliu.ScriptEngine;
 
@@ -18,9 +19,13 @@ namespace Liuliu.MouseClicker.Contexts
 {
     public static class OperationHelper
     {
-        public static OperationResult<DmSystem> GetDmSystem()
+        public static OperationResult<DmSystem> GetDmSystem(string dmPath = "dm.dll")
         {
-            DmPlugin dm = new DmPlugin();
+            if (!File.Exists(dmPath))
+            {
+                return new OperationResult<DmSystem>(OperationResultType.Error, $"大漠插件文件“{dmPath}”不存在");
+            }
+            DmPlugin dm = new DmPlugin(dmPath);
             Version ver = new Version(dm.Ver());
             if (ver > new Version("3.1233"))
             {
@@ -32,7 +37,7 @@ namespace Liuliu.MouseClicker.Contexts
                 int ret = dm.Reg(code);
                 if (ret != 1)
                 {
-                    return new OperationResult<DmSystem>(OperationResultType.Error,$"大漠插件版本大于“3.1233”，执行插件注册失败，失败码：{ret}");
+                    return new OperationResult<DmSystem>(OperationResultType.Error, $"大漠插件版本大于“3.1233”，执行插件注册失败，失败码：{ret}");
                 }
             }
             DmSystem system = new DmSystem(dm);

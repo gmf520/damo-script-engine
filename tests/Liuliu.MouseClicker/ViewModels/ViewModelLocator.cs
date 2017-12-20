@@ -34,7 +34,15 @@ namespace Liuliu.MouseClicker.ViewModels
 
         public SettingsViewModel Settings
         {
-            get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
+            get
+            {
+                var model = ServiceLocator.Current.GetInstance<SettingsViewModel>();
+                if (model.DmVersion == null)
+                {
+                    model.InitFromLocal();
+                }
+                return model;
+            }
         }
 
         public static void Cleanup()

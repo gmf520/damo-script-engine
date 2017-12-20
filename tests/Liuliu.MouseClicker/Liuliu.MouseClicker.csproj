@@ -52,7 +52,7 @@
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OSharp.Utility, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OSharp.Utility.4.1.28\lib\net40\OSharp.Utility.dll</HintPath>
+      <HintPath>..\..\packages\OSharp.Utility.4.1.30.1\lib\net40\OSharp.Utility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -170,7 +170,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dm.dll">
+    <Content Include="dm-3.1233.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dm-6.1638.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

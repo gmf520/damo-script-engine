@@ -13,7 +13,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 
+using Liuliu.MouseClicker.Contexts;
 using Liuliu.MouseClicker.Mvvm;
+
+using Newtonsoft.Json;
 
 using OSharp.Utility.Extensions;
 
@@ -40,7 +43,11 @@ namespace Liuliu.MouseClicker.ViewModels
         public string DmVersion
         {
             get { return _dmVersion; }
-            set { SetProperty(ref _dmVersion, value, () => DmVersion); }
+            set
+            {
+                SetProperty(ref _dmVersion, value, () => DmVersion);
+                SoftContext.Locator.Main.Title = $"柳柳鼠标助手 大漠({value})";
+            }
         }
 
         private bool _dmRegCodeShow;
@@ -57,17 +64,19 @@ namespace Liuliu.MouseClicker.ViewModels
             set { SetProperty(ref _dmRegCode, value, () => DmRegCode); }
         }
 
+        [JsonIgnore]
         public ICommand DmFileBrowseCommand
         {
             get
             {
                 return new RelayCommand(() =>
                 {
-                    Messenger.Default.Send("DmFileBrowse","SettingsFlyout");
+                    Messenger.Default.Send("DmFileBrowse", "SettingsFlyout");
                 });
             }
         }
 
+        [JsonIgnore]
         public override string Error
         {
             get
@@ -82,6 +91,33 @@ namespace Liuliu.MouseClicker.ViewModels
                 }
                 return base.Error;
             }
+        }
+
+        /// <summary>
+        /// 从本地数据初始化
+        /// </summary>
+        public void InitFromLocal()
+        {
+            var model = LocalDataHandler.GetData<SettingsViewModel>("data.db", "settings");
+            if (model != null)
+            {
+                DmFile = model.DmFile;
+                DmRegCode = model.DmRegCode;
+                if (File.Exists(model.DmFile))
+                {
+                    DmVersion = model.DmVersion;
+                    DmVersionShow = model.DmVersionShow;
+                    DmRegCodeShow = model.DmRegCodeShow;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 保存数据到本地
+        /// </summary>
+        public void SaveToLocal()
+        {
+            LocalDataHandler.SetData("data.db", "settings", this);
         }
     }
 }

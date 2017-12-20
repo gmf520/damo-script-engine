@@ -45,16 +45,15 @@ namespace Liuliu.MouseClicker
 
         private async Task MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ProgressDialogController progress = await SoftContext.GetProgress("正在初始化，请稍候……");
             OperationResult initResult = SoftContext.Initialize();
             if (!initResult.Successed)
             {
                 await SoftContext.ShowMessageAsync("初始化失败", initResult.Message);
                 SoftContext.RunStatus = SoftRunStatus.StartFail;
+                Locator.Main.StatusBar = $"初始化失败：{initResult.Message}";
                 return;
             }
-            await SoftContext.ProgressCloseAsync();
-            Locator.Main.StatusBar = $"准备就绪，大漠版本：{SoftContext.DmSystem.Dm.Ver()}";
+            Locator.Main.StatusBar = "准备就绪";
         }
 
         private void Button_Initialized(object sender, System.EventArgs e)

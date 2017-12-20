@@ -32,9 +32,9 @@ namespace Liuliu.MouseClicker
 
         public static ViewModelLocator Locator { get; } = ServiceLocator.Current.GetInstance<ViewModelLocator>();
 
-        public static Version Version { get; set; }
+        public static Version Version { get; }
 
-        public static DmSystem DmSystem { get; private set; }
+        public static DmSystem DmSystem { get; set; }
 
         public static ProgressDialogController Progress { get; set; }
 
@@ -44,10 +44,13 @@ namespace Liuliu.MouseClicker
         /// <returns></returns>
         public static OperationResult Initialize()
         {
-            var result = OperationHelper.GetDmSystem();
+            var settings = Locator.Settings;
+            string dmPath = settings.DmFile;
+            var result = OperationHelper.GetDmSystem(dmPath);
             if (result.Successed)
             {
                 DmSystem = result.Data;
+                settings.DmVersion = DmSystem.Dm.Ver();
             }
             return new OperationResult(result.ResultType, result.Message);
         }
