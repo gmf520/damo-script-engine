@@ -225,7 +225,7 @@ namespace Liuliu.ScriptEngine
                     "dx.public.active.api|dx.public.active.message",
                     DmBindMode._4);
             }
-            if (dmRet)
+            if (!dmRet)
             {
                 IsBind = false;
                 BindType = WindowBindType.None;

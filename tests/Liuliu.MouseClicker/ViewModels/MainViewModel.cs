@@ -7,7 +7,13 @@
 //  <last-date>2017-12-15 12:47</last-date>
 // -----------------------------------------------------------------------
 
+using System.Windows;
+using System.Windows.Input;
+
+using GalaSoft.MvvmLight.Command;
+
 using Liuliu.MouseClicker.Mvvm;
+using Liuliu.ScriptEngine;
 
 
 namespace Liuliu.MouseClicker.ViewModels
@@ -20,12 +26,13 @@ namespace Liuliu.MouseClicker.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value, () => Title); }
         }
-
+        
         private string _statusBar;
         public string StatusBar
         {
             get { return _statusBar; }
             set { SetProperty(ref _statusBar, value, () => StatusBar); }
         }
+
     }
 }

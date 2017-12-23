@@ -5,9 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:flyouts="clr-namespace:Liuliu.MouseClicker.Flyouts"
+    xmlns:uc="clr-namespace:Liuliu.MouseClicker.UserControls"
     mc:Ignorable="d" ResizeMode="CanMinimize" 
     x:Name="MainWindow1" Title="{Binding Title}" Height="360" Width="640"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -63,8 +65,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
-            <Grid>
-                <Label Content="111"/>
+            <Grid Background="AliceBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid  Background="Bisque">
+                    <uc:ClickSettingsView Margin="0 3 3 3"/>
+                </Grid>
+                <Grid Grid.Column="1" Background="BurlyWood"/>
             </Grid>
             <StatusBar Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
@@ -73,4 +82,4 @@
             </StatusBar>
         </Grid>
     </mah:MetroContentControl>
-</mah:MetroWindow>
+</mah:MetroWindow> 

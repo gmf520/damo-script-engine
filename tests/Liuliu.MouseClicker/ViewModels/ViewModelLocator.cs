@@ -45,6 +45,11 @@ namespace Liuliu.MouseClicker.ViewModels
             }
         }
 
+        public ClickSettingsViewModel ClickSettings
+        {
+            get { return ServiceLocator.Current.GetInstance<ClickSettingsViewModel>(); }
+        }
+
         public static void Cleanup()
         {
             SimpleIoc.Default.Reset();
@@ -56,6 +61,7 @@ namespace Liuliu.MouseClicker.ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainCommandViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<ClickSettingsViewModel>();
         }
     }
 }

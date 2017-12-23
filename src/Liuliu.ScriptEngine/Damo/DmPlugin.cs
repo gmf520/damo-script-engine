@@ -85,7 +85,7 @@ namespace Liuliu.ScriptEngine
         
         public bool IsFree
         {
-            get { return false; }
+            get { return new Version(Ver()) <= new Version("3.1233"); }
         }
 
         public void Dispose()
@@ -3895,7 +3895,8 @@ namespace Liuliu.ScriptEngine
         /// <returns>操作是否成功</returns>
         public bool BindWindow(int hwnd, DmBindDisplay display, DmBindMouse mouse, DmBindKeypad keypad, DmBindMode mode)
         {
-            return _dm.BindWindow(hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode) == 1;
+            int ret = _dm.BindWindow(hwnd, display.ToString(), mouse.ToString(), keypad.ToString(), (int)mode);
+            return ret == 1;
         }
 
         /// <summary>

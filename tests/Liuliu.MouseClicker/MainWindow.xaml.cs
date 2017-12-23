@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 using Liuliu.MouseClicker.ViewModels;
+using Liuliu.ScriptEngine;
 
 using MahApps.Metro.Controls.Dialogs;
 
@@ -66,5 +67,6 @@ namespace Liuliu.MouseClicker
             CmdMenu.PlacementTarget = (UIElement)sender;
             CmdMenu.IsOpen = true;
         }
+
     }
 }

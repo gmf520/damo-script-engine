@@ -95,6 +95,10 @@
       <DependentUpon>SettingsFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Mvvm\ViewModelExBase.cs" />
+    <Compile Include="UserControls\ClickSettingsView.xaml.cs">
+      <DependentUpon>ClickSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ClickSettingViewModel.cs" />
     <Compile Include="ViewModels\MainCommandViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -126,6 +130,10 @@
     <Page Include="Resources\LocalResource.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ClickSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -177,5 +185,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
