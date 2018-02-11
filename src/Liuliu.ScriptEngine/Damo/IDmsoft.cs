@@ -7,2018 +7,1644 @@
 //  <last-date>2017-12-03 22:33</last-date>
 // -----------------------------------------------------------------------
 
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-
+#pragma warning disable 1591
 namespace Liuliu.ScriptEngine.Damo
 {
+    using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
+
     /// <summary>
-    /// 大漠插件接口
-    /// 作者：清风抚断云（QQ:274838061）
+    /// 大漠插件接口（版本7.1807）
+    /// 代码生成方式：>tlbimp D:\dm.dll /out:D:\dmnet.dll，再反编译dmnet.dll获得代码
     /// </summary>
-    [Guid("F3F54BC2-D6D1-4A85-B943-16287ECEA64C"), TypeLibType(4160)]
     [ComImport]
-    internal interface IDmsoft
+    [Guid("F3F54BC2-D6D1-4A85-B943-16287ECEA64C")]
+    [TypeLibType(TypeLibTypeFlags.FDual | TypeLibTypeFlags.FDispatchable)]
+    public interface IDmsoft
     {
-        [DispId(1)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(1)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string Ver();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(2)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetPath([MarshalAs(UnmanagedType.BStr)] [In] string path);
+        int SetPath([In] [MarshalAs(UnmanagedType.BStr)] string path);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(3)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string Ocr([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        string Ocr([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(4)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindStr([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindStr([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(5)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetResultCount([MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int GetResultCount([In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(6)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetResultPos([MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [In] int index,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int GetResultPos([In] [MarshalAs(UnmanagedType.BStr)] string str, [In] int index, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(7)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int StrStr([MarshalAs(UnmanagedType.BStr)] [In] string s, [MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int StrStr([In] [MarshalAs(UnmanagedType.BStr)] string s, [In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(8)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SendCommand([MarshalAs(UnmanagedType.BStr)] [In] string cmd);
+        int SendCommand([In] [MarshalAs(UnmanagedType.BStr)] string cmd);
 
-        [DispId(9)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(9)]
         int UseDict([In] int index);
 
-        [DispId(10)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(10)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetBasePath();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(11)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetDictPwd([MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int SetDictPwd([In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(12)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string OcrInFile([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string OcrInFile([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(13)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int Capture([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int Capture([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
-        [DispId(14)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(14)]
         int KeyPress([In] int vk);
 
-        [DispId(15)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(15)]
         int KeyDown([In] int vk);
 
-        [DispId(16)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(16)]
         int KeyUp([In] int vk);
 
-        [DispId(17)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(17)]
         int LeftClick();
 
-        [DispId(18)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(18)]
         int RightClick();
 
-        [DispId(19)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(19)]
         int MiddleClick();
 
-        [DispId(20)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(20)]
         int LeftDoubleClick();
 
-        [DispId(21)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(21)]
         int LeftDown();
 
-        [DispId(22)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(22)]
         int LeftUp();
 
-        [DispId(23)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(23)]
         int RightDown();
 
-        [DispId(24)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(24)]
         int RightUp();
 
-        [DispId(25)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(25)]
         int MoveTo([In] int x, [In] int y);
 
-        [DispId(26)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(26)]
         int MoveR([In] int rx, [In] int ry);
 
-        [DispId(27)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(27)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetColor([In] int x, [In] int y);
 
-        [DispId(28)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(28)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetColorBGR([In] int x, [In] int y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(29)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string RGB2BGR([MarshalAs(UnmanagedType.BStr)] [In] string rgb_color);
+        string RGB2BGR([In] [MarshalAs(UnmanagedType.BStr)] string rgb_color);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(30)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string BGR2RGB([MarshalAs(UnmanagedType.BStr)] [In] string bgr_color);
+        string BGR2RGB([In] [MarshalAs(UnmanagedType.BStr)] string bgr_color);
 
-        [DispId(31)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(31)]
         int UnBindWindow();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(32)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CmpColor([In] int x, [In] int y, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        int CmpColor([In] int x, [In] int y, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(33)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ClientToScreen([In] int hwnd,
-            [MarshalAs(UnmanagedType.Struct)] [In] [Out] ref object x,
-            [MarshalAs(UnmanagedType.Struct)] [In] [Out] ref object y);
+        int ClientToScreen([In] int hwnd, [In] [Out] [MarshalAs(UnmanagedType.Struct)] ref object x, [In] [Out] [MarshalAs(UnmanagedType.Struct)] ref object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(34)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ScreenToClient([In] int hwnd,
-            [MarshalAs(UnmanagedType.Struct)] [In] [Out] ref object x,
-            [MarshalAs(UnmanagedType.Struct)] [In] [Out] ref object y);
+        int ScreenToClient([In] int hwnd, [In] [Out] [MarshalAs(UnmanagedType.Struct)] ref object x, [In] [Out] [MarshalAs(UnmanagedType.Struct)] ref object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(35)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ShowScrMsg([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string msg,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color);
+        int ShowScrMsg([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string msg, [In] [MarshalAs(UnmanagedType.BStr)] string color);
 
-        [DispId(36)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(36)]
         int SetMinRowGap([In] int row_gap);
 
-        [DispId(37)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(37)]
         int SetMinColGap([In] int col_gap);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(38)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindColor([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindColor([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(39)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindColorEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [In] int dir);
+        string FindColorEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] int dir);
 
-        [DispId(40)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(40)]
         int SetWordLineHeight([In] int line_height);
 
-        [DispId(41)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(41)]
         int SetWordGap([In] int word_gap);
 
-        [DispId(42)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(42)]
         int SetRowGapNoDict([In] int row_gap);
 
-        [DispId(43)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(43)]
         int SetColGapNoDict([In] int col_gap);
 
-        [DispId(44)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(44)]
         int SetWordLineHeightNoDict([In] int line_height);
 
-        [DispId(45)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(45)]
         int SetWordGapNoDict([In] int word_gap);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(46)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetWordResultCount([MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int GetWordResultCount([In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(47)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetWordResultPos([MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [In] int index,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int GetWordResultPos([In] [MarshalAs(UnmanagedType.BStr)] string str, [In] int index, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(48)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetWordResultStr([MarshalAs(UnmanagedType.BStr)] [In] string str, [In] int index);
+        string GetWordResultStr([In] [MarshalAs(UnmanagedType.BStr)] string str, [In] int index);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(49)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetWords([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        string GetWords([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(50)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetWordsNoDict([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color);
+        string GetWordsNoDict([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color);
 
-        [DispId(51)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(51)]
         int SetShowErrorMsg([In] int show);
 
-        [DispId(52)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(52)]
         int GetClientSize([In] int hwnd, [MarshalAs(UnmanagedType.Struct)] out object width, [MarshalAs(UnmanagedType.Struct)] out object height);
 
-        [DispId(53)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(53)]
         int MoveWindow([In] int hwnd, [In] int x, [In] int y);
 
-        [DispId(54)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(54)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetColorHSV([In] int x, [In] int y);
 
-        [DispId(55)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(55)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetAveRGB([In] int x1, [In] int y1, [In] int x2, [In] int y2);
 
-        [DispId(56)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(56)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetAveHSV([In] int x1, [In] int y1, [In] int x2, [In] int y2);
 
-        [DispId(57)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(57)]
         int GetForegroundWindow();
 
-        [DispId(58)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(58)]
         int GetForegroundFocus();
 
-        [DispId(59)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(59)]
         int GetMousePointWindow();
 
-        [DispId(60)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(60)]
         int GetPointWindow([In] int x, [In] int y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(61)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumWindow([In] int parent,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [In] int filter);
+        string EnumWindow([In] int parent, [In] [MarshalAs(UnmanagedType.BStr)] string title, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] int filter);
 
-        [DispId(62)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(62)]
         int GetWindowState([In] int hwnd, [In] int flag);
 
-        [DispId(63)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(63)]
         int GetWindow([In] int hwnd, [In] int flag);
 
-        [DispId(64)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(64)]
         int GetSpecialWindow([In] int flag);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(65)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetWindowText([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string text);
+        int SetWindowText([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string text);
 
-        [DispId(66)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(66)]
         int SetWindowSize([In] int hwnd, [In] int width, [In] int height);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(67)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetWindowRect([In] int hwnd,
-            [MarshalAs(UnmanagedType.Struct)] out object x1,
-            [MarshalAs(UnmanagedType.Struct)] out object y1,
-            [MarshalAs(UnmanagedType.Struct)] out object x2,
-            [MarshalAs(UnmanagedType.Struct)] out object y2);
+        int GetWindowRect([In] int hwnd, [MarshalAs(UnmanagedType.Struct)] out object x1, [MarshalAs(UnmanagedType.Struct)] out object y1, [MarshalAs(UnmanagedType.Struct)] out object x2, [MarshalAs(UnmanagedType.Struct)] out object y2);
 
-        [DispId(68)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(68)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetWindowTitle([In] int hwnd);
 
-        [DispId(69)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(69)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetWindowClass([In] int hwnd);
 
-        [DispId(70)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(70)]
         int SetWindowState([In] int hwnd, [In] int flag);
 
-        [DispId(71)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(71)]
         int CreateFoobarRect([In] int hwnd, [In] int x, [In] int y, [In] int w, [In] int h);
 
-        [DispId(72)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(72)]
         int CreateFoobarRoundRect([In] int hwnd, [In] int x, [In] int y, [In] int w, [In] int h, [In] int rw, [In] int rh);
 
-        [DispId(73)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(73)]
         int CreateFoobarEllipse([In] int hwnd, [In] int x, [In] int y, [In] int w, [In] int h);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(74)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CreateFoobarCustom([In] int hwnd,
-            [In] int x,
-            [In] int y,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic,
-            [MarshalAs(UnmanagedType.BStr)] [In] string trans_color,
-            [In] double sim);
+        int CreateFoobarCustom([In] int hwnd, [In] int x, [In] int y, [In] [MarshalAs(UnmanagedType.BStr)] string pic, [In] [MarshalAs(UnmanagedType.BStr)] string trans_color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(75)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarFillRect([In] int hwnd, [In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color);
+        int FoobarFillRect([In] int hwnd, [In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(76)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarDrawText([In] int hwnd,
-            [In] int x,
-            [In] int y,
-            [In] int w,
-            [In] int h,
-            [MarshalAs(UnmanagedType.BStr)] [In] string text,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] int align);
+        int FoobarDrawText([In] int hwnd, [In] int x, [In] int y, [In] int w, [In] int h, [In] [MarshalAs(UnmanagedType.BStr)] string text, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] int align);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(77)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarDrawPic([In] int hwnd,
-            [In] int x,
-            [In] int y,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic,
-            [MarshalAs(UnmanagedType.BStr)] [In] string trans_color);
+        int FoobarDrawPic([In] int hwnd, [In] int x, [In] int y, [In] [MarshalAs(UnmanagedType.BStr)] string pic, [In] [MarshalAs(UnmanagedType.BStr)] string trans_color);
 
-        [DispId(78)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(78)]
         int FoobarUpdate([In] int hwnd);
 
-        [DispId(79)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(79)]
         int FoobarLock([In] int hwnd);
 
-        [DispId(80)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(80)]
         int FoobarUnlock([In] int hwnd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(81)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarSetFont([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string font_name, [In] int size, [In] int flag);
+        int FoobarSetFont([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string font_name, [In] int size, [In] int flag);
 
-        [DispId(82)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(82)]
         int FoobarTextRect([In] int hwnd, [In] int x, [In] int y, [In] int w, [In] int h);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(83)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarPrintText([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string text, [MarshalAs(UnmanagedType.BStr)] [In] string color);
+        int FoobarPrintText([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string text, [In] [MarshalAs(UnmanagedType.BStr)] string color);
 
-        [DispId(84)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(84)]
         int FoobarClearText([In] int hwnd);
 
-        [DispId(85)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(85)]
         int FoobarTextLineGap([In] int hwnd, [In] int gap);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(86)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int Play([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int Play([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
-        [DispId(87)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(87)]
         int FaqCapture([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] int quality, [In] int delay, [In] int time);
 
-        [DispId(88)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(88)]
         int FaqRelease([In] int handle);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(89)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FaqSend([MarshalAs(UnmanagedType.BStr)] [In] string server, [In] int handle, [In] int request_type, [In] int time_out);
+        string FaqSend([In] [MarshalAs(UnmanagedType.BStr)] string server, [In] int handle, [In] int request_type, [In] int time_out);
 
-        [DispId(90)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(90)]
         int Beep([In] int fre, [In] int delay);
 
-        [DispId(91)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(91)]
         int FoobarClose([In] int hwnd);
 
-        [DispId(92)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(92)]
         int MoveDD([In] int dx, [In] int dy);
 
-        [DispId(93)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(93)]
         int FaqGetSize([In] int handle);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(94)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int LoadPic([MarshalAs(UnmanagedType.BStr)] [In] string pic_name);
+        int LoadPic([In] [MarshalAs(UnmanagedType.BStr)] string pic_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(95)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FreePic([MarshalAs(UnmanagedType.BStr)] [In] string pic_name);
+        int FreePic([In] [MarshalAs(UnmanagedType.BStr)] string pic_name);
 
-        [DispId(96)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(96)]
         int GetScreenData([In] int x1, [In] int y1, [In] int x2, [In] int y2);
 
-        [DispId(97)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(97)]
         int FreeScreenData([In] int handle);
 
-        [DispId(98)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(98)]
         int WheelUp();
 
-        [DispId(99)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(99)]
         int WheelDown();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(100)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetMouseDelay([MarshalAs(UnmanagedType.BStr)] [In] string type, [In] int delay);
+        int SetMouseDelay([In] [MarshalAs(UnmanagedType.BStr)] string type, [In] int delay);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(101)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetKeypadDelay([MarshalAs(UnmanagedType.BStr)] [In] string type, [In] int delay);
+        int SetKeypadDelay([In] [MarshalAs(UnmanagedType.BStr)] string type, [In] int delay);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(102)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetEnv([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string name);
+        string GetEnv([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(103)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetEnv([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string name, [MarshalAs(UnmanagedType.BStr)] [In] string value);
+        int SetEnv([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string name, [In] [MarshalAs(UnmanagedType.BStr)] string value);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(104)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SendString([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int SendString([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(105)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DelEnv([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string name);
+        int DelEnv([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string name);
 
-        [DispId(106)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(106)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetPath();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(107)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetDict([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string dict_name);
+        int SetDict([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string dict_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(108)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindPic([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindPic([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(109)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir);
+        string FindPicEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir);
 
-        [DispId(110)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(110)]
         int SetClientSize([In] int hwnd, [In] int width, [In] int height);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(111)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ReadInt([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] int type);
+        long ReadInt([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(112)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        float ReadFloat([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr);
+        float ReadFloat([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(113)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        double ReadDouble([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr);
+        double ReadDouble([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(114)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindInt([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] int int_value_min,
-            [In] int int_value_max,
-            [In] int type);
+        string FindInt([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] long int_value_min, [In] long int_value_max, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(115)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindFloat([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] float float_value_min,
-            [In] float float_value_max);
+        string FindFloat([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] float float_value_min, [In] float float_value_max);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(116)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindDouble([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] double double_value_min,
-            [In] double double_value_max);
+        string FindDouble([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] double double_value_min, [In] double double_value_max);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(117)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindString([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [MarshalAs(UnmanagedType.BStr)] [In] string string_value,
-            [In] int type);
+        string FindString([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] [MarshalAs(UnmanagedType.BStr)] string string_value, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(118)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetModuleBaseAddr([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string module_name);
+        long GetModuleBaseAddr([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string module_name);
 
-        [DispId(119)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(119)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string MoveToEx([In] int x, [In] int y, [In] int w, [In] int h);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(120)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string MatchPicName([MarshalAs(UnmanagedType.BStr)] [In] string pic_name);
+        string MatchPicName([In] [MarshalAs(UnmanagedType.BStr)] string pic_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(121)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int AddDict([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string dict_info);
+        int AddDict([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string dict_info);
 
-        [DispId(122)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(122)]
         int EnterCri();
 
-        [DispId(123)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(123)]
         int LeaveCri();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(124)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteInt([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] int type, [In] int v);
+        int WriteInt([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int type, [In] long v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(125)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteFloat([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] float v);
+        int WriteFloat([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] float v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(126)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteDouble([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] double v);
+        int WriteDouble([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] double v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(127)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteString([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr,
-            [In] int type,
-            [MarshalAs(UnmanagedType.BStr)] [In] string v);
+        int WriteString([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int type, [In] [MarshalAs(UnmanagedType.BStr)] string v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(128)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int AsmAdd([MarshalAs(UnmanagedType.BStr)] [In] string asm_ins);
+        int AsmAdd([In] [MarshalAs(UnmanagedType.BStr)] string asm_ins);
 
-        [DispId(129)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(129)]
         int AsmClear();
 
-        [DispId(130)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(130)]
         int AsmCall([In] int hwnd, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(131)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindMultiColor([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string first_color,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindMultiColor([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string first_color, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(132)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindMultiColorEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string first_color,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir);
+        string FindMultiColorEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string first_color, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir);
 
-        [DispId(133)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(133)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string AsmCode([In] int base_addr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(134)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string Assemble([MarshalAs(UnmanagedType.BStr)] [In] string asm_code, [In] int base_addr, [In] int is_upper);
+        string Assemble([In] [MarshalAs(UnmanagedType.BStr)] string asm_code, [In] int base_addr, [In] int is_upper);
 
-        [DispId(135)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(135)]
         int SetWindowTransparent([In] int hwnd, [In] int v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(136)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadData([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] int len);
+        string ReadData([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int len);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(137)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteData([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [MarshalAs(UnmanagedType.BStr)] [In] string data);
+        int WriteData([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] [MarshalAs(UnmanagedType.BStr)] string data);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(138)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindData([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr_range, [MarshalAs(UnmanagedType.BStr)] [In] string data);
+        string FindData([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] [MarshalAs(UnmanagedType.BStr)] string data);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(139)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetPicPwd([MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int SetPicPwd([In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(140)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int Log([MarshalAs(UnmanagedType.BStr)] [In] string info);
+        int Log([In] [MarshalAs(UnmanagedType.BStr)] string info);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(141)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(142)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindColorE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [In] int dir);
+        string FindColorE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(143)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir);
+        string FindPicE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(144)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindMultiColorE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string first_color,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir);
+        string FindMultiColorE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string first_color, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir);
 
-        [DispId(145)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(145)]
         int SetExactOcr([In] int exact_ocr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(146)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadString([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string addr, [In] int type, [In] int len);
+        string ReadString([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int type, [In] int len);
 
-        [DispId(147)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(147)]
         int FoobarTextPrintDir([In] int hwnd, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(148)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string OcrEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        string OcrEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(149)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetDisplayInput([MarshalAs(UnmanagedType.BStr)] [In] string mode);
+        int SetDisplayInput([In] [MarshalAs(UnmanagedType.BStr)] string mode);
 
-        [DispId(150)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(150)]
         int GetTime();
 
-        [DispId(151)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(151)]
         int GetScreenWidth();
 
-        [DispId(152)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(152)]
         int GetScreenHeight();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(153)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int BindWindowEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string display,
-            [MarshalAs(UnmanagedType.BStr)] [In] string mouse,
-            [MarshalAs(UnmanagedType.BStr)] [In] string keypad,
-            [MarshalAs(UnmanagedType.BStr)] [In] string public_desc,
-            [In] int mode);
+        int BindWindowEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string display, [In] [MarshalAs(UnmanagedType.BStr)] string mouse, [In] [MarshalAs(UnmanagedType.BStr)] string keypad, [In] [MarshalAs(UnmanagedType.BStr)] string public_desc, [In] int mode);
 
-        [DispId(154)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(154)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetDiskSerial();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(155)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string Md5([MarshalAs(UnmanagedType.BStr)] [In] string str);
+        string Md5([In] [MarshalAs(UnmanagedType.BStr)] string str);
 
-        [DispId(156)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(156)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetMac();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(157)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ActiveInputMethod([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string id);
+        int ActiveInputMethod([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string id);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(158)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CheckInputMethod([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string id);
+        int CheckInputMethod([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string id);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(159)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindInputMethod([MarshalAs(UnmanagedType.BStr)] [In] string id);
+        int FindInputMethod([In] [MarshalAs(UnmanagedType.BStr)] string id);
 
-        [DispId(160)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(160)]
         int GetCursorPos([MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(161)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int BindWindow([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string display,
-            [MarshalAs(UnmanagedType.BStr)] [In] string mouse,
-            [MarshalAs(UnmanagedType.BStr)] [In] string keypad,
-            [In] int mode);
+        int BindWindow([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string display, [In] [MarshalAs(UnmanagedType.BStr)] string mouse, [In] [MarshalAs(UnmanagedType.BStr)] string keypad, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(162)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindWindow([MarshalAs(UnmanagedType.BStr)] [In] string class_name, [MarshalAs(UnmanagedType.BStr)] [In] string title_name);
+        int FindWindow([In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] [MarshalAs(UnmanagedType.BStr)] string title_name);
 
-        [DispId(163)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(163)]
         int GetScreenDepth();
 
-        [DispId(164)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(164)]
         int SetScreen([In] int width, [In] int height, [In] int depth);
 
-        [DispId(165)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(165)]
         int ExitOs([In] int type);
 
-        [DispId(166)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(166)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetDir([In] int type);
 
-        [DispId(167)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(167)]
         int GetOsType();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(168)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindWindowEx([In] int parent,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title_name);
+        int FindWindowEx([In] int parent, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] [MarshalAs(UnmanagedType.BStr)] string title_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(169)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetExportDict([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string dict_name);
+        int SetExportDict([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string dict_name);
 
-        [DispId(170)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(170)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetCursorShape();
 
-        [DispId(171)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(171)]
         int DownCpu([In] int rate);
 
-        [DispId(172)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(172)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetCursorSpot();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(173)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SendString2([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int SendString2([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(174)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FaqPost([MarshalAs(UnmanagedType.BStr)] [In] string server, [In] int handle, [In] int request_type, [In] int time_out);
+        int FaqPost([In] [MarshalAs(UnmanagedType.BStr)] string server, [In] int handle, [In] int request_type, [In] int time_out);
 
-        [DispId(175)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(175)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string FaqFetch();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(176)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FetchWord([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [MarshalAs(UnmanagedType.BStr)] [In] string word);
+        string FetchWord([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] [MarshalAs(UnmanagedType.BStr)] string word);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(177)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CaptureJpg([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string file, [In] int quality);
+        int CaptureJpg([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] int quality);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(178)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindStrWithFont([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.BStr)] [In] string font_name,
-            [In] int font_size,
-            [In] int flag,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindStrWithFont([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] [MarshalAs(UnmanagedType.BStr)] string font_name, [In] int font_size, [In] int flag, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(179)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrWithFontE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.BStr)] [In] string font_name,
-            [In] int font_size,
-            [In] int flag);
+        string FindStrWithFontE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] [MarshalAs(UnmanagedType.BStr)] string font_name, [In] int font_size, [In] int flag);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(180)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrWithFontEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.BStr)] [In] string font_name,
-            [In] int font_size,
-            [In] int flag);
+        string FindStrWithFontEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] [MarshalAs(UnmanagedType.BStr)] string font_name, [In] int font_size, [In] int flag);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(181)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetDictInfo([MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string font_name,
-            [In] int font_size,
-            [In] int flag);
+        string GetDictInfo([In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string font_name, [In] int font_size, [In] int flag);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(182)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SaveDict([In] int index, [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int SaveDict([In] int index, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
-        [DispId(183)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(183)]
         int GetWindowProcessId([In] int hwnd);
 
-        [DispId(184)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(184)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetWindowProcessPath([In] int hwnd);
 
-        [DispId(185)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(185)]
         int LockInput([In] int @lock);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(186)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetPicSize([MarshalAs(UnmanagedType.BStr)] [In] string pic_name);
+        string GetPicSize([In] [MarshalAs(UnmanagedType.BStr)] string pic_name);
 
-        [DispId(187)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(187)]
         int GetID();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(188)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CapturePng([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int CapturePng([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(189)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CaptureGif([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [In] int delay,
-            [In] int time);
+        int CaptureGif([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] int delay, [In] int time);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(190)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ImageToBmp([MarshalAs(UnmanagedType.BStr)] [In] string pic_name, [MarshalAs(UnmanagedType.BStr)] [In] string bmp_name);
+        int ImageToBmp([In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string bmp_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(191)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindStrFast([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindStrFast([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(192)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrFastEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrFastEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(193)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrFastE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrFastE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
-        [DispId(194)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(194)]
         int EnableDisplayDebug([In] int enable_debug);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(195)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CapturePre([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int CapturePre([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(196)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int RegEx([MarshalAs(UnmanagedType.BStr)] [In] string code,
-            [MarshalAs(UnmanagedType.BStr)] [In] string Ver,
-            [MarshalAs(UnmanagedType.BStr)] [In] string ip);
+        int RegEx([In] [MarshalAs(UnmanagedType.BStr)] string code, [In] [MarshalAs(UnmanagedType.BStr)] string Ver, [In] [MarshalAs(UnmanagedType.BStr)] string ip);
 
-        [DispId(197)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(197)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetMachineCode();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(198)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetClipboard([MarshalAs(UnmanagedType.BStr)] [In] string data);
+        int SetClipboard([In] [MarshalAs(UnmanagedType.BStr)] string data);
 
-        [DispId(199)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(199)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetClipboard();
 
-        [DispId(200)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(200)]
         int GetNowDict();
 
-        [DispId(201)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(201)]
         int Is64Bit();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(202)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetColorNum([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        int GetColorNum([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(203)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumWindowByProcess([MarshalAs(UnmanagedType.BStr)] [In] string process_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [In] int filter);
+        string EnumWindowByProcess([In] [MarshalAs(UnmanagedType.BStr)] string process_name, [In] [MarshalAs(UnmanagedType.BStr)] string title, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] int filter);
 
-        [DispId(204)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(204)]
         int GetDictCount([In] int index);
 
-        [DispId(205)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(205)]
         int GetLastError();
 
-        [DispId(206)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(206)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetNetTime();
 
-        [DispId(207)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(207)]
         int EnableGetColorByCapture([In] int en);
 
-        [DispId(208)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(208)]
         int CheckUAC();
 
-        [DispId(209)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(209)]
         int SetUAC([In] int uac);
 
-        [DispId(210)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(210)]
         int DisableFontSmooth();
 
-        [DispId(211)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(211)]
         int CheckFontSmooth();
 
-        [DispId(212)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(212)]
         int SetDisplayAcceler([In] int level);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(213)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindWindowByProcess([MarshalAs(UnmanagedType.BStr)] [In] string process_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title_name);
+        int FindWindowByProcess([In] [MarshalAs(UnmanagedType.BStr)] string process_name, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] [MarshalAs(UnmanagedType.BStr)] string title_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(214)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindWindowByProcessId([In] int process_id,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title_name);
+        int FindWindowByProcessId([In] int process_id, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] [MarshalAs(UnmanagedType.BStr)] string title_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(215)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadIni([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        string ReadIni([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(216)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteIni([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string v,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int WriteIni([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string v, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(217)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int RunApp([MarshalAs(UnmanagedType.BStr)] [In] string path, [In] int mode);
+        int RunApp([In] [MarshalAs(UnmanagedType.BStr)] string path, [In] int mode);
 
-        [DispId(218)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(218)]
         int delay([In] int mis);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(219)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindWindowSuper([MarshalAs(UnmanagedType.BStr)] [In] string spec1,
-            [In] int flag1,
-            [In] int type1,
-            [MarshalAs(UnmanagedType.BStr)] [In] string spec2,
-            [In] int flag2,
-            [In] int type2);
+        int FindWindowSuper([In] [MarshalAs(UnmanagedType.BStr)] string spec1, [In] int flag1, [In] int type1, [In] [MarshalAs(UnmanagedType.BStr)] string spec2, [In] int flag2, [In] int type2);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(220)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ExcludePos([MarshalAs(UnmanagedType.BStr)] [In] string all_pos, [In] int type, [In] int x1, [In] int y1, [In] int x2, [In] int y2);
+        string ExcludePos([In] [MarshalAs(UnmanagedType.BStr)] string all_pos, [In] int type, [In] int x1, [In] int y1, [In] int x2, [In] int y2);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(221)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindNearestPos([MarshalAs(UnmanagedType.BStr)] [In] string all_pos, [In] int type, [In] int x, [In] int y);
+        string FindNearestPos([In] [MarshalAs(UnmanagedType.BStr)] string all_pos, [In] int type, [In] int x, [In] int y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(222)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string SortPosDistance([MarshalAs(UnmanagedType.BStr)] [In] string all_pos, [In] int type, [In] int x, [In] int y);
+        string SortPosDistance([In] [MarshalAs(UnmanagedType.BStr)] string all_pos, [In] int type, [In] int x, [In] int y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(223)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindPicMem([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_info,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindPicMem([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_info, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(224)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicMemEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_info,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir);
+        string FindPicMemEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_info, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(225)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicMemE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_info,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir);
+        string FindPicMemE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_info, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(226)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string AppendPicAddr([MarshalAs(UnmanagedType.BStr)] [In] string pic_info, [In] int addr, [In] int size);
+        string AppendPicAddr([In] [MarshalAs(UnmanagedType.BStr)] string pic_info, [In] int addr, [In] int size);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(227)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteFile([MarshalAs(UnmanagedType.BStr)] [In] string file, [MarshalAs(UnmanagedType.BStr)] [In] string content);
+        int WriteFile([In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string content);
 
-        [DispId(228)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(228)]
         int Stop([In] int id);
 
-        [DispId(229)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(229)]
         int SetDictMem([In] int index, [In] int addr, [In] int size);
 
-        [DispId(230)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(230)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetNetTimeSafe();
 
-        [DispId(231)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(231)]
         int ForceUnBindWindow([In] int hwnd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(232)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadIniPwd([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        string ReadIniPwd([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(233)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteIniPwd([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string v,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int WriteIniPwd([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string v, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(234)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DecodeFile([MarshalAs(UnmanagedType.BStr)] [In] string file, [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int DecodeFile([In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(235)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int KeyDownChar([MarshalAs(UnmanagedType.BStr)] [In] string key_str);
+        int KeyDownChar([In] [MarshalAs(UnmanagedType.BStr)] string key_str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(236)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int KeyUpChar([MarshalAs(UnmanagedType.BStr)] [In] string key_str);
+        int KeyUpChar([In] [MarshalAs(UnmanagedType.BStr)] string key_str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(237)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int KeyPressChar([MarshalAs(UnmanagedType.BStr)] [In] string key_str);
+        int KeyPressChar([In] [MarshalAs(UnmanagedType.BStr)] string key_str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(238)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int KeyPressStr([MarshalAs(UnmanagedType.BStr)] [In] string key_str, [In] int delay);
+        int KeyPressStr([In] [MarshalAs(UnmanagedType.BStr)] string key_str, [In] int delay);
 
-        [DispId(239)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(239)]
         int EnableKeypadPatch([In] int en);
 
-        [DispId(240)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(240)]
         int EnableKeypadSync([In] int en, [In] int time_out);
 
-        [DispId(241)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(241)]
         int EnableMouseSync([In] int en, [In] int time_out);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(242)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DmGuard([In] int en, [MarshalAs(UnmanagedType.BStr)] [In] string type);
+        int DmGuard([In] int en, [In] [MarshalAs(UnmanagedType.BStr)] string type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(243)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FaqCaptureFromFile([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [In] int quality);
+        int FaqCaptureFromFile([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] int quality);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(244)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindIntEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] int int_value_min,
-            [In] int int_value_max,
-            [In] int type,
-            [In] int step,
-            [In] int multi_thread,
-            [In] int mode);
+        string FindIntEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] long int_value_min, [In] long int_value_max, [In] int type, [In] int step, [In] int multi_thread, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(245)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindFloatEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] float float_value_min,
-            [In] float float_value_max,
-            [In] int step,
-            [In] int multi_thread,
-            [In] int mode);
+        string FindFloatEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] float float_value_min, [In] float float_value_max, [In] int step, [In] int multi_thread, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(246)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindDoubleEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [In] double double_value_min,
-            [In] double double_value_max,
-            [In] int step,
-            [In] int multi_thread,
-            [In] int mode);
+        string FindDoubleEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] double double_value_min, [In] double double_value_max, [In] int step, [In] int multi_thread, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(247)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStringEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [MarshalAs(UnmanagedType.BStr)] [In] string string_value,
-            [In] int type,
-            [In] int step,
-            [In] int multi_thread,
-            [In] int mode);
+        string FindStringEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] [MarshalAs(UnmanagedType.BStr)] string string_value, [In] int type, [In] int step, [In] int multi_thread, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(248)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindDataEx([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string addr_range,
-            [MarshalAs(UnmanagedType.BStr)] [In] string data,
-            [In] int step,
-            [In] int multi_thread,
-            [In] int mode);
+        string FindDataEx([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr_range, [In] [MarshalAs(UnmanagedType.BStr)] string data, [In] int step, [In] int multi_thread, [In] int mode);
 
-        [DispId(249)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(249)]
         int EnableRealMouse([In] int en, [In] int mousedelay, [In] int mousestep);
 
-        [DispId(250)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(250)]
         int EnableRealKeypad([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(251)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SendStringIme([MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int SendStringIme([In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(252)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarDrawLine([In] int hwnd,
-            [In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] int style,
-            [In] int width);
+        int FoobarDrawLine([In] int hwnd, [In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] int style, [In] int width);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(253)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
-        [DispId(254)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(254)]
         int IsBind([In] int hwnd);
 
-        [DispId(255)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(255)]
         int SetDisplayDelay([In] int t);
 
-        [DispId(256)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(256)]
         int GetDmCount();
 
-        [DispId(257)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(257)]
         int DisableScreenSave();
 
-        [DispId(258)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(258)]
         int DisablePowerSave();
 
-        [DispId(259)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(259)]
         int SetMemoryHwndAsProcessId([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(260)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindShape([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindShape([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(261)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindShapeE([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir);
+        string FindShapeE([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(262)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindShapeEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string offset_color,
-            [In] double sim,
-            [In] int dir);
+        string FindShapeEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string offset_color, [In] double sim, [In] int dir);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(263)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        string FindStrS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(264)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrExS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrExS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(265)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrFastS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        string FindStrFastS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(266)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindStrFastExS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string str,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim);
+        string FindStrFastExS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(267)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        string FindPicS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(268)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindPicExS([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [MarshalAs(UnmanagedType.BStr)] [In] string delta_color,
-            [In] double sim,
-            [In] int dir);
+        string FindPicExS([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] [MarshalAs(UnmanagedType.BStr)] string delta_color, [In] double sim, [In] int dir);
 
-        [DispId(269)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(269)]
         int ClearDict([In] int index);
 
-        [DispId(270)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(270)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetMachineCodeNoMac();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(271)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetClientRect([In] int hwnd,
-            [MarshalAs(UnmanagedType.Struct)] out object x1,
-            [MarshalAs(UnmanagedType.Struct)] out object y1,
-            [MarshalAs(UnmanagedType.Struct)] out object x2,
-            [MarshalAs(UnmanagedType.Struct)] out object y2);
+        int GetClientRect([In] int hwnd, [MarshalAs(UnmanagedType.Struct)] out object x1, [MarshalAs(UnmanagedType.Struct)] out object y1, [MarshalAs(UnmanagedType.Struct)] out object x2, [MarshalAs(UnmanagedType.Struct)] out object y2);
 
-        [DispId(272)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(272)]
         int EnableFakeActive([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(273)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetScreenDataBmp([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.Struct)] out object data,
-            [MarshalAs(UnmanagedType.Struct)] out object size);
+        int GetScreenDataBmp([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.Struct)] out object data, [MarshalAs(UnmanagedType.Struct)] out object size);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(274)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int EncodeFile([MarshalAs(UnmanagedType.BStr)] [In] string file, [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int EncodeFile([In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
-        [DispId(275)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(275)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetCursorShapeEx([In] int type);
 
-        [DispId(276)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(276)]
         int FaqCancel();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(277)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string IntToData([In] int int_value, [In] int type);
+        string IntToData([In] long int_value, [In] int type);
 
-        [DispId(278)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(278)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string FloatToData([In] float float_value);
 
-        [DispId(279)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(279)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string DoubleToData([In] double double_value);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(280)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string StringToData([MarshalAs(UnmanagedType.BStr)] [In] string string_value, [In] int type);
+        string StringToData([In] [MarshalAs(UnmanagedType.BStr)] string string_value, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(281)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetMemoryFindResultToFile([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int SetMemoryFindResultToFile([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
-        [DispId(282)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(282)]
         int EnableBind([In] int en);
 
-        [DispId(283)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(283)]
         int SetSimMode([In] int mode);
 
-        [DispId(284)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(284)]
         int LockMouseRect([In] int x1, [In] int y1, [In] int x2, [In] int y2);
 
-        [DispId(285)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(285)]
         int SendPaste([In] int hwnd);
 
-        [DispId(286)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(286)]
         int IsDisplayDead([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] int t);
 
-        [DispId(287)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(287)]
         int GetKeyState([In] int vk);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(288)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CopyFile([MarshalAs(UnmanagedType.BStr)] [In] string src_file, [MarshalAs(UnmanagedType.BStr)] [In] string dst_file, [In] int over);
+        int CopyFile([In] [MarshalAs(UnmanagedType.BStr)] string src_file, [In] [MarshalAs(UnmanagedType.BStr)] string dst_file, [In] int over);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(289)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int IsFileExist([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int IsFileExist([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(290)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DeleteFile([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int DeleteFile([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(291)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int MoveFile([MarshalAs(UnmanagedType.BStr)] [In] string src_file, [MarshalAs(UnmanagedType.BStr)] [In] string dst_file);
+        int MoveFile([In] [MarshalAs(UnmanagedType.BStr)] string src_file, [In] [MarshalAs(UnmanagedType.BStr)] string dst_file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(292)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int CreateFolder([MarshalAs(UnmanagedType.BStr)] [In] string folder_name);
+        int CreateFolder([In] [MarshalAs(UnmanagedType.BStr)] string folder_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(293)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DeleteFolder([MarshalAs(UnmanagedType.BStr)] [In] string folder_name);
+        int DeleteFolder([In] [MarshalAs(UnmanagedType.BStr)] string folder_name);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(294)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int GetFileLength([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int GetFileLength([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(295)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadFile([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        string ReadFile([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
-        [DispId(296)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(296)]
         int WaitKey([In] int key_code, [In] int time_out);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(297)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DeleteIni([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        int DeleteIni([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(298)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DeleteIniPwd([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string key,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        int DeleteIniPwd([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string key, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
-        [DispId(299)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(299)]
         int EnableSpeedDx([In] int en);
 
-        [DispId(300)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(300)]
         int EnableIme([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(301)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int Reg([MarshalAs(UnmanagedType.BStr)] [In] string code, [MarshalAs(UnmanagedType.BStr)] [In] string Ver);
+        int Reg([In] [MarshalAs(UnmanagedType.BStr)] string code, [In] [MarshalAs(UnmanagedType.BStr)] string Ver);
 
-        [DispId(302)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(302)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string SelectFile();
 
-        [DispId(303)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(303)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string SelectDirectory();
 
-        [DispId(304)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(304)]
         int LockDisplay([In] int @lock);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(305)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarSetSave([In] int hwnd,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [In] int en,
-            [MarshalAs(UnmanagedType.BStr)] [In] string header);
+        int FoobarSetSave([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] int en, [In] [MarshalAs(UnmanagedType.BStr)] string header);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(306)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumWindowSuper([MarshalAs(UnmanagedType.BStr)] [In] string spec1,
-            [In] int flag1,
-            [In] int type1,
-            [MarshalAs(UnmanagedType.BStr)] [In] string spec2,
-            [In] int flag2,
-            [In] int type2,
-            [In] int sort);
+        string EnumWindowSuper([In] [MarshalAs(UnmanagedType.BStr)] string spec1, [In] int flag1, [In] int type1, [In] [MarshalAs(UnmanagedType.BStr)] string spec2, [In] int flag2, [In] int type2, [In] int sort);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(307)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int DownloadFile([MarshalAs(UnmanagedType.BStr)] [In] string url, [MarshalAs(UnmanagedType.BStr)] [In] string save_file, [In] int timeout);
+        int DownloadFile([In] [MarshalAs(UnmanagedType.BStr)] string url, [In] [MarshalAs(UnmanagedType.BStr)] string save_file, [In] int timeout);
 
-        [DispId(308)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(308)]
         int EnableKeypadMsg([In] int en);
 
-        [DispId(309)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(309)]
         int EnableMouseMsg([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(310)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int RegNoMac([MarshalAs(UnmanagedType.BStr)] [In] string code, [MarshalAs(UnmanagedType.BStr)] [In] string Ver);
+        int RegNoMac([In] [MarshalAs(UnmanagedType.BStr)] string code, [In] [MarshalAs(UnmanagedType.BStr)] string Ver);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(311)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int RegExNoMac([MarshalAs(UnmanagedType.BStr)] [In] string code,
-            [MarshalAs(UnmanagedType.BStr)] [In] string Ver,
-            [MarshalAs(UnmanagedType.BStr)] [In] string ip);
+        int RegExNoMac([In] [MarshalAs(UnmanagedType.BStr)] string code, [In] [MarshalAs(UnmanagedType.BStr)] string Ver, [In] [MarshalAs(UnmanagedType.BStr)] string ip);
 
-        [DispId(312)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(312)]
         int SetEnumWindowDelay([In] int delay);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(313)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindMulColor([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        int FindMulColor([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
-        [DispId(314)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(314)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetDict([In] int index, [In] int font_index);
 
-        [DispId(315)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(315)]
         int GetBindWindow();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(316)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarStartGif([In] int hwnd,
-            [In] int x,
-            [In] int y,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pic_name,
-            [In] int repeat_limit,
-            [In] int delay);
+        int FoobarStartGif([In] int hwnd, [In] int x, [In] int y, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name, [In] int repeat_limit, [In] int delay);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(317)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarStopGif([In] int hwnd, [In] int x, [In] int y, [MarshalAs(UnmanagedType.BStr)] [In] string pic_name);
+        int FoobarStopGif([In] int hwnd, [In] int x, [In] int y, [In] [MarshalAs(UnmanagedType.BStr)] string pic_name);
 
-        [DispId(318)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(318)]
         int FreeProcessMemory([In] int hwnd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(319)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadFileData([MarshalAs(UnmanagedType.BStr)] [In] string file, [In] int start_pos, [In] int end_pos);
+        string ReadFileData([In] [MarshalAs(UnmanagedType.BStr)] string file, [In] int start_pos, [In] int end_pos);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(320)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int VirtualAllocEx([In] int hwnd, [In] int addr, [In] int size, [In] int type);
+        long VirtualAllocEx([In] int hwnd, [In] long addr, [In] int size, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(321)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int VirtualFreeEx([In] int hwnd, [In] int addr);
+        int VirtualFreeEx([In] int hwnd, [In] long addr);
 
-        [DispId(322)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(322)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetCommandLine([In] int hwnd);
 
-        [DispId(323)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(323)]
         int TerminateProcess([In] int pid);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(324)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetNetTimeByIp([MarshalAs(UnmanagedType.BStr)] [In] string ip);
+        string GetNetTimeByIp([In] [MarshalAs(UnmanagedType.BStr)] string ip);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(325)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumProcess([MarshalAs(UnmanagedType.BStr)] [In] string name);
+        string EnumProcess([In] [MarshalAs(UnmanagedType.BStr)] string name);
 
-        [DispId(326)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(326)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetProcessInfo([In] int pid);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(327)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int ReadIntAddr([In] int hwnd, [In] int addr, [In] int type);
+        long ReadIntAddr([In] int hwnd, [In] long addr, [In] int type);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(328)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadDataAddr([In] int hwnd, [In] int addr, [In] int len);
+        string ReadDataAddr([In] int hwnd, [In] long addr, [In] int len);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(329)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        double ReadDoubleAddr([In] int hwnd, [In] int addr);
+        double ReadDoubleAddr([In] int hwnd, [In] long addr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(330)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        float ReadFloatAddr([In] int hwnd, [In] int addr);
+        float ReadFloatAddr([In] int hwnd, [In] long addr);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(331)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string ReadStringAddr([In] int hwnd, [In] int addr, [In] int type, [In] int len);
+        string ReadStringAddr([In] int hwnd, [In] long addr, [In] int type, [In] int len);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(332)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteDataAddr([In] int hwnd, [In] int addr, [MarshalAs(UnmanagedType.BStr)] [In] string data);
+        int WriteDataAddr([In] int hwnd, [In] long addr, [In] [MarshalAs(UnmanagedType.BStr)] string data);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(333)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteDoubleAddr([In] int hwnd, [In] int addr, [In] double v);
+        int WriteDoubleAddr([In] int hwnd, [In] long addr, [In] double v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(334)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteFloatAddr([In] int hwnd, [In] int addr, [In] float v);
+        int WriteFloatAddr([In] int hwnd, [In] long addr, [In] float v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(335)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteIntAddr([In] int hwnd, [In] int addr, [In] int type, [In] int v);
+        int WriteIntAddr([In] int hwnd, [In] long addr, [In] int type, [In] long v);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(336)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int WriteStringAddr([In] int hwnd, [In] int addr, [In] int type, [MarshalAs(UnmanagedType.BStr)] [In] string v);
+        int WriteStringAddr([In] int hwnd, [In] long addr, [In] int type, [In] [MarshalAs(UnmanagedType.BStr)] string v);
 
-        [DispId(337)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(337)]
         int Delays([In] int min_s, [In] int max_s);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(338)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FindColorBlock([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [In] int count,
-            [In] int width,
-            [In] int height,
-            [MarshalAs(UnmanagedType.Struct)] out object x,
-            [MarshalAs(UnmanagedType.Struct)] out object y);
+        int FindColorBlock([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] int count, [In] int width, [In] int height, [MarshalAs(UnmanagedType.Struct)] out object x, [MarshalAs(UnmanagedType.Struct)] out object y);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(339)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string FindColorBlockEx([In] int x1,
-            [In] int y1,
-            [In] int x2,
-            [In] int y2,
-            [MarshalAs(UnmanagedType.BStr)] [In] string color,
-            [In] double sim,
-            [In] int count,
-            [In] int width,
-            [In] int height);
+        string FindColorBlockEx([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim, [In] int count, [In] int width, [In] int height);
 
-        [DispId(340)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(340)]
         int OpenProcess([In] int pid);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(341)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumIniSection([MarshalAs(UnmanagedType.BStr)] [In] string file);
+        string EnumIniSection([In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(342)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumIniSectionPwd([MarshalAs(UnmanagedType.BStr)] [In] string file, [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        string EnumIniSectionPwd([In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(343)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumIniKey([MarshalAs(UnmanagedType.BStr)] [In] string section, [MarshalAs(UnmanagedType.BStr)] [In] string file);
+        string EnumIniKey([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string file);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(344)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumIniKeyPwd([MarshalAs(UnmanagedType.BStr)] [In] string section,
-            [MarshalAs(UnmanagedType.BStr)] [In] string file,
-            [MarshalAs(UnmanagedType.BStr)] [In] string pwd);
+        string EnumIniKeyPwd([In] [MarshalAs(UnmanagedType.BStr)] string section, [In] [MarshalAs(UnmanagedType.BStr)] string file, [In] [MarshalAs(UnmanagedType.BStr)] string pwd);
 
-        [DispId(345)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(345)]
         int SwitchBindWindow([In] int hwnd);
 
-        [DispId(346)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(346)]
         int InitCri();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(347)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int SendStringIme2([In] int hwnd, [MarshalAs(UnmanagedType.BStr)] [In] string str, [In] int mode);
+        int SendStringIme2([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string str, [In] int mode);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(348)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string EnumWindowByProcessId([In] int pid,
-            [MarshalAs(UnmanagedType.BStr)] [In] string title,
-            [MarshalAs(UnmanagedType.BStr)] [In] string class_name,
-            [In] int filter);
+        string EnumWindowByProcessId([In] int pid, [In] [MarshalAs(UnmanagedType.BStr)] string title, [In] [MarshalAs(UnmanagedType.BStr)] string class_name, [In] int filter);
 
-        [DispId(349)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(349)]
         [return: MarshalAs(UnmanagedType.BStr)]
         string GetDisplayInfo();
 
-        [DispId(350)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(350)]
         int EnableFontSmooth();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(351)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string OcrExOne([In] int x1, [In] int y1, [In] int x2, [In] int y2, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        string OcrExOne([In] int x1, [In] int y1, [In] int x2, [In] int y2, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
-        [DispId(352)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(352)]
         int SetAero([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(353)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FoobarSetTrans([In] int hwnd, [In] int trans, [MarshalAs(UnmanagedType.BStr)] [In] string color, [In] double sim);
+        int FoobarSetTrans([In] int hwnd, [In] int trans, [In] [MarshalAs(UnmanagedType.BStr)] string color, [In] double sim);
 
-        [DispId(354)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(354)]
         int EnablePicCache([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(355)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        string GetInfo([MarshalAs(UnmanagedType.BStr)] [In] string cmd, [MarshalAs(UnmanagedType.BStr)] [In] string param);
+        string GetInfo([In] [MarshalAs(UnmanagedType.BStr)] string cmd, [In] [MarshalAs(UnmanagedType.BStr)] string param);
 
-        [DispId(356)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(356)]
         int FaqIsPosted();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(357)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int LoadPicByte([In] int addr, [In] int size, [MarshalAs(UnmanagedType.BStr)] [In] string name);
+        int LoadPicByte([In] int addr, [In] int size, [In] [MarshalAs(UnmanagedType.BStr)] string name);
 
-        [DispId(358)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(358)]
         int MiddleDown();
 
-        [DispId(359)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(359)]
         int MiddleUp();
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(360)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int FaqCaptureString([MarshalAs(UnmanagedType.BStr)] [In] string str);
+        int FaqCaptureString([In] [MarshalAs(UnmanagedType.BStr)] string str);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(361)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int VirtualProtectEx([In] int hwnd, [In] int addr, [In] int size, [In] int type, [In] int old_protect);
+        int VirtualProtectEx([In] int hwnd, [In] long addr, [In] int size, [In] int type, [In] int old_protect);
 
-        [DispId(362)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(362)]
         int SetMouseSpeed([In] int speed);
 
-        [DispId(363)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(363)]
         int GetMouseSpeed();
 
-        [DispId(364)]
         [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(364)]
         int EnableMouseAccuracy([In] int en);
 
+        [MethodImpl(MethodImplOptions.InternalCall)]
         [DispId(365)]
-        [MethodImpl(MethodImplOptions.InternalCall)]
-        int EnableShareDict([In] int enable);
+        int SetExcludeRegion([In] int type, [In] [MarshalAs(UnmanagedType.BStr)] string info);
 
-        [DispId(366)]
         [MethodImpl(MethodImplOptions.InternalCall)]
-        int SetExcludeRegion([In]int mode, [MarshalAs(UnmanagedType.BStr)][In]string info);
+        [DispId(366)]
+        int EnableShareDict([In] int en);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(367)]
+        int DisableCloseDisplayAndSleep();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(368)]
+        int Int64ToInt32([In] long v);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(369)]
+        int GetLocale();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(370)]
+        int SetLocale();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(371)]
+        int ReadDataToBin([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int len);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(372)]
+        int WriteDataFromBin([In] int hwnd, [In] [MarshalAs(UnmanagedType.BStr)] string addr, [In] int data, [In] int len);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(373)]
+        int ReadDataAddrToBin([In] int hwnd, [In] long addr, [In] int len);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(374)]
+        int WriteDataAddrFromBin([In] int hwnd, [In] long addr, [In] int data, [In] int len);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(375)]
+        int SetParam64ToPointer();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(376)]
+        int GetDPI();
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(377)]
+        int SetDisplayRefreshDelay([In] int t);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(378)]
+        int IsFolderExist([In] [MarshalAs(UnmanagedType.BStr)] string folder);
+
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [DispId(379)]
+        int GetCpuType();
     }
 }

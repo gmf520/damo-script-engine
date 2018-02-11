@@ -3159,7 +3159,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="hwnd">指定读取的窗口句柄</param>
         /// <param name="moduleName">模块名</param>
         /// <returns>模块的基址</returns>
-        public int GetModuleBaseAddr(int hwnd, string moduleName)
+        public long GetModuleBaseAddr(int hwnd, string moduleName)
         {
             return _dm.GetModuleBaseAddr(hwnd, moduleName);
         }
@@ -3289,7 +3289,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="type">搜索的整数类型,取值如下：
         /// 0. 32位，1. 16位，2. 8位</param>
         /// <returns>读取到的数值,注意这里无法判断读取是否成功</returns>
-        public int ReadInt(int hwnd, string address, int type)
+        public long ReadInt(int hwnd, string address, int type)
         {
             return _dm.ReadInt(hwnd, address, type);
         }
@@ -3301,7 +3301,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="addr">地址</param>
         /// <param name="type">整数类型,取值如下 0 : 32位 1 : 16 位 2 : 8位 3 : 64位</param>
         /// <returns>读取到的数值</returns>
-        public int ReadIntAddr(int hwnd, int addr, int type)
+        public long ReadIntAddr(int hwnd, int addr, int type)
         {
             return _dm.ReadIntAddr(hwnd, addr, type);
         }
@@ -3387,7 +3387,7 @@ namespace Liuliu.ScriptEngine
         /// <param name="size">需要分配的内存大小.</param>
         /// <param name="type">需要分配的内存类型，取值如下: 0 : 可读可写可执行 1 : 可读可执行，不可写 2 : 可读可写,不可执行 </param>
         /// <returns>分配的内存地址，如果是0表示分配失败.</returns>
-        public int VirtualAllocEx(int hwnd, int addr, int size, int type)
+        public long VirtualAllocEx(int hwnd, int addr, int size, int type)
         {
             return _dm.VirtualAllocEx(hwnd, addr, size, type);
         }

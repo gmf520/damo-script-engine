@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -17,10 +18,17 @@ namespace Liuliu.ScriptEngine.Consoles
 
         static void Main(string[] args)
         {
+            Stopwatch watch = Stopwatch.StartNew();
             _dm = new DmPlugin();
+            watch.Stop();
+            Console.WriteLine($"创建大漠对象耗时：{watch.Elapsed}");
             while (true)
             {
                 Console.WriteLine($"大漠插件版本号：{_dm.Ver()}，请输入注册码，0跳过：");
+                if (_dm.CheckUAC())
+                {
+                    Console.WriteLine($"关闭UAC：{_dm.SetUAC(false)}");
+                }
                 string code = Console.ReadLine();
                 if (code == "0")
                 {
